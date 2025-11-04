@@ -1,3 +1,11 @@
 tk
 Pillow
 matplotlib
+tk
+Pillow
+matplotlib
+streamlit
+pandas
+matplotlib
+openpyxl
+numpy
