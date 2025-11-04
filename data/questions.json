@@ -1,0 +1,63 @@
+{
+    "meta": {
+        "source": "data/quizvragen.xlsx",
+        "sheet": "DC"
+    },
+    "questions": [
+        {
+            "id": "q1",
+            "type": "mc",
+            "topic": "Ohmse wet",
+            "text": "Wat is de juiste formule voor de stroom I?",
+            "choices": [
+                "I = U/R",
+                "U = I*R",
+                "R = U/I"
+            ],
+            "answer": 0,
+            "explanation": "Volgens de wet van Ohm geldt: I = U / R.",
+            "image_path": "assets/ohm_schema.png",
+            "formula_latex": "I = \\frac{U}{R}",
+            "tags": [
+                "DC",
+                "basis"
+            ],
+            "difficulty": 2,
+            "answer_numeric": null
+        },
+        {
+            "id": "q2",
+            "type": "tf",
+            "topic": "AC/DC",
+            "text": "Gelijkspanning wisselt van polariteit.",
+            "choices": [],
+            "answer": 0,
+            "explanation": "Dat klopt niet, gelijkspanning wisselt niet van polariteit.",
+            "image_path": "assets/ohm_schema.png",
+            "formula_latex": "P = U \\cdot I",
+            "tags": [
+                "AC",
+                "basis"
+            ],
+            "difficulty": 1,
+            "answer_numeric": null
+        },
+        {
+            "id": "q3",
+            "type": "input",
+            "topic": "Vermogen",
+            "text": "Bereken het vermogen bij U=12V en I=1A (Watt).",
+            "choices": [],
+            "answer": 12,
+            "explanation": "P = U * I",
+            "image_path": "assets/ohm_schema.png",
+            "formula_latex": "P = U \\cdot I",
+            "tags": [
+                "DC",
+                "vermogen"
+            ],
+            "difficulty": 3,
+            "answer_numeric": 12.0
+        }
+    ]
+}

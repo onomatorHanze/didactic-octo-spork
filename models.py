@@ -1,0 +1,168 @@
+import json
+import os
+import csv
+import ast
+from datetime import datetime
+from builtins import min
+import pandas as pd
+
+
+# ------------------------------------------------------------
+# 1️⃣ Klasse voor één quizvraag
+# ------------------------------------------------------------
+class Question:
+    def __init__(self, id, type, topic, text, tags=None,
+                 choices=None, answer=None, answer_numeric=None,
+                 tolerance=0.0, explanation=None, image_path=None,
+                 formula_latex=None, difficulty=2):
+        self.id = id
+        self.type = type
+        self.topic = topic
+        self.text = text
+        self.tags = tags or []
+        self.choices = choices or []
+        self.answer = answer
+        self.answer_numeric = answer_numeric
+        self.tolerance = tolerance
+        self.explanation = explanation
+        self.image_path = image_path
+        self.formula_latex = formula_latex
+        self.difficulty = difficulty
+
+
+# ------------------------------------------------------------
+# 2️⃣ Verzameling van vragen + CSV/Excel import
+# ------------------------------------------------------------
+class QuestionBank:
+    def __init__(self, path="data/questions.json"):
+        if not os.path.exists(path):
+            raise FileNotFoundError(f"Bestand niet gevonden: {path}")
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        self.questions = [Question(**q) for q in data.get("questions", [])]
+
+    def filter(self, topics=None, tags=None):
+        """Filter vragen op onderwerp of tag."""
+        result = self.questions
+        if topics:
+            result = [q for q in result if q.topic in topics]
+        if tags:
+            result = [q for q in result if any(t in q.tags for t in tags)]
+        return result
+
+    # ---- CSV import ----
+    @staticmethod
+    def import_from_csv(csv_path: str, json_path: str = "data/questions.json"):
+        """Importeer vragen uit CSV en sla op in JSON."""
+        questions = []
+        try:
+            with open(csv_path, newline='', encoding="utf-8") as csvfile:
+                reader = csv.DictReader(csvfile)
+                for row in reader:
+                    q = {
+                        "id": row["id"],
+                        "type": row["type"],
+                        "topic": row["topic"],
+                        "text": row["text"],
+                        "difficulty": int(row.get("difficulty", 1)),
+                        "choices": ast.literal_eval(row["choices"]) if row["choices"] else [],
+                        "answer": ast.literal_eval(row["answer"]) if row["answer"] else None,
+                        "explanation": row.get("explanation", ""),
+                        "image_path": row.get("image_path", ""),
+                        "formula_latex": row.get("formula_latex", ""),
+                        "tags": ast.literal_eval(row["tags"]) if row["tags"] else [],
+                    }
+                    questions.append(q)
+
+            data = {"meta": {"title": "Imported from CSV", "version": 1}, "questions": questions}
+
+            with open(json_path, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=4, ensure_ascii=False)
+
+            print(f"✅ CSV succesvol geïmporteerd ({len(questions)} vragen). Opgeslagen in {json_path}")
+
+        except Exception as e:
+            print(f"❌ Fout bij importeren CSV: {e}")
+
+    # ---- Excel import ----
+    @staticmethod
+    def import_from_excel(excel_path: str, sheet_name: str = "DC", json_path: str = "data/questions.json"):
+        """Importeer vragen uit een Excel-tabblad en sla op als JSON."""
+        try:
+            df = pd.read_excel(excel_path, sheet_name=sheet_name)
+            questions = []
+
+            for _, row in df.iterrows():
+                q = {
+                    "id": str(row["id"]),
+                    "type": row["type"],
+                    "topic": row["topic"],
+                    "text": row["text"],
+                    "choices": ast.literal_eval(str(row["choices"])) if pd.notna(row["choices"]) else [],
+                    "answer": ast.literal_eval(str(row["answer"])) if pd.notna(row["answer"]) else None,
+                    "explanation": row.get("explanation", ""),
+                    "image_path": row.get("image_path", ""),
+                    "formula_latex": row.get("formula_latex", ""),
+                    "tags": ast.literal_eval(str(row["tags"])) if pd.notna(row["tags"]) else [],
+                    "difficulty": int(row.get("difficulty", 1)),
+                }
+                if q["type"] == "input":
+                    # Als answer_numeric niet is ingevuld, neem de numerieke waarde van 'answer'
+                    try:
+                        q["answer_numeric"] = float(q["answer"])
+                    except (TypeError, ValueError):
+                        q["answer_numeric"] = None
+                else:
+                    q["answer_numeric"] = None
+
+                
+                questions.append(q)
+
+            data = {"meta": {"source": excel_path, "sheet": sheet_name}, "questions": questions}
+
+            with open(json_path, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=4, ensure_ascii=False)
+
+            print(f"✅ {len(questions)} vragen uit tabblad '{sheet_name}' geïmporteerd en opgeslagen in {json_path}")
+        except Exception as e:
+            print(f"❌ Fout bij importeren Excel: {e}")
+
+
+# ------------------------------------------------------------
+# 3️⃣ Voortgang en resultaten
+# ------------------------------------------------------------
+class HistoryStore:
+    def __init__(self, path="data/user_history.json"):
+        self.path = path
+        if os.path.exists(path):
+            with open(path, "r", encoding="utf-8") as f:
+                self.data = json.load(f)
+        else:
+            self.data = {"user": "default", "history": {}, "tag_stats": {}, "sessions": []}
+            self.save()
+
+    def save(self):
+        with open(self.path, "w", encoding="utf-8") as f:
+            json.dump(self.data, f, indent=2)
+
+    def update_question(self, qid, is_correct):
+        qhist = self.data["history"].get(qid, {"last": None, "box": 0, "correct": 0, "wrong": 0})
+        qhist["last"] = datetime.now().isoformat()
+        if is_correct:
+            qhist["box"] = min(qhist["box"] + 1, 5)
+            qhist["correct"] += 1
+        else:
+            qhist["box"] = 0
+            qhist["wrong"] += 1
+        self.data["history"][qid] = qhist
+        self.save()
+
+    def update_tags(self, tags, is_correct):
+        for tag in tags:
+            stat = self.data["tag_stats"].get(tag, {"correct": 0, "wrong": 0})
+            if is_correct:
+                stat["correct"] += 1
+            else:
+                stat["wrong"] += 1
+            self.data["tag_stats"][tag] = stat
+        self.save()

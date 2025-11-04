@@ -1,0 +1,42 @@
+{
+  "user": "default",
+  "history": {
+    "q1": {
+      "last": "2025-11-04T10:52:54.083398",
+      "box": 3,
+      "correct": 7,
+      "wrong": 4
+    },
+    "q3": {
+      "last": "2025-11-04T10:52:41.255541",
+      "box": 2,
+      "correct": 10,
+      "wrong": 12
+    },
+    "q2": {
+      "last": "2025-10-30T16:16:20.861349",
+      "box": 5,
+      "correct": 5,
+      "wrong": 2
+    }
+  },
+  "tag_stats": {
+    "DC": {
+      "correct": 16,
+      "wrong": 16
+    },
+    "vermogen": {
+      "correct": 10,
+      "wrong": 12
+    },
+    "AC": {
+      "correct": 5,
+      "wrong": 2
+    },
+    "basis": {
+      "correct": 11,
+      "wrong": 6
+    }
+  },
+  "sessions": []
+}

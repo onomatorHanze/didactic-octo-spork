@@ -1,0 +1,5 @@
+id,type,topic,text,choices,answer,explanation,image_path,formula_latex,tags,difficulty
+q1,mc,Ohmse wet,Wat is de juiste formule voor de stroom I?,"['I = U/R','U = I*R','R = U/I','P = U*I']",0,"Volgens de wet van Ohm geldt: I = U / R.","assets/ohm_schema.png","I = \\frac{U}{R}","['DC','basis']",2
+q2,tf,AC/DC,Gelijkspanning wisselt van polariteit.,[],False,"Dat klopt niet, gelijkspanning wisselt niet van polariteit.",,,"['AC','basis']",1
+q3,input,Vermogen,Bereken het vermogen bij U=12V en I=1A (Watt).,[],,P = U * I,,,"['DC','vermogen']",3
+
