@@ -55,33 +55,59 @@ if "questions" in st.session_state and st.session_state["questions"]:
     q = qs[i]
 
     st.subheader(f"({st.session_state['vak']}) Vraag {i+1}: {q['text']}")
-    answer = None
-    correct = None
 
+    # Toon vraag en beantwoord automatisch
     if q["type"] == "mc":
-        answer = st.radio("Kies het juiste antwoord:", eval(q["choices"]))
-        correct = eval(q["choices"])[int(q["answer"])]
+        keuzes = eval(q["choices"])
+        antwoord = st.radio("Kies het juiste antwoord:", keuzes, key=f"q{i}")
+        correct = keuzes[int(q["answer"])]
+
+        if antwoord:
+            goed = antwoord == correct
+            if goed:
+                st.success("✅ Goed!")
+                st.session_state["score"]["correct"] += 1
+            else:
+                st.error(f"❌ Fout! Correct was: {correct}")
+                st.session_state["score"]["wrong"] += 1
+
+            st.session_state["index"] += 1
+            st.experimental_rerun()
+
     elif q["type"] == "tf":
-        answer = st.radio("Waar of Onwaar?", ["Waar", "Onwaar"])
+        antwoord = st.radio("Waar of Onwaar?", ["Waar", "Onwaar"], key=f"q{i}")
         correct = "Waar" if q["answer"] == True else "Onwaar"
+
+        if antwoord:
+            goed = antwoord == correct
+            if goed:
+                st.success("✅ Goed!")
+                st.session_state["score"]["correct"] += 1
+            else:
+                st.error(f"❌ Fout! Correct was: {correct}")
+                st.session_state["score"]["wrong"] += 1
+
+            st.session_state["index"] += 1
+            st.experimental_rerun()
+
     elif q["type"] == "input":
-        answer = st.text_input("Voer je antwoord in:")
+        antwoord = st.text_input("Voer je antwoord in:", key=f"q{i}")
         correct = str(q["answer"])
+        if st.button("Controleer antwoord"):
+            goed = antwoord.strip() == correct.strip()
+            if goed:
+                st.success("✅ Goed!")
+                st.session_state["score"]["correct"] += 1
+            else:
+                st.error(f"❌ Fout! Correct was: {correct}")
+                st.session_state["score"]["wrong"] += 1
+            st.session_state["index"] += 1
+            st.experimental_rerun()
 
-    if st.button("Controleer antwoord"):
-        goed = answer == correct
-        if goed:
-            st.success("✅ Goed!")
-            st.session_state["score"]["correct"] += 1
-        else:
-            st.error(f"❌ Fout! Correct was: {correct}")
-            st.session_state["score"]["wrong"] += 1
-
-        st.session_state["index"] += 1
-        if st.session_state["index"] < len(qs):
-            st.button("Volgende vraag", on_click=st.rerun)
-        else:
-            st.balloons()
-            st.write("🎉 **Klaar!**")
-            st.metric("Goed", st.session_state["score"]["correct"])
-            st.metric("Fout", st.session_state["score"]["wrong"])
+    # Eindresultaat
+    if st.session_state["index"] >= len(qs):
+        st.balloons()
+        st.write("🎉 **Klaar!**")
+        st.metric("Goed", st.session_state["score"]["correct"])
+        st.metric("Fout", st.session_state["score"]["wrong"])
+        st.stop()
