@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import time
 from models import QuestionBank, HistoryStore
 from engine import SpacedRepetitionEngine
 
@@ -58,21 +59,41 @@ if "questions" in st.session_state and st.session_state["questions"]:
 
     # Toon vraag en beantwoord automatisch
     if q["type"] == "mc":
-        keuzes = eval(q["choices"])
-        antwoord = st.radio("Kies het juiste antwoord:", keuzes, key=f"q{i}")
-        correct = keuzes[int(q["answer"])]
+        keuzes = ["Maak een keuze..."] + eval(q["choices"])
+        antwoord = st.radio("Kies het juiste antwoord:", keuzes, index=0, key=f"q{i}")
+        correct = eval(q["choices"])[int(q["answer"])]
 
-        if antwoord:
+    if antwoord != "Maak een keuze...":
+        goed = antwoord == correct
+        if goed:
+            st.success("✅ Goed!")
+            st.session_state["score"]["correct"] += 1
+        else:
+            st.error(f"❌ Fout! Correct was: {correct}")
+            st.session_state["score"]["wrong"] += 1
+
+        time.sleep(1.5)
+        st.session_state["index"] += 1
+        st.rerun()
+
+    elif q["type"] == "tf":
+        keuzes = ["Maak een keuze...", "Waar", "Onwaar"]
+        antwoord = st.radio("Waar of Onwaar?", keuzes, index=0, key=f"q{i}")
+        correct = "Waar" if q["answer"] == True else "Onwaar"
+
+        if antwoord != "Maak een keuze...":
             goed = antwoord == correct
             if goed:
-                st.success("✅ Goed!")
-                st.session_state["score"]["correct"] += 1
+                    st.success("✅ Goed!")
+                    st.session_state["score"]["correct"] += 1
             else:
-                st.error(f"❌ Fout! Correct was: {correct}")
-                st.session_state["score"]["wrong"] += 1
+                    st.error(f"❌ Fout! Correct was: {correct}")
+                    st.session_state["score"]["wrong"] += 1
 
+            time.sleep(1.5)
             st.session_state["index"] += 1
-            st.experimental_rerun()
+            st.rerun()
+
 
     elif q["type"] == "tf":
         antwoord = st.radio("Waar of Onwaar?", ["Waar", "Onwaar"], key=f"q{i}")
