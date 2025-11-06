@@ -9,20 +9,22 @@ st.set_page_config(page_title="DocQuiz Web", layout="centered")
 # ----------------------------
 # Inladen van Excel-vakken
 # ----------------------------
-EXCEL_PATH = "data/quizvragen.xlsx"
+EXCEL_PATH = "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/quizvragen.xlsx"
+
 
 @st.cache_data
 def get_vakken(path):
     """Lees de namen van de tabbladen (vakken) in."""
-    xls = pd.ExcelFile(path)
+    xls = pd.ExcelFile(path, engine="openpyxl")
     return xls.sheet_names
 
 @st.cache_data
 def load_questions_from_excel(path, sheet_name):
     """Laad een tabblad (vak) als JSON-conversie."""
-    df = pd.read_excel(path, sheet_name=sheet_name)
+    df = pd.read_excel(path, sheet_name=sheet_name, engine="openpyxl")
     questions = df.to_dict(orient="records")
     return {"meta": {"source": path, "sheet": sheet_name}, "questions": questions}
+
 
 # ----------------------------
 # Startscherm
