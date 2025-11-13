@@ -42,6 +42,8 @@ def upload_to_github(updated_excel_bytes):
 tabs = load_excel()
 st.subheader("📚 Kies vak / tabblad")
 vak = st.selectbox("Vak", list(tabs.keys()))
+
+
 # --------------------------------------------------------
 # Overzicht van alle vragen in het gekozen vak
 # --------------------------------------------------------
@@ -67,7 +69,7 @@ st.dataframe(
 st.subheader("✏️ Nieuwe vraag toevoegen")
 
 st.subheader("📄 Huidige vragen in dit vak")
-st.dataframe(tabs[vak])
+
 
 
 
