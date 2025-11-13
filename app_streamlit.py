@@ -12,13 +12,13 @@ st.set_page_config(page_title="DocQuiz Web", layout="centered")
 EXCEL_PATH = "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/quizvragen.xlsx"
 
 
-@st.cache_data
+@st.cache_data(ttl=60)
 def get_vakken(path):
     """Lees de namen van de tabbladen (vakken) in."""
     xls = pd.ExcelFile(path, engine="openpyxl")
     return xls.sheet_names
 
-@st.cache_data
+@st.cache_data(ttl=60)
 def load_questions_from_excel(path, sheet_name):
     """Laad een tabblad (vak) als JSON-conversie."""
     df = pd.read_excel(path, sheet_name=sheet_name, engine="openpyxl")
@@ -46,6 +46,14 @@ if st.button("Start quiz"):
     st.session_state["vak"] = vak
     st.session_state["index"] = 0
     st.session_state["score"] = {"correct": 0, "wrong": 0}
+    st.rerun()
+# ----------------------------
+# Vernieuw-knop
+# ----------------------------
+if st.button("🔄 Vernieuw quizdata"):
+    st.cache_data.clear()  # wist de cache
+    st.success("Data vernieuwd! De nieuwste vragen worden geladen...")
+    time.sleep(1)
     st.rerun()
 
 # ----------------------------
