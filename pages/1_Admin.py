@@ -42,8 +42,34 @@ def upload_to_github(updated_excel_bytes):
 tabs = load_excel()
 st.subheader("📚 Kies vak / tabblad")
 vak = st.selectbox("Vak", list(tabs.keys()))
+# --------------------------------------------------------
+# Overzicht van alle vragen in het gekozen vak
+# --------------------------------------------------------
+st.subheader("📄 Huidige vragen in dit vak")
+
+df_preview = tabs[vak]  # DataFrame van het gekozen tabblad
+
+# Mooiere kolomnamen (optioneel)
+show_df = df_preview.rename(columns={
+    "text": "Vraag",
+    "type": "Type",
+    "choices": "Opties",
+    "answer": "Antwoord",
+    "tags": "Tags" if "tags" in df_preview.columns else "Tags"
+})
+
+st.dataframe(
+    show_df,
+    use_container_width=True,
+    hide_index=True
+)
 
 st.subheader("✏️ Nieuwe vraag toevoegen")
+
+st.subheader("📄 Huidige vragen in dit vak")
+st.dataframe(tabs[vak])
+
+
 
 q_text = st.text_input("Vraagtekst")
 q_type = st.selectbox("Vraagtype", ["mc", "tf", "input"])
