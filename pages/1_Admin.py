@@ -88,85 +88,103 @@ for index, row in df.iterrows():
             else:
                 st.error("❌ Fout bij upload naar GitHub!")
 
-
 # --------------------------------------------------------
-# Vraag bewerken (inclusief verwijderen)
+# Overzicht met Bewerk- & Verwijderknoppen
 # --------------------------------------------------------
-st.subheader("✏️ Vraag bewerken of verwijderen")
+st.subheader("📄 Alle vragen in dit vak")
 
-edit_index = st.selectbox(
-    "Welke vraag wil je bewerken of verwijderen?",
-    options=list(df.index),
-    format_func=lambda x: f"{x} – {df.loc[x, 'text']}",
-    key="edit_select"
-)
+if "edit_mode" not in st.session_state:
+    st.session_state["edit_mode"] = None
 
-if edit_index is not None:
-    vraag = df.loc[edit_index]
+for index, row in df.iterrows():
+    col1, col2, col3 = st.columns([6, 1.5, 1.5])
 
-    st.write("### ✏️ Bewerk vraag:")
+    with col1:
+        st.write(f"**{index} – {row['text']}**")
 
-    edit_text = st.text_input("Vraagtekst:", vraag["text"], key="edit_text")
-    edit_type = st.selectbox(
-        "Vraagtype:",
-        ["mc", "tf", "input"],
-        index=["mc", "tf", "input"].index(vraag["type"]),
-        key="edit_type"
-    )
+    with col2:
+        if st.button("✏️", key=f"edit_{index}"):
+            st.session_state["edit_mode"] = index
+            st.rerun()
 
-    # Type-afhankelijke velden
-    if edit_type == "mc":
-        bestaande = eval(vraag["choices"]) if isinstance(vraag["choices"], str) else []
-        edit_choices = st.text_input("Meerkeuze-opties (komma gescheiden):", ", ".join(bestaande), key="edit_choices")
-        edit_answer = st.number_input("Index juiste antwoord:", value=int(vraag["answer"]), min_value=0, key="edit_answer")
-    elif edit_type == "tf":
-        edit_choices = ""
-        edit_answer = st.selectbox("Correct?", [True, False], index=0 if vraag["answer"] else 1, key="edit_tf")
-    else:
-        edit_choices = ""
-        edit_answer = st.text_input("Correct antwoord:", str(vraag["answer"]), key="edit_input")
-
-    col_save, col_delete = st.columns(2)
-
-    # Opslaan wijzigingen
-    with col_save:
-        if st.button("💾 Opslaan wijzigingen", key="save_btn"):
-            df.loc[edit_index, "text"] = edit_text
-            df.loc[edit_index, "type"] = edit_type
-            df.loc[edit_index, "choices"] = str(edit_choices.split(",")) if edit_type == "mc" else ""
-            df.loc[edit_index, "answer"] = edit_answer
-            tabs[vak] = df
-
-            # Excel opslaan
-            with pd.ExcelWriter("temp.xlsx", engine="openpyxl") as writer:
-                for s, content in tabs.items():
-                    content.to_excel(writer, sheet_name=s, index=False)
-
-            with open("temp.xlsx", "rb") as f:
-                excel_bytes = f.read()
-
-            if upload_to_github(excel_bytes):
-                st.success("✅ Vraag succesvol bijgewerkt!")
-                time.sleep(1)
-                st.rerun()
-
-    # Verwijderen knop
-    with col_delete:
-        if st.button("🗑️ Verwijder deze vraag", key="delete_btn"):
-            df = df.drop(edit_index).reset_index(drop=True)
+    with col3:
+        if st.button("❌", key=f"delete_{index}"):
+            df = df.drop(index).reset_index(drop=True)
             tabs[vak] = df
 
             # Excel wegschrijven
             with pd.ExcelWriter("temp.xlsx", engine="openpyxl") as writer:
-                for s, content in tabs.items():
-                    content.to_excel(writer, sheet_name=s, index=False)
+                for sheet, content in tabs.items():
+                    content.to_excel(writer, sheet_name=sheet, index=False)
 
             with open("temp.xlsx", "rb") as f:
                 excel_bytes = f.read()
 
             if upload_to_github(excel_bytes):
-                st.success("🗑️ Vraag verwijderd!")
+                st.success(f"Vraag {index} verwijderd!")
                 time.sleep(1)
+                st.rerun()
+
+
+# --------------------------------------------------------
+# BEWERK-MODAL
+# --------------------------------------------------------
+if st.session_state["edit_mode"] is not None:
+    edit_index = st.session_state["edit_mode"]
+    vraag = df.loc[edit_index]
+
+    st.markdown("---")
+    st.markdown(f"### ✏️ Vraag **{edit_index}** bewerken")
+
+    # Modal-like box
+    with st.container(border=True):
+        edit_text = st.text_input("Vraagtekst", value=vraag["text"], key="edit_text")
+        edit_type = st.selectbox(
+            "Vraagtype",
+            ["mc", "tf", "input"],
+            index=["mc", "tf", "input"].index(vraag["type"]),
+            key="edit_type"
+        )
+
+        if edit_type == "mc":
+            bestaande = eval(vraag["choices"]) if isinstance(vraag["choices"], str) else []
+            edit_choices = st.text_input("MC-opties (komma gescheiden)", ", ".join(bestaande), key="edit_choices")
+            edit_answer = st.number_input("Index juiste antwoord", min_value=0, value=int(vraag["answer"]), key="edit_answer")
+        elif edit_type == "tf":
+            edit_choices = ""
+            edit_answer = st.selectbox("Correct?", [True, False], index=0 if vraag["answer"] else 1, key="edit_tf")
+        else:
+            edit_choices = ""
+            edit_answer = st.text_input("Correct antwoord", str(vraag["answer"]), key="edit_inp")
+
+        colA, colB = st.columns([2, 1])
+
+        with colA:
+            if st.button("💾 Opslaan wijzigingen"):
+                df.loc[edit_index, "text"] = edit_text
+                df.loc[edit_index, "type"] = edit_type
+                df.loc[edit_index, "choices"] = str(edit_choices.split(",")) if edit_type == "mc" else ""
+                df.loc[edit_index, "answer"] = edit_answer
+
+                tabs[vak] = df
+
+                # Wegschrijven
+                with pd.ExcelWriter("temp.xlsx", engine="openpyxl") as writer:
+                    for sheet, content in tabs.items():
+                        content.to_excel(writer, sheet_name=sheet, index=False)
+
+                with open("temp.xlsx", "rb") as f:
+                    excel_bytes = f.read()
+
+                if upload_to_github(excel_bytes):
+                    st.success("Vraag bijgewerkt!")
+                    time.sleep(1)
+                    st.session_state["edit_mode"] = None
+                    st.rerun()
+
+        with colB:
+            if st.button("❌ Annuleer"):
+                st.session_state["edit_mode"] = None
                 st.rerun()
 
 
