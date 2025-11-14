@@ -96,6 +96,61 @@ for index, row in df.iterrows():
                 st.error("❌ Upload naar GitHub mislukt!")
 
 # --------------------------------------------------------
+# Vraag bewerken
+# --------------------------------------------------------
+st.subheader("✏️ Vraag bewerken")
+
+edit_index = st.selectbox(
+    "Welke vraag wil je bewerken?",
+    options=list(df.index),
+    format_func=lambda x: f"{x} – {df.loc[x, 'text']}"
+)
+
+if edit_index is not None:
+    vraag = df.loc[edit_index]
+
+    st.write("### ✏️ Bewerk geselecteerde vraag")
+
+    # Voor-ingevulde velden
+    edit_text = st.text_input("Vraagtekst", waarde := vraag["text"])
+    edit_type = st.selectbox("Vraagtype", ["mc", "tf", "input"], index=["mc","tf","input"].index(vraag["type"]))
+
+    if edit_type == "mc":
+        bestaande = eval(vraag["choices"]) if isinstance(vraag["choices"], str) else []
+        edit_choices = st.text_input("Meerkeuze-opties (komma gescheiden)", ", ".join(bestaande))
+        edit_answer = st.number_input("Juiste antwoord index", value=int(vraag["answer"]), min_value=0)
+    elif edit_type == "tf":
+        edit_choices = ""
+        edit_answer = st.selectbox("Correct?", [True, False], index=0 if vraag["answer"] else 1)
+    else:
+        edit_choices = ""
+        edit_answer = st.text_input("Correct antwoord", str(vraag["answer"]))
+
+    if st.button("💾 Opslaan wijzigingen"):
+        df.loc[edit_index, "text"] = edit_text
+        df.loc[edit_index, "type"] = edit_type
+        df.loc[edit_index, "choices"] = str(edit_choices.split(",")) if edit_type == "mc" else ""
+        df.loc[edit_index, "answer"] = edit_answer
+
+        tabs[vak] = df
+
+        # Excel opnieuw wegschrijven
+        with pd.ExcelWriter("temp.xlsx", engine="openpyxl") as writer:
+            for sheet, content in tabs.items():
+                content.to_excel(writer, sheet_name=sheet, index=False)
+
+        with open("temp.xlsx", "rb") as f:
+            excel_bytes = f.read()
+
+        if upload_to_github(excel_bytes):
+            st.success("✅ Vraag succesvol bijgewerkt!")
+            time.sleep(1)
+            st.rerun()
+        else:
+            st.error("❌ Fout bij upload naar GitHub!")
+
+
+# --------------------------------------------------------
 # Nieuwe vraag toevoegen
 # --------------------------------------------------------
 st.subheader("✏️ Nieuwe vraag toevoegen")
