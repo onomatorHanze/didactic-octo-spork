@@ -5,7 +5,19 @@ import base64
 import json
 import time
 import io
+from PIL import Image
+import io
 
+def safe_image_show(url: str):
+    """Laadt een afbeelding veilig. Geen crash als URL nog niet bestaat."""
+    try:
+        r = requests.get(url, timeout=5)
+        r.raise_for_status()
+        img = Image.open(io.BytesIO(r.content))
+        st.image(img, width=300)
+    except Exception as e:
+        st.warning("⚠ Afbeelding kan niet worden geladen (misschien nog niet beschikbaar).")
+        st.caption(url)
 # ============================================================
 # 🔧 GitHub configuratie (via Streamlit Secrets)
 # ============================================================
@@ -212,7 +224,7 @@ if st.session_state["edit_mode"] is not None:
         current_image = vraag.get("image_url") or ""
 
         if current_image:
-            st.image(current_image, width=300)
+            safe_image_show(current_image)
         else:
             st.caption("Geen afbeelding gekoppeld.")
 
