@@ -81,11 +81,12 @@ def save_excel_to_github(tabs: dict) -> bool:
         "sha": meta.get("sha"),  # mag None zijn: GitHub maakt dan een nieuw bestand
     }
 
-    r = requests.put(
-        EXCEL_API_URL,
-        headers={"Authorization": f"token {TOKEN}"},
-        data=json.dumps(payload),
-    )
+    headers = {
+        "Authorization": f"Bearer {TOKEN}",
+        "Content-Type": "application/json",
+        "Accept": "application/vnd.github+json"
+    }
+
 
     if r.status_code not in (200, 201):
         st.error(f"❌ Excel upload mislukt (status {r.status_code}).")
@@ -121,11 +122,13 @@ def upload_image_to_github(file_bytes: bytes, filename: str) -> str | None:
     if sha:
         payload["sha"] = sha
 
-    r = requests.put(
-        image_api_url,
-        headers={"Authorization": f"token {TOKEN}"},
-        data=json.dumps(payload),
-    )
+    headers = {
+        "Authorization": f"Bearer {TOKEN}",
+        "Content-Type": "application/json",
+        "Accept": "application/vnd.github+json"
+    }
+
+    r = requests.put(image_api_url, headers=headers, data=json.dumps(payload))
 
     if r.status_code not in (200, 201):
         st.error(f"❌ Upload van afbeelding mislukt (status {r.status_code}).")
