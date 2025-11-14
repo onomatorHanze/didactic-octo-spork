@@ -146,13 +146,13 @@ for index, row in df.iterrows():
         if st.button("✏️", key=f"edit_{index}"):
             st.session_state["edit_mode"] = index
             st.session_state["delete_confirm"] = None
-            st.experimental_rerun()
+            st.rerun()
 
     with col4:
         if st.button("❌", key=f"delete_{index}"):
             st.session_state["delete_confirm"] = index
             st.session_state["edit_mode"] = None
-            st.experimental_rerun()
+            st.rerun()
 
 
 # ============================================================
@@ -179,14 +179,14 @@ if st.session_state["delete_confirm"] is not None:
                         st.success(f"Vraag {delete_index} verwijderd!")
                         time.sleep(1)
                         st.session_state["delete_confirm"] = None
-                        st.experimental_rerun()
+                        st.rerun()
                     else:
                         st.error("❌ Fout bij uploaden van Excel.")
 
             with colB:
                 if st.button("✖ Annuleer", key="cancel_delete"):
                     st.session_state["delete_confirm"] = None
-                    st.experimental_rerun()
+                    st.rerun()
 
 
 # ============================================================
@@ -300,14 +300,14 @@ if st.session_state["edit_mode"] is not None:
                         st.success("✅ Vraag bijgewerkt!")
                         time.sleep(1)
                         st.session_state["edit_mode"] = None
-                        st.experimental_rerun()
+                        st.rerun()
                     else:
                         st.error("❌ Fout bij uploaden van Excel.")
 
             with colB:
                 if st.button("❌ Annuleer bewerken", key="cancel_edit"):
                     st.session_state["edit_mode"] = None
-                    st.experimental_rerun()
+                    st.rerun()
 
 
 # ============================================================
@@ -365,6 +365,6 @@ if st.button("➕ Voeg toe", key="add_new"):
     if save_excel_to_github(tabs):
         st.success("✅ Nieuwe vraag toegevoegd!")
         time.sleep(1)
-        st.experimental_rerun()
+        st.rerun()
     else:
         st.error("❌ Fout bij uploaden van Excel.")
