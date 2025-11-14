@@ -136,7 +136,7 @@ if "questions" in st.session_state and st.session_state["questions"]:
     # Afbeelding laten zien als die er is
     img_url = get_image_url(q)
     if img_url:
-        st.image(img_url, use_column_width=True)
+        st.image(img_url, width=500)
 
     antwoord = None  # veilige default
 
