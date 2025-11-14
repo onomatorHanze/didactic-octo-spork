@@ -4,8 +4,8 @@ import requests
 import base64
 import json
 import time
-import os
 
+# Streamlit secrets ophalen
 TOKEN = st.secrets["GITHUB_TOKEN"]
 OWNER = st.secrets["REPO_OWNER"]
 REPO = st.secrets["REPO_NAME"]
@@ -15,63 +15,90 @@ RAW_URL = f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main/{FILE_PATH}"
 API_URL = f"https://api.github.com/repos/{OWNER}/{REPO}/contents/{FILE_PATH}"
 
 st.set_page_config(page_title="DocQuiz Admin", layout="centered")
-st.title("🔧 DocQuiz Admin – Voeg nieuwe vragen toe")
+st.title("🔧 DocQuiz Admin")
 
+# --------------------------------------------------------
+# Excel laden
+# --------------------------------------------------------
 @st.cache_data
 def load_excel():
-    df_dict = pd.read_excel(RAW_URL, sheet_name=None, engine="openpyxl")
-    return df_dict
+    return pd.read_excel(RAW_URL, sheet_name=None, engine="openpyxl")
 
+# Upload nieuwe Excel naar GitHub
 def upload_to_github(updated_excel_bytes):
     encoded = base64.b64encode(updated_excel_bytes).decode()
 
     meta = requests.get(API_URL, headers={"Authorization": f"token {TOKEN}"}).json()
     sha = meta["sha"]
 
-    data = {
-        "message": "Nieuwe quizvraag toegevoegd via Streamlit Admin",
+    payload = {
+        "message": "Update quizvragen via Admin",
         "content": encoded,
         "sha": sha
     }
 
-    r = requests.put(API_URL,
-                     headers={"Authorization": f"token {TOKEN}"},
-                     data=json.dumps(data))
-    return r.status_code == 200
+    response = requests.put(API_URL,
+                            headers={"Authorization": f"token {TOKEN}"},
+                            data=json.dumps(payload))
+    return response.status_code == 200
 
+# --------------------------------------------------------
+# Kies vak (tabblad)
+# --------------------------------------------------------
 tabs = load_excel()
 st.subheader("📚 Kies vak / tabblad")
 vak = st.selectbox("Vak", list(tabs.keys()))
-
+df = tabs[vak]
 
 # --------------------------------------------------------
-# Overzicht van alle vragen in het gekozen vak
+# Overzicht vragen
 # --------------------------------------------------------
-st.subheader("📄 Huidige vragen in dit vak")
+st.subheader("📄 Huidige vragen")
 
-df_preview = tabs[vak]  # DataFrame van het gekozen tabblad
-
-# Mooiere kolomnamen (optioneel)
-show_df = df_preview.rename(columns={
+show_df = df.rename(columns={
     "text": "Vraag",
     "type": "Type",
     "choices": "Opties",
-    "answer": "Antwoord",
-    "tags": "Tags" if "tags" in df_preview.columns else "Tags"
+    "answer": "Antwoord"
 })
 
-st.dataframe(
-    show_df,
-    use_container_width=True,
-    hide_index=True
-)
+st.dataframe(show_df, use_container_width=True, hide_index=True)
 
+# --------------------------------------------------------
+# Vraag verwijderen
+# --------------------------------------------------------
+st.subheader("🗑️ Vraag verwijderen")
+
+for index, row in df.iterrows():
+    col1, col2 = st.columns([5, 1])
+
+    with col1:
+        st.write(f"**{index} – {row['text']}**")
+
+    with col2:
+        if st.button("❌", key=f"delete_{index}"):
+            df = df.drop(index).reset_index(drop=True)
+            tabs[vak] = df
+
+            # Excel opnieuw opslaan
+            with pd.ExcelWriter("temp.xlsx", engine="openpyxl") as writer:
+                for sheet, content in tabs.items():
+                    content.to_excel(writer, sheet_name=sheet, index=False)
+
+            with open("temp.xlsx", "rb") as f:
+                excel_bytes = f.read()
+
+            if upload_to_github(excel_bytes):
+                st.success(f"Vraag {index} verwijderd!")
+                time.sleep(1)
+                st.rerun()
+            else:
+                st.error("❌ Upload naar GitHub mislukt!")
+
+# --------------------------------------------------------
+# Nieuwe vraag toevoegen
+# --------------------------------------------------------
 st.subheader("✏️ Nieuwe vraag toevoegen")
-
-st.subheader("📄 Huidige vragen in dit vak")
-
-
-
 
 q_text = st.text_input("Vraagtekst")
 q_type = st.selectbox("Vraagtype", ["mc", "tf", "input"])
@@ -88,10 +115,8 @@ else:
 
 if st.button("➕ Voeg vraag toe"):
     if q_text.strip() == "":
-        st.error("❌ Je moet een vraag invullen")
+        st.error("❌ Vul eerst een vraag in.")
         st.stop()
-
-    df = tabs[vak]
 
     new_row = {
         "text": q_text,
@@ -111,7 +136,7 @@ if st.button("➕ Voeg vraag toe"):
         excel_bytes = f.read()
 
     if upload_to_github(excel_bytes):
-        st.success("✅ Vraag toegevoegd en naar GitHub geüpload!")
+        st.success("✅ Vraag toegevoegd en geüpload!")
         time.sleep(1)
         st.rerun()
     else:
