@@ -152,7 +152,8 @@ for idx, row in df.iterrows():
         st.write(f"**{idx} — {short}**")
 
     with col2:
-        if row.get("image_url", "").strip():
+        img_url = str(row.get("image_url", "")).strip()
+        if img_url:
             st.caption("🖼")
 
     with col3:
