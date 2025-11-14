@@ -55,18 +55,39 @@ vak = st.selectbox("Vak", list(tabs.keys()), key="select_vak")
 df = tabs[vak]
 
 # --------------------------------------------------------
-# Overzicht vragen
+# Overzicht vragen + Delete-knoppen
 # --------------------------------------------------------
 st.subheader("📄 Alle vragen in dit vak")
 
-show_df = df.rename(columns={
-    "text": "Vraag",
-    "type": "Type",
-    "choices": "Opties",
-    "answer": "Antwoord"
-})
+for index, row in df.iterrows():
+    col1, col2, col3 = st.columns([6, 2, 1])
 
-st.dataframe(show_df, use_container_width=True, hide_index=True)
+    with col1:
+        st.write(f"**{index} – {row['text']}**")
+
+    with col2:
+        st.caption(f"Type: {row['type']}")
+
+    with col3:
+        if st.button("❌", key=f"overview_del_{index}"):
+            df = df.drop(index).reset_index(drop=True)
+            tabs[vak] = df
+
+            # Excel opslaan
+            with pd.ExcelWriter("temp.xlsx", engine="openpyxl") as writer:
+                for s, content in tabs.items():
+                    content.to_excel(writer, sheet_name=s, index=False)
+
+            with open("temp.xlsx", "rb") as f:
+                excel_bytes = f.read()
+
+            if upload_to_github(excel_bytes):
+                st.success(f"Vraag {index} verwijderd!")
+                time.sleep(1)
+                st.rerun()
+            else:
+                st.error("❌ Fout bij upload naar GitHub!")
+
 
 # --------------------------------------------------------
 # Vraag bewerken (inclusief verwijderen)
