@@ -340,73 +340,115 @@ if st.session_state["edit_index"] is not None:
 # ➕ Nieuwe vraag toevoegen
 # ============================================================
 st.markdown("---")
-st.subheader("➕ Nieuwe vraag")
+st.subheader("➕ Nieuwe vraag toevoegen")
 
-new_text = st.text_input("Vraagtekst", key="new_text")
-new_type = st.selectbox(
-    "Vraagtype", ["mc", "tf", "input"], key="new_type_select"
-)
+# Unieke keys om dubbele elementen te voorkomen
+new_text = st.text_input("Vraagtekst:", key="newq_text")
+new_type = st.selectbox("Vraagtype:", ["mc", "tf", "input"], key="newq_type")
 
+# Type-specifieke invoer
 if new_type == "mc":
-    new_opts = st.text_input(
-        "MC-opties (komma gescheiden)", key="new_opts"
-    )
+    new_opts = st.text_input("Opties (komma gescheiden):", key="newq_opts")
     new_ans = st.number_input(
-        "Index juiste antwoord (0 = eerste)",
-        min_value=0,
-        key="new_ans_mc",
+        "Index juiste antwoord (0 = eerste)", 
+        min_value=0, 
+        step=1,
+        key="newq_ans_mc"
     )
 elif new_type == "tf":
     new_opts = ""
-    new_ans = st.selectbox(
-        "Correct?", [True, False], key="new_ans_tf"
-    )
+    new_ans = st.selectbox("Correct?", [True, False], key="newq_ans_tf")
 else:
     new_opts = ""
-    new_ans = st.text_input(
-        "Correct antwoord", key="new_ans_input"
-    )
+    new_ans = st.text_input("Correct antwoord:", key="newq_ans_input")
 
+# Afbeelding uploaden
 new_img = st.file_uploader(
     "Afbeelding uploaden (optioneel)",
     type=["png", "jpg", "jpeg"],
-    key="new_img_upload",
+    key="newq_img"
 )
 
-if st.button("➕ Toevoegen", key="add_new_btn"):
+# ============================================================
+# ➕ Nieuwe vraag toevoegen
+# ============================================================
+st.markdown("---")
+st.subheader("➕ Nieuwe vraag toevoegen")
+
+# Unieke keys om dubbele elementen te voorkomen
+new_text = st.text_input("Vraagtekst:", key="newq_text")
+new_type = st.selectbox("Vraagtype:", ["mc", "tf", "input"], key="newq_type")
+
+# Type-specifieke invoer
+if new_type == "mc":
+    new_opts = st.text_input("Opties (komma gescheiden):", key="newq_opts")
+    new_ans = st.number_input(
+        "Index juiste antwoord (0 = eerste)", 
+        min_value=0, 
+        step=1,
+        key="newq_ans_mc"
+    )
+elif new_type == "tf":
+    new_opts = ""
+    new_ans = st.selectbox("Correct?", [True, False], key="newq_ans_tf")
+else:
+    new_opts = ""
+    new_ans = st.text_input("Correct antwoord:", key="newq_ans_input")
+
+# Afbeelding uploaden
+new_img = st.file_uploader(
+    "Afbeelding uploaden (optioneel)",
+    type=["png", "jpg", "jpeg"],
+    key="newq_img"
+)
+
+# ------------------------------
+# Toevoegen van de vraag
+# ------------------------------
+if st.button("➕ Toevoegen", key="newq_add_btn"):
     if new_text.strip() == "":
-        st.error("Vraagtekst mag niet leeg zijn.")
+        st.error("❌ Vraagtekst is verplicht.")
         st.stop()
 
+    # Afbeelding opslaan
     image_url = ""
     if new_img is not None:
         ext = new_img.name.split(".")[-1].lower()
         if ext not in ("png", "jpg", "jpeg"):
             st.error("❌ Ongeldig afbeeldingsformaat.")
             st.stop()
+
         safe_vak = vak.replace(" ", "_")
         filename = f"{safe_vak}_new_{int(time.time())}.{ext}"
         uploaded_url = upload_image_to_github(new_img.read(), filename)
+
         if uploaded_url:
             image_url = uploaded_url
+
+    # Veilige MC-lijst bouwen
+    if new_type == "mc":
+        opts_clean = [s.strip() for s in new_opts.split(",") if s.strip() != ""]
+        choices_value = str(opts_clean)
+    else:
+        choices_value = ""
 
     new_row = {
         "text": new_text,
         "type": new_type,
-        "choices": str([s.strip() for s in new_opts.split(",")])
-        if new_type == "mc"
-        else "",
+        "choices": choices_value,
         "answer": new_ans,
-        "image_url": image_url,
+        "image_url": image_url
     }
 
+    # Toevoegen aan dataframe
     df = df._append(new_row, ignore_index=True)
     tabs[vak] = df
 
+    # Opslaan naar GitHub
     if save_excel_to_github(tabs):
         st.cache_data.clear()
-        st.success("Nieuwe vraag toegevoegd!")
+        st.success("🎉 Nieuwe vraag toegevoegd!")
         time.sleep(1)
         st.rerun()
     else:
-        st.error("❌ Fout bij uploaden van Excel.")
+        st.error("❌ Excel upload mislukt!")
