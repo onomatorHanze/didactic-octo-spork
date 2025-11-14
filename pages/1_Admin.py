@@ -407,3 +407,30 @@ if st.button("➕ Voeg toe", key="add_new"):
         st.rerun()
     else:
         st.error("❌ Fout bij uploaden van Excel.")
+st.markdown("---")
+st.subheader("🔧 Debug: test afbeelding uploaden")
+
+test_file = st.file_uploader("Test upload", type=["jpg", "png", "jpeg"], key="debug_test")
+
+if test_file:
+    st.write("▶ Proberen te uploaden...")
+
+    filename = f"TEST_{int(time.time())}.jpg"
+    image_path = f"{IMAGE_DIR}/{filename}"
+    api_url = f"https://api.github.com/repos/{OWNER}/{REPO}/contents/{image_path}"
+
+    encoded = base64.b64encode(test_file.read()).decode()
+
+    payload = {
+        "message": "DEBUG upload",
+        "content": encoded
+    }
+
+    r = requests.put(
+        api_url,
+        headers={"Authorization": f"token {TOKEN}"},
+        data=json.dumps(payload)
+    )
+
+    st.write("Status:", r.status_code)
+    st.write("Response:", r.json())
