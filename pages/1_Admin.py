@@ -154,7 +154,6 @@ for index, row in df.iterrows():
             st.session_state["edit_mode"] = None
             st.rerun()
 
-
 # ============================================================
 # 🗑️ DELETE CONFIRM POPUP
 # ============================================================
@@ -176,6 +175,7 @@ if st.session_state["delete_confirm"] is not None:
                     tabs[vak] = df
 
                     if save_excel_to_github(tabs):
+                        st.cache_data.clear()   # heel belangrijk!
                         st.success(f"Vraag {delete_index} verwijderd!")
                         time.sleep(1)
                         st.session_state["delete_confirm"] = None
@@ -187,7 +187,6 @@ if st.session_state["delete_confirm"] is not None:
                 if st.button("✖ Annuleer", key="cancel_delete"):
                     st.session_state["delete_confirm"] = None
                     st.rerun()
-
 
 # ============================================================
 # ✏️ BEWERK MODAL
@@ -297,6 +296,7 @@ if st.session_state["edit_mode"] is not None:
                     tabs[vak] = df
 
                     if save_excel_to_github(tabs):
+                        st.cache_data.clear()
                         st.success("✅ Vraag bijgewerkt!")
                         time.sleep(1)
                         st.session_state["edit_mode"] = None
