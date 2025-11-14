@@ -15,7 +15,7 @@ RAW_URL = f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main/{FILE_PATH}"
 API_URL = f"https://api.github.com/repos/{OWNER}/{REPO}/contents/{FILE_PATH}"
 
 st.set_page_config(page_title="DocQuiz Admin", layout="centered")
-st.title("🔧 DocQuiz Admin")
+st.title("🔧 DocQuiz Admin – Beheer quizvragen")
 
 # --------------------------------------------------------
 # Excel laden
@@ -24,36 +24,40 @@ st.title("🔧 DocQuiz Admin")
 def load_excel():
     return pd.read_excel(RAW_URL, sheet_name=None, engine="openpyxl")
 
-# Upload nieuwe Excel naar GitHub
+
 def upload_to_github(updated_excel_bytes):
     encoded = base64.b64encode(updated_excel_bytes).decode()
-
     meta = requests.get(API_URL, headers={"Authorization": f"token {TOKEN}"}).json()
     sha = meta["sha"]
 
     payload = {
-        "message": "Update quizvragen via Admin",
+        "message": "Quizvragen aangepast via Admin",
         "content": encoded,
         "sha": sha
     }
 
-    response = requests.put(API_URL,
-                            headers={"Authorization": f"token {TOKEN}"},
-                            data=json.dumps(payload))
+    response = requests.put(
+        API_URL, 
+        headers={"Authorization": f"token {TOKEN}"},
+        data=json.dumps(payload)
+    )
     return response.status_code == 200
+
 
 # --------------------------------------------------------
 # Kies vak (tabblad)
 # --------------------------------------------------------
 tabs = load_excel()
+
 st.subheader("📚 Kies vak / tabblad")
-vak = st.selectbox("Vak", list(tabs.keys()))
+vak = st.selectbox("Vak", list(tabs.keys()), key="select_vak")
+
 df = tabs[vak]
 
 # --------------------------------------------------------
 # Overzicht vragen
 # --------------------------------------------------------
-st.subheader("📄 Huidige vragen")
+st.subheader("📄 Alle vragen in dit vak")
 
 show_df = df.rename(columns={
     "text": "Vraag",
@@ -65,110 +69,105 @@ show_df = df.rename(columns={
 st.dataframe(show_df, use_container_width=True, hide_index=True)
 
 # --------------------------------------------------------
-# Vraag verwijderen
+# Vraag bewerken (inclusief verwijderen)
 # --------------------------------------------------------
-st.subheader("🗑️ Vraag verwijderen")
-
-for index, row in df.iterrows():
-    col1, col2 = st.columns([5, 1])
-
-    with col1:
-        st.write(f"**{index} – {row['text']}**")
-
-    with col2:
-        if st.button("❌", key=f"delete_{index}"):
-            df = df.drop(index).reset_index(drop=True)
-            tabs[vak] = df
-
-            # Excel opnieuw opslaan
-            with pd.ExcelWriter("temp.xlsx", engine="openpyxl") as writer:
-                for sheet, content in tabs.items():
-                    content.to_excel(writer, sheet_name=sheet, index=False)
-
-            with open("temp.xlsx", "rb") as f:
-                excel_bytes = f.read()
-
-            if upload_to_github(excel_bytes):
-                st.success(f"Vraag {index} verwijderd!")
-                time.sleep(1)
-                st.rerun()
-            else:
-                st.error("❌ Upload naar GitHub mislukt!")
-
-# --------------------------------------------------------
-# Vraag bewerken
-# --------------------------------------------------------
-st.subheader("✏️ Vraag bewerken")
+st.subheader("✏️ Vraag bewerken of verwijderen")
 
 edit_index = st.selectbox(
-    "Welke vraag wil je bewerken?",
+    "Welke vraag wil je bewerken of verwijderen?",
     options=list(df.index),
-    format_func=lambda x: f"{x} – {df.loc[x, 'text']}"
+    format_func=lambda x: f"{x} – {df.loc[x, 'text']}",
+    key="edit_select"
 )
 
 if edit_index is not None:
     vraag = df.loc[edit_index]
 
-    st.write("### ✏️ Bewerk geselecteerde vraag")
+    st.write("### ✏️ Bewerk vraag:")
 
-    # Voor-ingevulde velden
-    edit_text = st.text_input("Vraagtekst", waarde := vraag["text"])
-    edit_type = st.selectbox("Vraagtype", ["mc", "tf", "input"], index=["mc","tf","input"].index(vraag["type"]))
+    edit_text = st.text_input("Vraagtekst:", vraag["text"], key="edit_text")
+    edit_type = st.selectbox(
+        "Vraagtype:",
+        ["mc", "tf", "input"],
+        index=["mc", "tf", "input"].index(vraag["type"]),
+        key="edit_type"
+    )
 
+    # Type-afhankelijke velden
     if edit_type == "mc":
         bestaande = eval(vraag["choices"]) if isinstance(vraag["choices"], str) else []
-        edit_choices = st.text_input("Meerkeuze-opties (komma gescheiden)", ", ".join(bestaande))
-        edit_answer = st.number_input("Juiste antwoord index", value=int(vraag["answer"]), min_value=0)
+        edit_choices = st.text_input("Meerkeuze-opties (komma gescheiden):", ", ".join(bestaande), key="edit_choices")
+        edit_answer = st.number_input("Index juiste antwoord:", value=int(vraag["answer"]), min_value=0, key="edit_answer")
     elif edit_type == "tf":
         edit_choices = ""
-        edit_answer = st.selectbox("Correct?", [True, False], index=0 if vraag["answer"] else 1)
+        edit_answer = st.selectbox("Correct?", [True, False], index=0 if vraag["answer"] else 1, key="edit_tf")
     else:
         edit_choices = ""
-        edit_answer = st.text_input("Correct antwoord", str(vraag["answer"]))
+        edit_answer = st.text_input("Correct antwoord:", str(vraag["answer"]), key="edit_input")
 
-    if st.button("💾 Opslaan wijzigingen"):
-        df.loc[edit_index, "text"] = edit_text
-        df.loc[edit_index, "type"] = edit_type
-        df.loc[edit_index, "choices"] = str(edit_choices.split(",")) if edit_type == "mc" else ""
-        df.loc[edit_index, "answer"] = edit_answer
+    col_save, col_delete = st.columns(2)
 
-        tabs[vak] = df
+    # Opslaan wijzigingen
+    with col_save:
+        if st.button("💾 Opslaan wijzigingen", key="save_btn"):
+            df.loc[edit_index, "text"] = edit_text
+            df.loc[edit_index, "type"] = edit_type
+            df.loc[edit_index, "choices"] = str(edit_choices.split(",")) if edit_type == "mc" else ""
+            df.loc[edit_index, "answer"] = edit_answer
+            tabs[vak] = df
 
-        # Excel opnieuw wegschrijven
-        with pd.ExcelWriter("temp.xlsx", engine="openpyxl") as writer:
-            for sheet, content in tabs.items():
-                content.to_excel(writer, sheet_name=sheet, index=False)
+            # Excel opslaan
+            with pd.ExcelWriter("temp.xlsx", engine="openpyxl") as writer:
+                for s, content in tabs.items():
+                    content.to_excel(writer, sheet_name=s, index=False)
 
-        with open("temp.xlsx", "rb") as f:
-            excel_bytes = f.read()
+            with open("temp.xlsx", "rb") as f:
+                excel_bytes = f.read()
 
-        if upload_to_github(excel_bytes):
-            st.success("✅ Vraag succesvol bijgewerkt!")
-            time.sleep(1)
-            st.rerun()
-        else:
-            st.error("❌ Fout bij upload naar GitHub!")
+            if upload_to_github(excel_bytes):
+                st.success("✅ Vraag succesvol bijgewerkt!")
+                time.sleep(1)
+                st.rerun()
+
+    # Verwijderen knop
+    with col_delete:
+        if st.button("🗑️ Verwijder deze vraag", key="delete_btn"):
+            df = df.drop(edit_index).reset_index(drop=True)
+            tabs[vak] = df
+
+            # Excel wegschrijven
+            with pd.ExcelWriter("temp.xlsx", engine="openpyxl") as writer:
+                for s, content in tabs.items():
+                    content.to_excel(writer, sheet_name=s, index=False)
+
+            with open("temp.xlsx", "rb") as f:
+                excel_bytes = f.read()
+
+            if upload_to_github(excel_bytes):
+                st.success("🗑️ Vraag verwijderd!")
+                time.sleep(1)
+                st.rerun()
 
 
 # --------------------------------------------------------
 # Nieuwe vraag toevoegen
 # --------------------------------------------------------
-st.subheader("✏️ Nieuwe vraag toevoegen")
+st.subheader("➕ Nieuwe vraag toevoegen")
 
-q_text = st.text_input("Vraagtekst")
-q_type = st.selectbox("Vraagtype", ["mc", "tf", "input"])
+q_text = st.text_input("Vraagtekst:", key="new_text")
+q_type = st.selectbox("Vraagtype:", ["mc", "tf", "input"], key="new_type")
 
 if q_type == "mc":
-    mc_opties = st.text_input("Meerkeuze-opties (komma gescheiden)")
-    mc_answer = st.number_input("Index juiste antwoord (0 = eerste)", 0)
+    mc_opties = st.text_input("Meerkeuze-opties (komma gescheiden):", key="new_choices")
+    mc_answer = st.number_input("Index juiste antwoord:", min_value=0, key="new_answer")
 elif q_type == "tf":
     mc_opties = ""
-    mc_answer = st.selectbox("Correct?", [True, False])
+    mc_answer = st.selectbox("Correct?", [True, False], key="new_tf")
 else:
     mc_opties = ""
-    mc_answer = st.text_input("Correct antwoord")
+    mc_answer = st.text_input("Correct antwoord:", key="new_input")
 
-if st.button("➕ Voeg vraag toe"):
+if st.button("➕ Voeg toe", key="add_btn"):
     if q_text.strip() == "":
         st.error("❌ Vul eerst een vraag in.")
         st.stop()
@@ -191,8 +190,6 @@ if st.button("➕ Voeg vraag toe"):
         excel_bytes = f.read()
 
     if upload_to_github(excel_bytes):
-        st.success("✅ Vraag toegevoegd en geüpload!")
+        st.success("✅ Vraag toegevoegd!")
         time.sleep(1)
         st.rerun()
-    else:
-        st.error("❌ Upload naar GitHub mislukt!")
