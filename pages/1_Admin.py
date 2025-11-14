@@ -285,7 +285,9 @@ if st.session_state.edit_index is not None:
                 df.loc[idx, "answer"] = new_ans
 
                 if remove_img:
+                    # Direct verwijderen
                     df.loc[idx, "image_url"] = ""
+                    new_img = None
                 elif new_img is not None:
                     ext = new_img.name.split(".")[-1].lower()
                     safe_vak = vak.replace(" ", "_")
@@ -293,7 +295,6 @@ if st.session_state.edit_index is not None:
                     uploaded = upload_image_to_github(new_img.read(), filename)
                     if uploaded:
                         df.loc[idx, "image_url"] = uploaded
-
                 tabs[vak] = df
 
                 if save_excel_to_github(tabs):
