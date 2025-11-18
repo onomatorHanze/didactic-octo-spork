@@ -8,16 +8,14 @@ import io
 import ast
 
 # ============================================================
-# 🔧 GitHub configuratie
+# 🔧 GitHub configuratie (via Streamlit Secrets)
 # ============================================================
 TOKEN = st.secrets["GITHUB_TOKEN"]
 OWNER = st.secrets["REPO_OWNER"]
 REPO = st.secrets["REPO_NAME"]
-FILE_PATH = st.secrets["FILE_PATH"]
+FILE_PATH = st.secrets["FILE_PATH"]        # bv. "data/quizvragen.xlsx"
 
-IMAGE_DIR = "data/images"
-
-RAW_EXCEL_URL = f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main/{FILE_PATH}"
+IMAGE_DIR = "data/images"                  # map in repo voor afbeeldingen
 EXCEL_API_URL = f"https://api.github.com/repos/{OWNER}/{REPO}/contents/{FILE_PATH}"
 
 st.set_page_config(page_title="DocQuiz Admin", layout="centered")
@@ -25,41 +23,49 @@ st.title("🔧 DocQuiz Admin – Beheer quizvragen")
 
 
 # ============================================================
-# 🖼 Veilige image loader (crash-free)
+# 🖼 Veilige image-viewer
 # ============================================================
-def safe_show_image(url: str, width=350):
-    url = str(url or "").strip()
-    if url == "":
-        st.caption("Geen afbeelding.")
+def safe_show_image(url: str, width: int = 300):
+    """Toon afbeelding zonder Streamlit crash."""
+    if not url or not isinstance(url, str):
+        st.caption("Geen afbeelding gekoppeld.")
         return
 
     try:
-        r = requests.get(url, timeout=4)
-        if r.status_code != 200:
-            st.caption("⚠️ Afbeelding kon niet geladen worden.")
-            return
-        st.image(r.content, width=width)
+        resp = requests.get(url, timeout=4)
+        if resp.status_code == 200:
+            st.image(resp.content, width=width)
+        else:
+            st.caption("⚠️ Afbeelding niet beschikbaar.")
     except:
-        st.caption("⚠️ Afbeelding niet weer te geven.")
+        st.caption("⚠️ Afbeelding niet te laden.")
 
 
 # ============================================================
-# 📥 Excel laden
+# 📥 Excel ophalen via GitHub API (NIET via RAW URL!)
 # ============================================================
-@st.cache_data
-def load_excel():
-    tabs = pd.read_excel(RAW_EXCEL_URL, sheet_name=None, engine="openpyxl")
+def load_excel_fresh() -> dict:
+    """Altijd de nieuwste Excel ophalen via GitHub API (nooit caching)."""
+    r = requests.get(EXCEL_API_URL, headers={"Authorization": f"token {TOKEN}"})
+    data = r.json()
 
+    content = base64.b64decode(data["content"])
+    excel_bytes = io.BytesIO(content)
+
+    tabs = pd.read_excel(excel_bytes, sheet_name=None, engine="openpyxl")
+
+    # Zorg dat elke sheet image_url heeft + altijd str is
     for name, df in tabs.items():
         if "image_url" not in df.columns:
             df["image_url"] = ""
-        df["image_url"] = df["image_url"].astype(str)  # <- belangrijkste fix
+        df["image_url"] = df["image_url"].astype(str)
         tabs[name] = df
+
     return tabs
 
 
 # ============================================================
-# 📤 Excel opslaan
+# 📤 Excel opslaan naar GitHub
 # ============================================================
 def save_excel_to_github(tabs: dict) -> bool:
     buf = io.BytesIO()
@@ -67,22 +73,20 @@ def save_excel_to_github(tabs: dict) -> bool:
         for sheet, df in tabs.items():
             df.to_excel(writer, sheet_name=sheet, index=False)
 
-    content = base64.b64encode(buf.getvalue()).decode()
+    encoded_content = base64.b64encode(buf.getvalue()).decode()
 
-    meta = requests.get(EXCEL_API_URL, headers={"Authorization": f"token {TOKEN}"}).json()
-    sha = meta.get("sha")
+    meta = requests.get(EXCEL_API_URL,
+                        headers={"Authorization": f"token {TOKEN}"}).json()
 
     payload = {
-        "message": "Update quizvragen via Admin",
-        "content": content,
-        "sha": sha,
+        "message": "DocQuiz Admin – update vragenbestand",
+        "content": encoded_content,
+        "sha": meta.get("sha")
     }
 
-    r = requests.put(
-        EXCEL_API_URL,
-        headers={"Authorization": f"token {TOKEN}"},
-        data=json.dumps(payload)
-    )
+    r = requests.put(EXCEL_API_URL,
+                     headers={"Authorization": f"token {TOKEN}"},
+                     data=json.dumps(payload))
 
     return r.status_code in (200, 201)
 
@@ -92,172 +96,189 @@ def save_excel_to_github(tabs: dict) -> bool:
 # ============================================================
 def upload_image_to_github(file_bytes: bytes, filename: str) -> str | None:
     image_path = f"{IMAGE_DIR}/{filename}"
-    url = f"https://api.github.com/repos/{OWNER}/{REPO}/contents/{image_path}"
+    api_url = f"https://api.github.com/repos/{OWNER}/{REPO}/contents/{image_path}"
 
-    # SHA ophalen (bestaat bestand al?)
-    meta = requests.get(url, headers={"Authorization": f"token {TOKEN}"}).json()
+    meta = requests.get(api_url, headers={"Authorization": f"token {TOKEN}"}).json()
     sha = meta.get("sha")
 
-    payload = {
-        "message": f"Upload image {filename}",
-        "content": base64.b64encode(file_bytes).decode()
-    }
+    encoded = base64.b64encode(file_bytes).decode()
+    payload = {"message": f"Upload afbeelding {filename}", "content": encoded}
     if sha:
         payload["sha"] = sha
 
-    r = requests.put(url, headers={"Authorization": f"token {TOKEN}"}, data=json.dumps(payload))
+    r = requests.put(api_url,
+                     headers={"Authorization": f"token {TOKEN}"},
+                     data=json.dumps(payload))
 
     if r.status_code not in (200, 201):
-        st.error("❌ Afbeelding upload mislukt.")
+        st.error(f"❌ Uploaden mislukt (status {r.status_code})")
         return None
 
     return f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main/{image_path}"
 
 
 # ============================================================
-# 🔧 Session state
+# 🧠 Session state
 # ============================================================
-if "edit_index" not in st.session_state:
-    st.session_state.edit_index = None
-if "delete_index" not in st.session_state:
-    st.session_state.delete_index = None
+if "edit_idx" not in st.session_state:
+    st.session_state.edit_idx = None
+
+if "delete_idx" not in st.session_state:
+    st.session_state.delete_idx = None
 
 
 # ============================================================
-# 📚 Vakken
+# 📚 Excel ophalen (altijd vers)
 # ============================================================
-tabs = load_excel()
+tabs = load_excel_fresh()
 
+
+# ============================================================
+# 📘 Vak kiezen
+# ============================================================
 st.subheader("📘 Kies een vak")
-vak = st.selectbox("Vak", list(tabs.keys()), key="vak_select")
+vak = st.selectbox("Vak", list(tabs.keys()))
 df = tabs[vak]
 
 
 # ============================================================
-# 📄 Overzicht vragen
+# 📄 Alle vragen
 # ============================================================
 st.subheader("📄 Alle vragen")
 
 for idx, row in df.iterrows():
-    col1, col2, col3, col4 = st.columns([5, 1, 1, 1])
+    col1, col2, col3, col4 = st.columns([6, 1, 1, 1])
 
     with col1:
-        text = str(row["text"])
-        st.write(f"**{idx} — {text}**")
+        txt = str(row["text"])
+        st.write(f"**{idx} — {txt}**")
 
     with col2:
-        if str(row.get("image_url", "")).strip():
+        if row.get("image_url"):
             st.caption("🖼")
 
     with col3:
-        if st.button("✏️", key=f"edit_{vak}_{idx}"):
-            st.session_state.edit_index = idx
-            st.session_state.delete_index = None
+        if st.button("✏️", key=f"edit_btn_{vak}_{idx}"):
+            st.session_state.edit_idx = idx
             st.rerun()
 
     with col4:
-        if st.button("❌", key=f"delete_{vak}_{idx}"):
-            st.session_state.delete_index = idx
-            st.session_state.edit_index = None
+        if st.button("❌", key=f"del_btn_{vak}_{idx}"):
+            st.session_state.delete_idx = idx
             st.rerun()
 
 
 # ============================================================
-# 🗑️ Delete bevestiging
+# 🗑️ Verwijderen
 # ============================================================
-if st.session_state.delete_index is not None:
-    idx = st.session_state.delete_index
+if st.session_state.delete_idx is not None:
+    idx = st.session_state.delete_idx
 
     st.markdown("---")
-    st.subheader("❗ Vraag verwijderen?")
+    st.subheader("❗ Weet je zeker dat je deze vraag wilt verwijderen?")
     st.write(f"**{idx} — {df.loc[idx, 'text']}**")
 
-    c1, c2 = st.columns(2)
-
-    with c1:
+    colA, colB = st.columns([1, 1])
+    with colA:
         if st.button("✔ Ja verwijderen"):
             df = df.drop(idx).reset_index(drop=True)
             tabs[vak] = df
 
             if save_excel_to_github(tabs):
-                st.cache_data.clear()
                 st.success("Vraag verwijderd!")
                 time.sleep(1)
-                st.session_state.delete_index = None
+                st.session_state.delete_idx = None
                 st.rerun()
 
-    with c2:
-        if st.button("✖ Nee annuleren"):
-            st.session_state.delete_index = None
+    with colB:
+        if st.button("✖ Annuleer"):
+            st.session_state.delete_idx = None
             st.rerun()
 
 
 # ============================================================
-# ✏️ Vraag bewerken
+# ✏️ Bewerken
 # ============================================================
-if st.session_state.edit_index is not None:
-    idx = st.session_state.edit_index
+if st.session_state.edit_idx is not None:
+    idx = st.session_state.edit_idx
     vraag = df.loc[idx]
 
     st.markdown("---")
     st.subheader(f"✏️ Vraag {idx} bewerken")
 
     with st.container(border=True):
-        edit_text = st.text_input("Vraagtekst", value=str(vraag["text"]), key=f"edit_text_{idx}")
-
+        # Basisvelden
+        edit_text = st.text_input("Vraag", vraag["text"], key=f"edit_text_{idx}")
         edit_type = st.selectbox(
-            "Vraagtype",
+            "Type",
             ["mc", "tf", "input"],
-            index=["mc", "tf", "input"].index(vraag.get("type", "mc")),
-            key=f"edit_type_{idx}"
+            index=["mc", "tf", "input"].index(vraag["type"]),
+            key=f"edit_type_{idx}",
         )
 
+        # Afbeelding
         st.markdown("#### Afbeelding")
         safe_show_image(vraag.get("image_url", ""))
 
         new_img = st.file_uploader(
-            "Nieuwe afbeelding uploaden",
+            "Nieuwe afbeelding (optioneel)",
             type=["png", "jpg", "jpeg"],
-            key=f"edit_img_{idx}"
+            key=f"edit_img_{idx}",
         )
-        remove_img = st.checkbox("Afbeelding verwijderen", key=f"rm_img_{idx}")
+        remove_img = st.checkbox(
+            "Afbeelding verwijderen",
+            key=f"edit_remove_{idx}",
+        )
 
-        # MC velden
+        # Type velden
         if edit_type == "mc":
-            raw = vraag.get("choices", "")
-            try:
-                parsed = ast.literal_eval(raw)
-                opts = [str(x) for x in parsed] if isinstance(parsed, list) else []
-            except:
-                opts = []
-            edit_choices = st.text_input("MC-opties (komma gescheiden)", ", ".join(opts), key=f"opt_{idx}")
-            edit_answer = st.number_input("Index juiste antwoord", min_value=0,
-                                          value=int(vraag.get("answer", 0)),
-                                          key=f"ans_{idx}")
+            raw = vraag["choices"]
+            opts = ast.literal_eval(raw) if raw else []
+            new_opts = st.text_input(
+                "MC-opties (komma gescheiden)",
+                ", ".join(opts),
+                key=f"opts_{idx}",
+            )
+            new_ans = st.number_input(
+                "Index juiste antwoord",
+                value=int(vraag["answer"]),
+                min_value=0,
+                key=f"ans_{idx}",
+            )
 
         elif edit_type == "tf":
-            edit_choices = ""
-            edit_answer = st.selectbox("Correct?", [True, False],
-                                       index=0 if vraag.get("answer", True) else 1,
-                                       key=f"tf_{idx}")
+            new_opts = ""
+            new_ans = st.selectbox(
+                "Correct?",
+                [True, False],
+                index=0 if vraag["answer"] else 1,
+                key=f"ans_tf_{idx}",
+            )
 
         else:
-            edit_choices = ""
-            edit_answer = st.text_input("Correct antwoord", value=str(vraag.get("answer", "")),
-                                        key=f"inp_{idx}")
+            new_opts = ""
+            new_ans = st.text_input(
+                "Correct antwoord",
+                str(vraag["answer"]),
+                key=f"ans_inp_{idx}",
+            )
 
         # Opslaan
         if st.button("💾 Opslaan", key=f"save_{idx}"):
             df.loc[idx, "text"] = edit_text
             df.loc[idx, "type"] = edit_type
-            df.loc[idx, "choices"] = (
-                str([s.strip() for s in edit_choices.split(",")]) if edit_type == "mc" else ""
-            )
-            df.loc[idx, "answer"] = edit_answer
 
-            # Afbeelding
+            if edit_type == "mc":
+                df.loc[idx, "choices"] = str([s.strip() for s in new_opts.split(",")])
+            else:
+                df.loc[idx, "choices"] = ""
+
+            df.loc[idx, "answer"] = new_ans
+
+            # Afbeelding verwerken
             if remove_img:
                 df.loc[idx, "image_url"] = ""
+
             elif new_img:
                 ext = new_img.name.split(".")[-1]
                 filename = f"{vak}_q{idx}_{int(time.time())}.{ext}"
@@ -268,14 +289,13 @@ if st.session_state.edit_index is not None:
             tabs[vak] = df
 
             if save_excel_to_github(tabs):
-                st.cache_data.clear()
-                st.success("Vraag bijgewerkt!")
+                st.success("Opgeslagen!")
                 time.sleep(1)
-                st.session_state.edit_index = None
+                st.session_state.edit_idx = None
                 st.rerun()
 
-        if st.button("✖ Annuleren", key=f"cancel_{idx}"):
-            st.session_state.edit_index = None
+        if st.button("❌ Annuleer", key=f"cancel_{idx}"):
+            st.session_state.edit_idx = None
             st.rerun()
 
 
@@ -285,26 +305,27 @@ if st.session_state.edit_index is not None:
 st.markdown("---")
 st.subheader("➕ Nieuwe vraag toevoegen")
 
-new_text = st.text_input("Vraagtekst:", key="new_text")
-new_type = st.selectbox("Type:", ["mc", "tf", "input"], key="new_type")
+new_text = st.text_input("Vraagtekst", key="new_text")
+new_type = st.selectbox("Type", ["mc", "tf", "input"], key="new_type")
 
 if new_type == "mc":
-    new_opts = st.text_input("MC-opties (komma gescheiden):", key="new_opts")
+    new_opts = st.text_input("MC-opties (komma gescheiden)", key="new_opts")
     new_ans = st.number_input("Index juiste antwoord", min_value=0, key="new_ans_mc")
 elif new_type == "tf":
     new_opts = ""
     new_ans = st.selectbox("Correct?", [True, False], key="new_ans_tf")
 else:
     new_opts = ""
-    new_ans = st.text_input("Correct antwoord:", key="new_ans_input")
+    new_ans = st.text_input("Correct antwoord", key="new_ans_input")
 
-new_img = st.file_uploader("Afbeelding uploaden", type=["png", "jpg", "jpeg"], key="new_img")
+new_img = st.file_uploader("Afbeelding", type=["png", "jpg", "jpeg"], key="new_img")
 
 if st.button("➕ Toevoegen", key="add_new"):
-    if new_text.strip() == "":
+    if not new_text.strip():
         st.error("❌ Vraagtekst mag niet leeg zijn.")
         st.stop()
 
+    # Afbeelding uploaden (optioneel)
     img_url = ""
     if new_img:
         ext = new_img.name.split(".")[-1]
@@ -313,20 +334,26 @@ if st.button("➕ Toevoegen", key="add_new"):
         if uploaded:
             img_url = uploaded
 
-    choices = str([s.strip() for s in new_opts.split(",")]) if new_type == "mc" else ""
+    # MC-opties verwerken
+    if new_type == "mc":
+        opts_list = [s.strip() for s in new_opts.split(",") if s.strip()]
+        choices_val = str(opts_list)
+    else:
+        choices_val = ""
 
-    df = df._append({
+    # Nieuwe rij aanmaken
+    new_row = {
         "text": new_text,
         "type": new_type,
-        "choices": choices,
+        "choices": choices_val,
         "answer": new_ans,
-        "image_url": img_url
-    }, ignore_index=True)
+        "image_url": img_url,
+    }
 
+    df = df._append(new_row, ignore_index=True)
     tabs[vak] = df
 
     if save_excel_to_github(tabs):
-        st.cache_data.clear()
         st.success("Nieuwe vraag toegevoegd!")
         time.sleep(1)
         st.rerun()
