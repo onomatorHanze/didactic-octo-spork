@@ -134,7 +134,7 @@ def save_json(data: dict) -> bool:
 
     # Cache resetten zodat load_json opnieuw van GitHub leest
     
-    
+    return True
 
 
 # -------------------------------------------------------------
