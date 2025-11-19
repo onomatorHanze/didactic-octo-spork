@@ -13,20 +13,6 @@
       "tags": "['DC','vermogen']",
       "difficulty": 3,
       "image_url": "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/images/DC_b2c0df.jpg"
-    },
-    {
-      "id": "q357c49",
-      "text": "Test1",
-      "type": "mc",
-      "topic": "",
-      "explanation": "",
-      "choices": [
-        "test1",
-        "1",
-        "test"
-      ],
-      "answer": 1,
-      "image_url": ""
     }
   ],
   "Wiskunde 3": [
