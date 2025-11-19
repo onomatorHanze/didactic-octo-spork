@@ -26,6 +26,26 @@
       ],
       "answer": 1,
       "image_url": ""
+    },
+    {
+      "id": "qe7573b",
+      "text": "Wat betekend gelijkstroom",
+      "type": "tf",
+      "topic": "",
+      "explanation": "",
+      "choices": [],
+      "answer": true,
+      "image_url": ""
+    },
+    {
+      "id": "q38c702",
+      "text": "Werkt het nu?",
+      "type": "input",
+      "topic": "",
+      "explanation": "",
+      "choices": [],
+      "answer": "Nee?",
+      "image_url": ""
     }
   ],
   "Wiskunde 3": [
