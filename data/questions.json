@@ -28,13 +28,13 @@
       "image_url": ""
     },
     {
-      "id": "q06d24e",
-      "text": "Is dit een goede nieuwe vraag??",
-      "type": "mc",
+      "id": "qe7573b",
+      "text": "Wat betekend gelijkstroom",
+      "type": "tf",
       "topic": "",
       "explanation": "",
       "choices": [],
-      "answer": 0,
+      "answer": true,
       "image_url": ""
     }
   ],
