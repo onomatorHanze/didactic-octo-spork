@@ -72,24 +72,36 @@ def safe_image(url: str):
 # LOAD DATA (GEEN CACHE!)
 # -------------------------------------------------------------
 def load_data():
-    # Forceer GitHub om geen gecachete versie te geven
-    url = f"{JSON_RAW_URL}?cb={int(time.time())}"
+    # Altijd de actuele versie ophalen via de API (niet via raw)
+    meta = github_get(JSON_API_URL)
 
-    r = github_get(url)
-    if r.status_code != 200:
-        st.error(f"Kon JSON niet laden ({r.status_code}).")
+    if meta.status_code != 200:
+        st.error(f"Kon JSON metadata niet laden ({meta.status_code}).")
+        st.stop()
+
+    meta_json = meta.json()
+
+    # Bestandsinhoud zit Base64-gecodeerd in "content"
+    if "content" not in meta_json:
+        st.error("JSON API-response bevat geen content veld.")
         st.stop()
 
     try:
-        data = r.json()
-    except Exception:
-        st.error("JSON kon niet worden geparsed. Controleer vragenbestand.")
+        import base64
+        content = base64.b64decode(meta_json["content"]).decode("utf-8")
+        data = json.loads(content)
+    except Exception as e:
+        st.error("Kon JSON niet decoderen.")
+        st.code(str(e))
         st.stop()
 
+    # Zorg dat alle tabs lijsten zijn
     fixed = {}
     for tab, qs in data.items():
         fixed[tab] = qs if isinstance(qs, list) else []
+
     return fixed
+
 
 # -------------------------------------------------------------
 # SAVE JSON + force reload
