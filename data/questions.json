@@ -13,6 +13,19 @@
       "tags": "['DC','vermogen']",
       "difficulty": 3,
       "image_url": "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/images/DC_b2c0df.jpg"
+    },
+    {
+      "id": "q926447",
+      "text": "Gaat het wel goed met indexeren?",
+      "type": "mc",
+      "topic": "",
+      "explanation": "",
+      "choices": [
+        "nee",
+        "ja"
+      ],
+      "answer": 1,
+      "image_url": ""
     }
   ],
   "Wiskunde 3": [
