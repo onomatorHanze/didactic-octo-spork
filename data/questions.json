@@ -28,14 +28,14 @@
       "image_url": ""
     },
     {
-      "id": "qb0bf08",
+      "id": "q6d4908",
       "text": "4 Wat is er aan de gang?",
       "topic": "",
       "explanation": "",
       "type": "input",
       "choices": [],
       "answer": "56",
-      "image_url": ""
+      "image_url": "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/images/DC_c56db8.jpg"
     }
   ],
   "Wiskunde 3": [
