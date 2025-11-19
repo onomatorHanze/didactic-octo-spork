@@ -61,14 +61,14 @@ if st.button("Start quiz"):
     st.session_state["vak"] = vak
     st.session_state["index"] = 0
     st.session_state["score"] = {"correct": 0, "wrong": 0}
-    st.experimental_rerun()
+    st.rerun()
 
 # Handmatige refresh-knop
 if st.button("🔄 Vernieuw quizdata"):
     st.cache_data.clear()
     st.success("Data vernieuwd!")
     time.sleep(1)
-    st.experimental_rerun()
+    st.rerun()
 
 # ----------------------------
 # Quiz
@@ -138,7 +138,7 @@ if "questions" in st.session_state and st.session_state["questions"]:
 
             time.sleep(1.5)
             st.session_state["index"] += 1
-            st.experimental_rerun()
+            st.rerun()
 
         st.stop()
 
@@ -154,4 +154,4 @@ if "questions" in st.session_state and st.session_state["questions"]:
 
         time.sleep(1.5)
         st.session_state["index"] += 1
-        st.experimental_rerun()
+        st.rerun()
