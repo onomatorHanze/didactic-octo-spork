@@ -15,14 +15,17 @@
       "image_url": "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/images/DC_b2c0df.jpg"
     },
     {
-      "id": "q6d4908",
-      "text": "4 Wat is er aan de gang?",
+      "id": "q00c582",
+      "text": "Gaat het wel goed met indexeren?",
+      "type": "mc",
       "topic": "",
       "explanation": "",
-      "type": "input",
-      "choices": [],
-      "answer": "56",
-      "image_url": "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/images/DC_c56db8.jpg"
+      "choices": [
+        "nee",
+        "ja"
+      ],
+      "answer": 1,
+      "image_url": ""
     }
   ],
   "Wiskunde 3": [
