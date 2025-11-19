@@ -13,6 +13,16 @@
       "tags": "['DC','vermogen']",
       "difficulty": 3,
       "image_url": "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/images/DC_b2c0df.jpg"
+    },
+    {
+      "id": "q2942bb",
+      "text": "Werkt het toevoegen van vragen nu?",
+      "type": "input",
+      "topic": "",
+      "explanation": "",
+      "choices": [],
+      "answer": "Geen idee",
+      "image_url": "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/images/DC_ed8887.jpg"
     }
   ],
   "Wiskunde 3": [
