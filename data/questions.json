@@ -349,7 +349,7 @@
       "formula_latex": NaN,
       "tags": "['AC','basis']",
       "difficulty": 1.0,
-      "image_url": "nan"
+      "image_url": "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/images/AC_q0_1763538412.png"
     },
     {
       "id": NaN,
@@ -364,17 +364,6 @@
       "tags": NaN,
       "difficulty": NaN,
       "image_url": "nan"
-    },
-    {
-      "text": "Is dit een goede nieuwe vraag??",
-      "type": "mc",
-      "choices": [
-        "A. test 1",
-        "B. Test 2",
-        "C. Test 3"
-      ],
-      "answer": 0,
-      "image_url": ""
     }
   ]
 }
