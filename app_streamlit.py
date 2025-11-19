@@ -1,12 +1,10 @@
 import streamlit as st
 import requests
 import time
-from models import QuestionBank, HistoryStore
-from engine import SpacedRepetitionEngine
 
 st.set_page_config(page_title="DocQuiz Web", layout="centered")
 
-# Publieke JSON met alle vragen
+# JSON met vragen
 JSON_URL = "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/questions.json"
 
 
@@ -15,9 +13,7 @@ def load_data():
     r = requests.get(JSON_URL, timeout=5)
     r.raise_for_status()
     data = r.json()
-    if not isinstance(data, dict):
-        data = {}
-    return data
+    return data if isinstance(data, dict) else {}
 
 
 def safe_show_image(url: str):
@@ -25,11 +21,10 @@ def safe_show_image(url: str):
         return
     try:
         r = requests.get(url, timeout=4)
-        if r.status_code != 200:
-            return
-        st.image(r.content, use_column_width=True)
-    except Exception:
-        return
+        if r.status_code == 200:
+            st.image(r.content, use_column_width=True)
+    except:
+        pass
 
 
 # ----------------------------
@@ -50,12 +45,7 @@ num_questions = st.number_input("Aantal vragen:", 1, 50, 5)
 
 if st.button("Start quiz"):
     questions_all = data.get(vak, [])
-    # Pak de eerste n (je kunt later random/spaced maken)
     questions = questions_all[: int(num_questions)]
-
-    qbank = QuestionBank()
-    history = HistoryStore()
-    engine = SpacedRepetitionEngine(qbank, history)  # nu nog niet echt gebruikt
 
     st.session_state["questions"] = questions
     st.session_state["vak"] = vak
@@ -63,12 +53,6 @@ if st.button("Start quiz"):
     st.session_state["score"] = {"correct": 0, "wrong": 0}
     st.rerun()
 
-# Handmatige refresh-knop
-if st.button("🔄 Vernieuw quizdata"):
-    st.cache_data.clear()
-    st.success("Data vernieuwd!")
-    time.sleep(1)
-    st.rerun()
 
 # ----------------------------
 # Quiz
@@ -77,81 +61,86 @@ if "questions" in st.session_state and st.session_state["questions"]:
     qs = st.session_state["questions"]
     i = st.session_state["index"]
 
+    # EINDE?
     if i >= len(qs):
         st.balloons()
-        st.write("🎉 **Klaar!**")
-        st.metric("✅ Goed", st.session_state["score"]["correct"])
-        st.metric("❌ Fout", st.session_state["score"]["wrong"])
+        st.success("🎉 **Klaar!**")
+        st.metric("Goed", st.session_state["score"]["correct"])
+        st.metric("Fout", st.session_state["score"]["wrong"])
         st.stop()
 
     q = qs[i]
-
     st.progress((i + 1) / len(qs))
     st.subheader(f"({st.session_state['vak']}) Vraag {i+1}")
     st.write(q.get("text", ""))
 
-    # Afbeelding (indien aanwezig)
-    img_url = q.get("image_url", "")
-    safe_show_image(img_url)
+    # Afbeelding
+    safe_show_image(q.get("image_url", ""))
 
-    answer = None
+    qtype = q.get("type")
+    correct_raw = q.get("answer")
 
+    # ----------------------------
     # Meerkeuze
-    if q.get("type") == "mc":
+    # ----------------------------
+    if qtype == "mc":
         choices = q.get("choices", [])
         if not isinstance(choices, list):
             choices = []
-        opties = ["Maak een keuze..."] + [str(c) for c in choices]
-        answer = st.radio(
+
+        answer_idx = st.radio(
             "Kies het juiste antwoord:",
-            opties,
-            index=0,
+            list(range(len(choices))),
+            format_func=lambda idx: choices[idx],
             key=f"mc_{i}",
         )
-        correct_idx = int(q.get("answer", 0))
-        correct = str(choices[correct_idx]) if 0 <= correct_idx < len(choices) else ""
 
+        if st.button("Controleer", key=f"mc_check_{i}"):
+            if answer_idx == int(correct_raw):
+                st.success("✅ Goed!")
+                st.session_state["score"]["correct"] += 1
+            else:
+                st.error(f"❌ Fout! Correct was: {choices[int(correct_raw)]}")
+                st.session_state["score"]["wrong"] += 1
+
+            time.sleep(1)
+            st.session_state["index"] += 1
+            st.rerun()
+
+    # ----------------------------
     # Waar / Onwaar
-    elif q.get("type") == "tf":
-        opties = ["Maak een keuze...", "Waar", "Onwaar"]
-        answer = st.radio(
-            "Waar of onwaar?",
-            opties,
-            index=0,
-            key=f"tf_{i}",
-        )
-        correct = "Waar" if bool(q.get("answer", True)) else "Onwaar"
+    # ----------------------------
+    elif qtype == "tf":
+        user_choice = st.radio("Waar of onwaar?", ["Waar", "Onwaar"], key=f"tf_{i}")
+        correct = "Waar" if bool(correct_raw) else "Onwaar"
 
-    # Invoervraag
-    else:
-        user_input = st.text_input("Je antwoord:", key=f"inp_{i}")
-        correct = str(q.get("answer", ""))
-
-        if st.button("Controleer antwoord", key=f"check_{i}"):
-            goed = user_input.strip() == correct.strip()
-            if goed:
+        if st.button("Controleer", key=f"tf_check_{i}"):
+            if user_choice == correct:
                 st.success("✅ Goed!")
                 st.session_state["score"]["correct"] += 1
             else:
                 st.error(f"❌ Fout! Correct was: {correct}")
                 st.session_state["score"]["wrong"] += 1
 
-            time.sleep(1.5)
+            time.sleep(1)
             st.session_state["index"] += 1
             st.rerun()
 
-        st.stop()
+    # ----------------------------
+    # Input-vraag
+    # ----------------------------
+    else:
+        user_input = st.text_input("Je antwoord:", key=f"inp_{i}")
+        correct = str(correct_raw)
 
-    # Automatische controle voor MC / TF
-    if answer and answer != "Maak een keuze...":
-        goed = (answer == correct)
-        if goed:
-            st.success("✅ Goed!")
-            st.session_state["score"]["correct"] += 1
-        else:
-            st.error(f"❌ Fout! Correct was: {correct}")
-            st.session_state["score"]["wrong"] += 1
+        if st.button("Controleer", key=f"inp_check_{i}"):
+            if user_input.strip() == correct.strip():
+                st.success("✅ Goed!")
+                st.session_state["score"]["correct"] += 1
+            else:
+                st.error(f"❌ Fout! Correct was: {correct}")
+                st.session_state["score"]["wrong"] += 1
 
-        time.sleep(1.5)
-        st.session_state["index"] += 1
-        st.rerun()
+            time.sleep(1)
+            st.session_state["index"] += 1
+            st.rerun()
