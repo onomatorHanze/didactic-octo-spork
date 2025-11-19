@@ -7,95 +7,146 @@ import math
 import uuid
 
 # -------------------------------------------------------------
-# CONFIG
+# CONFIG – via Streamlit Secrets
 # -------------------------------------------------------------
 TOKEN = st.secrets["GITHUB_TOKEN"]
 OWNER = st.secrets["REPO_OWNER"]
 REPO = st.secrets["REPO_NAME"]
-JSON_PATH = st.secrets["FILE_PATH"]           # data/questions.json
+JSON_PATH = st.secrets["FILE_PATH"]           # bijv. "data/questions.json"
 IMAGE_DIR = "data/images"
 
 JSON_RAW_URL = f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main/{JSON_PATH}"
 JSON_API_URL = f"https://api.github.com/repos/{OWNER}/{REPO}/contents/{JSON_PATH}"
 
+st.set_page_config(page_title="DocQuiz Admin", layout="centered")
+st.title("🔧 DocQuiz Admin – Beheer quizvragen")
+
+
 # -------------------------------------------------------------
-# HELPERS
+# Kleine helpers
 # -------------------------------------------------------------
 def clean(v):
-    """Zorgt dat geen enkele NaN of None in JSON terecht komt."""
+    """Zorgt dat None / NaN netjes lege strings worden voor JSON."""
     if v is None:
         return ""
     if isinstance(v, float) and math.isnan(v):
         return ""
     return v
 
-def github_get(path):
-    r = requests.get(path, headers={"Authorization": f"token {TOKEN}"})
-    return r
 
-def github_put(path, content_bytes, sha, message):
-    encoded = base64.b64encode(content_bytes).decode()
+def github_get(url: str):
+    return requests.get(url, headers={"Authorization": f"token {TOKEN}"})
+
+
+def github_put(url: str, bytes_content: bytes, sha: str | None, message: str):
+    encoded = base64.b64encode(bytes_content).decode()
     payload = {"message": message, "content": encoded}
     if sha:
         payload["sha"] = sha
 
     r = requests.put(
-        path,
+        url,
         headers={"Authorization": f"token {TOKEN}"},
-        data=json.dumps(payload)
+        data=json.dumps(payload),
     )
     return r
 
 
 # -------------------------------------------------------------
-# LOAD QUESTIONS.JSON
+# SAFE IMAGE PREVIEW
+# -------------------------------------------------------------
+def safe_image(url: str):
+    """Afbeelding tonen zonder Streamlit te laten crashen."""
+    if not isinstance(url, str) or not url.strip():
+        st.caption("Geen afbeelding.")
+        return
+
+    try:
+        r = requests.get(url, timeout=4)
+        if r.status_code == 200:
+            st.image(r.content, width=350)
+        else:
+            st.caption("⚠️ Afbeelding kon niet geladen worden.")
+    except Exception:
+        st.caption("⚠️ Fout bij laden van afbeelding.")
+
+
+# -------------------------------------------------------------
+# JSON LADEN
 # -------------------------------------------------------------
 @st.cache_data
-def load_json():
+def load_json() -> dict:
+    """Laad questions.json vanaf GitHub RAW URL."""
     r = github_get(JSON_RAW_URL)
     if r.status_code != 200:
-        st.error("Kan JSON niet laden van GitHub!")
+        st.error(f"Kon JSON niet laden ({r.status_code}).")
+        try:
+            st.code(r.text, language="json")
+        except Exception:
+            pass
         st.stop()
 
-    data = r.json()
-    return data
+    try:
+        data = r.json()
+    except Exception:
+        st.error("JSON kon niet worden geparsed. Controleer vragenbestand op GitHub.")
+        st.stop()
+
+    # Extra defensief: zorg dat iedere tab een lijst is
+    fixed = {}
+    for tab, qs in data.items():
+        if isinstance(qs, list):
+            fixed[tab] = qs
+        else:
+            fixed[tab] = []
+    return fixed
 
 
 # -------------------------------------------------------------
-# SAVE QUESTIONS.JSON
+# JSON OPSLAAN
 # -------------------------------------------------------------
-def save_json(data):
-    """Schrijft JSON terug naar GitHub."""
+def save_json(data: dict) -> bool:
+    """Schrijft JSON terug naar GitHub (altijd schoon)."""
+    cleaned: dict[str, list[dict]] = {}
 
-    # 1. CLEAN ALL VALUES
-    cleaned = {}
     for tab, questions in data.items():
-        cleaned[tab] = []
+        cleaned_list = []
         for q in questions:
+            # zorg dat q dict is
+            if not isinstance(q, dict):
+                continue
             q2 = {k: clean(v) for k, v in q.items()}
-            cleaned[tab].append(q2)
+            cleaned_list.append(q2)
+        cleaned[tab] = cleaned_list
 
-    # 2. BYTES
-    raw = json.dumps(cleaned, indent=2).encode()
+    raw_bytes = json.dumps(cleaned, indent=2, ensure_ascii=False).encode("utf-8")
 
-    # 3. SHA ophalen
     meta = github_get(JSON_API_URL).json()
     sha = meta.get("sha")
 
-    # 4. Uploaden
-    r = github_put(JSON_API_URL, raw, sha, "Update questions.json via Admin")
+    r = github_put(JSON_API_URL, raw_bytes, sha, "Update questions.json via Admin")
 
-    return r.status_code in (200, 201)
+    if r.status_code not in (200, 201):
+        st.error(f"❌ Opslaan van JSON mislukt (status {r.status_code}).")
+        try:
+            st.code(r.text, language="json")
+        except Exception:
+            pass
+        return False
+
+    # Cache resetten zodat load_json opnieuw van GitHub leest
+    st.cache_data.clear()
+    return True
 
 
 # -------------------------------------------------------------
-# IMAGE UPLOAD
+# AFBEELDING UPLOADEN
 # -------------------------------------------------------------
-def upload_image(file_bytes, filename):
+def upload_image(file_bytes: bytes, filename: str) -> str | None:
     path = f"{IMAGE_DIR}/{filename}"
-    api = f"https://api.github.com/repos/{OWNER}/{REPO}/contents/{path}"
+    api_url = f"https://api.github.com/repos/{OWNER}/{REPO}/contents/{path}"
 
-    meta = github_get(api).json()
+    meta = github_get(api_url).json()
     sha = meta.get("sha")
 
     encoded = base64.b64encode(file_bytes).decode()
@@ -103,200 +154,285 @@ def upload_image(file_bytes, filename):
     if sha:
         payload["sha"] = sha
 
-    r = requests.put(api,
-                     headers={"Authorization": f"token {TOKEN}"},
-                     data=json.dumps(payload))
+    r = requests.put(
+        api_url,
+        headers={"Authorization": f"token {TOKEN}"},
+        data=json.dumps(payload),
+    )
 
     if r.status_code not in (200, 201):
-        st.error("❌ Afbeelding upload mislukt")
+        st.error(f"❌ Upload van afbeelding mislukt (status {r.status_code}).")
+        try:
+            st.code(r.text, language="json")
+        except Exception:
+            pass
         return None
 
     return f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main/{path}"
 
 
 # -------------------------------------------------------------
-# SAFE IMAGE PREVIEW
+# SESSION STATE
 # -------------------------------------------------------------
-def safe_image(url):
-    if not url or not isinstance(url, str) or url.strip() == "":
-        st.caption("Geen afbeelding.")
-        return
-    try:
-        r = requests.get(url, timeout=3)
-        if r.status_code == 200:
-            st.image(r.content, width=350)
-        else:
-            st.caption("⚠️ Afbeelding kon niet worden geladen.")
-    except:
-        st.caption("⚠️ Afbeelding fout.")
+if "edit_vak" not in st.session_state:
+    st.session_state["edit_vak"] = None
+if "edit_index" not in st.session_state:
+    st.session_state["edit_index"] = None
+if "del_vak" not in st.session_state:
+    st.session_state["del_vak"] = None
+if "del_index" not in st.session_state:
+    st.session_state["del_index"] = None
 
 
 # -------------------------------------------------------------
-# PAGE UI
+# MAIN DATA LADEN & VAK KIEZEN
 # -------------------------------------------------------------
-st.set_page_config(page_title="Admin", layout="centered")
-st.title("🔧 DocQuiz Admin")
-
 data = load_json()
 
-# TABS = vakken zoals "DC", "AC", "Wiskunde 3"
-vak = st.selectbox("Vak:", list(data.keys()))
-questions = data[vak]
+st.subheader("📘 Kies een vak")
+current_vak = st.selectbox("Vak:", list(data.keys()), key="vak_select")
+questions = data[current_vak]
 
+
+# -------------------------------------------------------------
+# OVERZICHT VRAGEN
+# -------------------------------------------------------------
 st.subheader("📄 Overzicht vragen")
 
-# -------------------------------------------------------------
-# LIST QUESTIONS
-# -------------------------------------------------------------
 for i, q in enumerate(questions):
-    col1, col2, col3 = st.columns([6,1,1])
+    col1, col2, col3, col4 = st.columns([6, 1, 1, 1])
 
     with col1:
-        st.write(f"**{i}: {q['text'][:60]}{'…' if len(q['text'])>60 else ''}**")
+        txt = str(q.get("text", ""))
+        short = txt[:80] + ("…" if len(txt) > 80 else "")
+        st.write(f"**{i}: {short}**")
 
     with col2:
         if q.get("image_url"):
             st.caption("🖼")
 
     with col3:
-        if st.button("✏️", key=f"edit_{vak}_{i}"):
-            st.session_state["edit"] = (vak, i)
+        if st.button("✏️", key=f"edit_{current_vak}_{i}"):
+            st.session_state["edit_vak"] = current_vak
+            st.session_state["edit_index"] = i
+            # andere acties leegmaken
+            st.session_state["del_vak"] = None
+            st.session_state["del_index"] = None
             st.rerun()
-        if st.button("❌", key=f"del_{vak}_{i}"):
-            st.session_state["delete"] = (vak, i)
+
+    with col4:
+        if st.button("❌", key=f"del_{current_vak}_{i}"):
+            st.session_state["del_vak"] = current_vak
+            st.session_state["del_index"] = i
+            st.session_state["edit_vak"] = None
+            st.session_state["edit_index"] = None
             st.rerun()
 
 
 # -------------------------------------------------------------
-# DELETE QUESTION
+# VERWIJDEREN – BEVESTIGING
 # -------------------------------------------------------------
-if "delete" in st.session_state:
-    dvak, di = st.session_state["delete"]
-    st.markdown("---")
-    st.error(f"Vraag verwijderen?\n\n**{questions[di]['text']}**")
-    c1, c2 = st.columns(2)
+if st.session_state["del_vak"] is not None and st.session_state["del_index"] is not None:
+    dv = st.session_state["del_vak"]
+    di = st.session_state["del_index"]
 
-    with c1:
-        if st.button("✔ Verwijderen"):
-            questions.pop(di)
-            if save_json(data):
-                st.success("Verwijderd!")
-                st.session_state.pop("delete")
+    if dv in data and 0 <= di < len(data[dv]):
+        q = data[dv][di]
+        st.markdown("---")
+        st.subheader("❓ Deze vraag verwijderen?")
+        st.write(f"**[{dv}] {di}: {q.get('text', '')}**")
+
+        c1, c2 = st.columns(2)
+
+        with c1:
+            if st.button("✔ Ja, verwijderen", key="confirm_delete_yes"):
+                data[dv].pop(di)
+                if save_json(data):
+                    st.success("Vraag verwijderd!")
+                    st.session_state["del_vak"] = None
+                    st.session_state["del_index"] = None
+                    time.sleep(1)
+                    st.rerun()
+
+        with c2:
+            if st.button("✖ Nee, annuleren", key="confirm_delete_no"):
+                st.session_state["del_vak"] = None
+                st.session_state["del_index"] = None
                 st.rerun()
 
-    with c2:
-        if st.button("✖ Annuleren"):
-            st.session_state.pop("delete")
-            st.rerun()
+
+# -------------------------------------------------------------
+# BEWERKEN
+# -------------------------------------------------------------
+if st.session_state["edit_vak"] is not None and st.session_state["edit_index"] is not None:
+    ev = st.session_state["edit_vak"]
+    ei = st.session_state["edit_index"]
+
+    if ev in data and 0 <= ei < len(data[ev]):
+        q = data[ev][ei]
+
+        st.markdown("---")
+        st.subheader(f"✏️ Vraag bewerken – [{ev}] index {ei}")
+
+        with st.container(border=True):
+            new_text = st.text_input("Vraagtekst", value=clean(q.get("text", "")), key="edit_text")
+            # type
+            type_options = ["mc", "tf", "input"]
+            current_type = q.get("type", "mc")
+            if current_type not in type_options:
+                current_type = "mc"
+            new_type = st.selectbox(
+                "Type",
+                type_options,
+                index=type_options.index(current_type),
+                key="edit_type",
+            )
+
+            new_topic = st.text_input("Topic", value=clean(q.get("topic", "")), key="edit_topic")
+            new_expl = st.text_area("Uitleg", value=clean(q.get("explanation", "")), key="edit_expl")
+
+            # type-specifiek
+            if new_type == "mc":
+                opts = q.get("choices", [])
+                if not isinstance(opts, list):
+                    opts = []
+                opts_str = ", ".join(str(o) for o in opts)
+                new_opts_str = st.text_input(
+                    "Opties (komma gescheiden)",
+                    value=opts_str,
+                    key="edit_opts",
+                )
+                new_ans = st.number_input(
+                    "Juiste antwoord index",
+                    min_value=0,
+                    value=int(q.get("answer", 0)) if isinstance(q.get("answer", 0), (int, float)) else 0,
+                    key="edit_ans_mc",
+                )
+            elif new_type == "tf":
+                new_opts_str = ""
+                current_bool = bool(q.get("answer", True))
+                new_ans = st.selectbox(
+                    "Correct?",
+                    [True, False],
+                    index=0 if current_bool else 1,
+                    key="edit_ans_tf",
+                )
+            else:  # input
+                new_opts_str = ""
+                new_ans = st.text_input(
+                    "Correct antwoord",
+                    value=str(clean(q.get("answer", ""))),
+                    key="edit_ans_input",
+                )
+
+            # Afbeelding
+            st.markdown("### Afbeelding")
+            safe_image(q.get("image_url", ""))
+
+            img_file = st.file_uploader(
+                "Nieuwe afbeelding (optioneel)",
+                type=["png", "jpg", "jpeg"],
+                key="edit_img",
+            )
+            remove_img = st.checkbox("Afbeelding verwijderen", key="edit_remove_img")
+
+            c1, c2 = st.columns([2, 1])
+
+            with c1:
+                if st.button("💾 Opslaan wijzigingen", key="edit_save_btn"):
+                    q["text"] = clean(new_text)
+                    q["type"] = new_type
+                    q["topic"] = clean(new_topic)
+                    q["explanation"] = clean(new_expl)
+
+                    if new_type == "mc":
+                        q["choices"] = [s.strip() for s in new_opts_str.split(",") if s.strip()]
+                    else:
+                        q["choices"] = []
+
+                    q["answer"] = new_ans
+
+                    if remove_img:
+                        q["image_url"] = ""
+                    elif img_file:
+                        ext = img_file.name.split(".")[-1].lower()
+                        fname = f"{ev}_{uuid.uuid4().hex[:6]}.{ext}"
+                        url = upload_image(img_file.read(), fname)
+                        if url:
+                            q["image_url"] = url
+
+                    if save_json(data):
+                        st.success("Vraag opgeslagen!")
+                        st.session_state["edit_vak"] = None
+                        st.session_state["edit_index"] = None
+                        time.sleep(1)
+                        st.rerun()
+
+            with c2:
+                if st.button("Annuleer", key="edit_cancel_btn"):
+                    st.session_state["edit_vak"] = None
+                    st.session_state["edit_index"] = None
+                    st.rerun()
 
 
 # -------------------------------------------------------------
-# EDIT QUESTION
-# -------------------------------------------------------------
-if "edit" in st.session_state:
-    evak, ei = st.session_state["edit"]
-    q = questions[ei]
-
-    st.markdown("---")
-    st.subheader("Vraag bewerken")
-
-    new_text = st.text_input("Vraagtekst", q["text"])
-    new_type = st.selectbox("Type", ["mc","tf","input"], index=["mc","tf","input"].index(q["type"]))
-
-    new_topic = st.text_input("Topic", clean(q.get("topic")))
-    new_expl = st.text_area("Uitleg", clean(q.get("explanation")))
-
-    # type-specific
-    if new_type == "mc":
-        opts = ", ".join(q.get("choices", []))
-        new_opts = st.text_input("Opties (komma gescheiden)", opts)
-        new_ans = st.number_input("Juiste antwoord index", min_value=0, value=int(q["answer"]))
-    elif new_type == "tf":
-        new_opts = ""
-        new_ans = st.selectbox("Correct?", [True, False], index=0 if q["answer"] else 1)
-    else:
-        new_opts = ""
-        new_ans = st.text_input("Correct antwoord", clean(q["answer"]))
-
-    st.markdown("### Afbeelding")
-    safe_image(q.get("image_url"))
-
-    img_file = st.file_uploader("Nieuwe afbeelding")
-    remove_img = st.checkbox("Afbeelding verwijderen")
-
-    if st.button("💾 Opslaan"):
-        q["text"] = new_text
-        q["type"] = new_type
-        q["topic"] = new_topic
-        q["explanation"] = new_expl
-        q["choices"] = [s.strip() for s in new_opts.split(",")] if new_type=="mc" else []
-        q["answer"] = new_ans
-
-        if remove_img:
-            q["image_url"] = ""
-        elif img_file:
-            ext = img_file.name.split(".")[-1].lower()
-            fname = f"{vak}_{uuid.uuid4().hex[:6]}.{ext}"
-            url = upload_image(img_file.read(), fname)
-            if url:
-                q["image_url"] = url
-
-        if save_json(data):
-            st.success("Opgeslagen!")
-            st.session_state.pop("edit")
-            st.rerun()
-
-    if st.button("Annuleer"):
-        st.session_state.pop("edit")
-        st.rerun()
-
-
-# -------------------------------------------------------------
-# ADD QUESTION
+# NIEUWE VRAAG TOEVOEGEN
 # -------------------------------------------------------------
 st.markdown("---")
 st.subheader("➕ Nieuwe vraag toevoegen")
 
-qt_text = st.text_input("Vraagtekst")
-qt_type = st.selectbox("Type", ["mc","tf","input"])
-qt_topic = st.text_input("Topic")
-qt_expl = st.text_area("Uitleg")
+new_q_text = st.text_input("Vraagtekst", key="new_text")
+new_q_type = st.selectbox("Type", ["mc", "tf", "input"], key="new_type")
+new_q_topic = st.text_input("Topic", key="new_topic")
+new_q_expl = st.text_area("Uitleg", key="new_expl")
 
-if qt_type == "mc":
-    qt_opts = st.text_input("Opties (komma gescheiden)")
-    qt_ans = st.number_input("Juiste index", min_value=0, value=0)
-elif qt_type == "tf":
-    qt_opts = ""
-    qt_ans = st.selectbox("Correct?", [True, False])
+if new_q_type == "mc":
+    new_q_opts_str = st.text_input("Opties (komma gescheiden)", key="new_opts")
+    new_q_ans = st.number_input("Juiste index", min_value=0, value=0, key="new_ans_mc")
+elif new_q_type == "tf":
+    new_q_opts_str = ""
+    new_q_ans = st.selectbox("Correct?", [True, False], key="new_ans_tf")
 else:
-    qt_opts = ""
-    qt_ans = st.text_input("Antwoord")
+    new_q_opts_str = ""
+    new_q_ans = st.text_input("Antwoord", key="new_ans_input")
 
-qt_img = st.file_uploader("Afbeelding")
+new_q_img = st.file_uploader(
+    "Afbeelding (optioneel)",
+    type=["png", "jpg", "jpeg"],
+    key="new_img",
+)
 
-if st.button("Toevoegen"):
+if st.button("Toevoegen", key="add_new_btn"):
+    if new_q_text.strip() == "":
+        st.error("Vraagtekst mag niet leeg zijn.")
+    else:
+        img_url = ""
+        if new_q_img:
+            ext = new_q_img.name.split(".")[-1].lower()
+            fname = f"{current_vak}_{uuid.uuid4().hex[:6]}.{ext}"
+            url = upload_image(new_q_img.read(), fname)
+            if url:
+                img_url = url
 
-    new_q = {
-        "id": f"q{uuid.uuid4().hex[:6]}",
-        "text": clean(qt_text),
-        "type": qt_type,
-        "topic": clean(qt_topic),
-        "explanation": clean(qt_expl),
-        "choices": [s.strip() for s in qt_opts.split(",")] if qt_type=="mc" else [],
-        "answer": qt_ans,
-        "image_url": "",
-    }
+        if new_q_type == "mc":
+            opts = [s.strip() for s in new_q_opts_str.split(",") if s.strip()]
+        else:
+            opts = []
 
-    if qt_img:
-        ext = qt_img.name.split(".")[-1].lower()
-        fname = f"{vak}_{uuid.uuid4().hex[:6]}.{ext}"
-        url = upload_image(qt_img.read(), fname)
-        if url:
-            new_q["image_url"] = url
+        new_question = {
+            "id": f"q{uuid.uuid4().hex[:6]}",
+            "text": clean(new_q_text),
+            "type": new_q_type,
+            "topic": clean(new_q_topic),
+            "explanation": clean(new_q_expl),
+            "choices": opts,
+            "answer": new_q_ans,
+            "image_url": img_url,
+        }
 
-    questions.append(new_q)
+        data[current_vak].append(new_question)
 
-    if save_json(data):
-        st.success("Nieuwe vraag toegevoegd!")
-        time.sleep(1)
-        st.rerun()
+        if save_json(data):
+            st.success("Nieuwe vraag toegevoegd!")
+            time.sleep(1)
+            st.rerun()
