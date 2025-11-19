@@ -36,16 +36,6 @@
       "choices": [],
       "answer": true,
       "image_url": ""
-    },
-    {
-      "id": "q3b328c",
-      "text": "Werkt het nu?",
-      "type": "input",
-      "topic": "",
-      "explanation": "",
-      "choices": [],
-      "answer": "Nee?",
-      "image_url": ""
     }
   ],
   "Wiskunde 3": [
