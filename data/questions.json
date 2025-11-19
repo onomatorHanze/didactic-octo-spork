@@ -4,7 +4,7 @@
       "id": "q3",
       "type": "input",
       "topic": "Vermogen",
-      "text": "Bereken het vermogen bij U=12V en I=1A (Watt).",
+      "text": "Bereken het vermogen bij U=12V en I=1A (Watt).3",
       "choices": [],
       "answer": "12",
       "explanation": "P = U * I",
@@ -13,6 +13,19 @@
       "tags": "['DC','vermogen']",
       "difficulty": 3,
       "image_url": "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/images/DC_b2c0df.jpg"
+    },
+    {
+      "id": "q00c582",
+      "text": "Gaat het wel goed met indexeren?",
+      "type": "mc",
+      "topic": "",
+      "explanation": "",
+      "choices": [
+        "nee",
+        "ja"
+      ],
+      "answer": 1,
+      "image_url": ""
     }
   ],
   "Wiskunde 3": [
