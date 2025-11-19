@@ -16,7 +16,7 @@
     },
     {
       "id": "q00c582",
-      "text": "Gaat het wel goed met indexeren?",
+      "text": "Gaat het wel goed met indexeren?2",
       "type": "mc",
       "topic": "",
       "explanation": "",
@@ -25,16 +25,6 @@
         "ja"
       ],
       "answer": 1,
-      "image_url": ""
-    },
-    {
-      "id": "qe82ff7",
-      "text": "Is dit een goede nieuwe vraag??",
-      "type": "tf",
-      "topic": "",
-      "explanation": "",
-      "choices": [],
-      "answer": true,
       "image_url": ""
     }
   ],
