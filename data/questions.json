@@ -40,6 +40,16 @@
       ],
       "answer": 1,
       "image_url": "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/images/DC_cbf69c.jpg"
+    },
+    {
+      "id": "q66bb5d",
+      "text": "Wat betekend gelijkstroom",
+      "topic": "",
+      "explanation": "",
+      "type": "input",
+      "choices": [],
+      "answer": "ja",
+      "image_url": ""
     }
   ],
   "Wiskunde 3": [
