@@ -74,9 +74,7 @@ def safe_image(url: str):
 # -------------------------------------------------------------
 # JSON LADEN
 # -------------------------------------------------------------
-@st.cache_data
-def load_json() -> dict:
-    """Laad questions.json vanaf GitHub RAW URL."""
+def load_data():
     r = github_get(JSON_RAW_URL)
     if r.status_code != 200:
         st.error(f"Kon JSON niet laden ({r.status_code}).")
@@ -135,8 +133,8 @@ def save_json(data: dict) -> bool:
         return False
 
     # Cache resetten zodat load_json opnieuw van GitHub leest
-    st.cache_data.clear()
-    return True
+    
+    
 
 
 # -------------------------------------------------------------
