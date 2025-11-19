@@ -185,7 +185,7 @@ if "del_index" not in st.session_state:
 # -------------------------------------------------------------
 # MAIN DATA LADEN & VAK KIEZEN
 # -------------------------------------------------------------
-data = load_json()
+data = load_data()
 
 st.subheader("📘 Kies een vak")
 current_vak = st.selectbox("Vak:", list(data.keys()), key="vak_select")
