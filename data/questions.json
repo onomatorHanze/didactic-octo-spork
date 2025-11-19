@@ -1,63 +1,369 @@
 {
-    "meta": {
-        "source": "data/quizvragen.xlsx",
-        "sheet": "DC"
+  "DC": [
+    {
+      "id": "q3",
+      "type": "input",
+      "topic": "Vermogen",
+      "text": "Bereken het vermogen bij U=12V en I=1A (Watt).",
+      "choices": [],
+      "answer": "12",
+      "explanation": "P = U * I",
+      "image_path": "assets/ohm_schema.png",
+      "formula_latex": "P = U \\cdot I",
+      "tags": "['DC','vermogen']",
+      "difficulty": 3,
+      "image_url": "nan"
+    }
+  ],
+  "Wiskunde 3": [
+    {
+      "id": "q1",
+      "type": "mc",
+      "topic": "Goniometrie",
+      "text": "Wat is de juiste formule voor de stroom I?",
+      "choices": [
+        "I = U/R",
+        "U = I*R",
+        "R = U/I"
+      ],
+      "answer": 0,
+      "explanation": "sin(α) = overstaande / schuine",
+      "image_path": NaN,
+      "formula_latex": "sin(α)=o/h",
+      "tags": "[\"sinus\",\"basisformule\"]",
+      "difficulty": 1,
+      "image_url": "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/images/Wiskunde_3_q0_1763116823.jpg"
     },
-    "questions": [
-        {
-            "id": "q1",
-            "type": "mc",
-            "topic": "Ohmse wet",
-            "text": "Wat is de juiste formule voor de stroom I?",
-            "choices": [
-                "I = U/R",
-                "U = I*R",
-                "R = U/I"
-            ],
-            "answer": 0,
-            "explanation": "Volgens de wet van Ohm geldt: I = U / R.",
-            "image_path": "assets/ohm_schema.png",
-            "formula_latex": "I = \\frac{U}{R}",
-            "tags": [
-                "DC",
-                "basis"
-            ],
-            "difficulty": 2,
-            "answer_numeric": null
-        },
-        {
-            "id": "q2",
-            "type": "tf",
-            "topic": "AC/DC",
-            "text": "Gelijkspanning wisselt van polariteit.",
-            "choices": [],
-            "answer": 0,
-            "explanation": "Dat klopt niet, gelijkspanning wisselt niet van polariteit.",
-            "image_path": "assets/ohm_schema.png",
-            "formula_latex": "P = U \\cdot I",
-            "tags": [
-                "AC",
-                "basis"
-            ],
-            "difficulty": 1,
-            "answer_numeric": null
-        },
-        {
-            "id": "q3",
-            "type": "input",
-            "topic": "Vermogen",
-            "text": "Bereken het vermogen bij U=12V en I=1A (Watt).",
-            "choices": [],
-            "answer": 12,
-            "explanation": "P = U * I",
-            "image_path": "assets/ohm_schema.png",
-            "formula_latex": "P = U \\cdot I",
-            "tags": [
-                "DC",
-                "vermogen"
-            ],
-            "difficulty": 3,
-            "answer_numeric": 12.0
-        }
-    ]
+    {
+      "id": "q2",
+      "type": "mc",
+      "topic": "Goniometrie",
+      "text": "Wat is de formule voor cos(α)?",
+      "choices": [
+        "overstaande / schuine",
+        "aanliggende / schuine",
+        "aanliggende / overstaande"
+      ],
+      "answer": 1,
+      "explanation": "cos(α) = aanliggende / schuine",
+      "image_path": NaN,
+      "formula_latex": "cos(α)=a/h",
+      "tags": "[\"cosinus\",\"basisformule\"]",
+      "difficulty": 1,
+      "image_url": "nan"
+    },
+    {
+      "id": "q3",
+      "type": "mc",
+      "topic": "Goniometrie",
+      "text": "Wat is de formule voor tan(α)?",
+      "choices": [
+        "aanliggende / overstaande",
+        "overstaande / aanliggende",
+        "schuine / overstaande"
+      ],
+      "answer": 1,
+      "explanation": "tan(α) = overstaande / aanliggende",
+      "image_path": NaN,
+      "formula_latex": "tan(α)=o/a",
+      "tags": "[\"tangens\",\"basisformule\"]",
+      "difficulty": 1,
+      "image_url": "nan"
+    },
+    {
+      "id": "q4",
+      "type": "tf",
+      "topic": "Goniometrie",
+      "text": "De formule tan(α)=sin(α)/cos(α) is juist.",
+      "choices": [],
+      "answer": true,
+      "explanation": "Fundamentele identiteit.",
+      "image_path": NaN,
+      "formula_latex": NaN,
+      "tags": "[\"identiteit\",\"tangens\"]",
+      "difficulty": 1,
+      "image_url": "nan"
+    },
+    {
+      "id": "q5",
+      "type": "tf",
+      "topic": "Goniometrie",
+      "text": "sin²(α)+cos²(α)=1 is een goniometrische identiteit.",
+      "choices": [],
+      "answer": true,
+      "explanation": "Altijd waar, ongeacht α.",
+      "image_path": NaN,
+      "formula_latex": NaN,
+      "tags": "[\"identiteit\",\"pytagoras\"]",
+      "difficulty": 2,
+      "image_url": "nan"
+    },
+    {
+      "id": "q6",
+      "type": "input",
+      "topic": "Goniometrie",
+      "text": "Bereken tan(45°)",
+      "choices": [],
+      "answer": "nan",
+      "explanation": "tan(45°)=1",
+      "image_path": NaN,
+      "formula_latex": NaN,
+      "tags": "[\"tangens\",\"hoek\"]",
+      "difficulty": 1,
+      "image_url": "nan"
+    },
+    {
+      "id": "q7",
+      "type": "input",
+      "topic": "Goniometrie",
+      "text": "Bereken sin(90°)",
+      "choices": [],
+      "answer": "nan",
+      "explanation": "sin(90°)=1",
+      "image_path": NaN,
+      "formula_latex": NaN,
+      "tags": "[\"sinus\",\"hoek\"]",
+      "difficulty": 1,
+      "image_url": "nan"
+    },
+    {
+      "id": "q8",
+      "type": "input",
+      "topic": "Goniometrie",
+      "text": "Bereken cos(60°)",
+      "choices": [],
+      "answer": "nan",
+      "explanation": "cos(60°)=0.5",
+      "image_path": NaN,
+      "formula_latex": NaN,
+      "tags": "[\"cosinus\",\"hoek\"]",
+      "difficulty": 1,
+      "image_url": "nan"
+    },
+    {
+      "id": "q9",
+      "type": "mc",
+      "topic": "Goniometrie",
+      "text": "Wat is sin(30°)?",
+      "choices": [
+        "0",
+        "0.5",
+        "0.866",
+        "1"
+      ],
+      "answer": 1,
+      "explanation": "sin(30°)=0.5",
+      "image_path": NaN,
+      "formula_latex": NaN,
+      "tags": "[\"sinus\",\"hoek\"]",
+      "difficulty": 1,
+      "image_url": "nan"
+    },
+    {
+      "id": "q10",
+      "type": "mc",
+      "topic": "Goniometrie",
+      "text": "Wat is cos(30°)?",
+      "choices": [
+        "0.866",
+        "0.5",
+        "0",
+        "1"
+      ],
+      "answer": 0,
+      "explanation": "cos(30°)=√3/2≈0.866",
+      "image_path": NaN,
+      "formula_latex": NaN,
+      "tags": "[\"cosinus\",\"hoek\"]",
+      "difficulty": 1,
+      "image_url": "nan"
+    },
+    {
+      "id": "q11",
+      "type": "mc",
+      "topic": "Goniometrie",
+      "text": "Wat is tan(60°)?",
+      "choices": [
+        "1",
+        "0.5",
+        "1.73",
+        "0.866"
+      ],
+      "answer": 2,
+      "explanation": "tan(60°)=√3≈1.73",
+      "image_path": NaN,
+      "formula_latex": NaN,
+      "tags": "[\"tangens\",\"hoek\"]",
+      "difficulty": 1,
+      "image_url": "nan"
+    },
+    {
+      "id": "q12",
+      "type": "tf",
+      "topic": "Goniometrie",
+      "text": "cos(90°)=0.",
+      "choices": [],
+      "answer": true,
+      "explanation": "Juist — cos(90°)=0",
+      "image_path": NaN,
+      "formula_latex": NaN,
+      "tags": "[\"cosinus\",\"hoek\"]",
+      "difficulty": 1,
+      "image_url": "nan"
+    },
+    {
+      "id": "q13",
+      "type": "input",
+      "topic": "Goniometrie",
+      "text": "Bereken sin(0°)",
+      "choices": [],
+      "answer": "nan",
+      "explanation": "sin(0°)=0",
+      "image_path": NaN,
+      "formula_latex": NaN,
+      "tags": "[\"sinus\",\"hoek\"]",
+      "difficulty": 1,
+      "image_url": "nan"
+    },
+    {
+      "id": "q14",
+      "type": "mc",
+      "topic": "Goniometrie",
+      "text": "Wat is de formule om een zijde te berekenen bij een rechte driehoek met bekende hoek en schuine zijde?",
+      "choices": [
+        "sinusregel",
+        "cosinusregel",
+        "tangensregel"
+      ],
+      "answer": 0,
+      "explanation": "overstaande = schuine * sin(α)",
+      "image_path": NaN,
+      "formula_latex": NaN,
+      "tags": "[\"sinus\",\"berekening\"]",
+      "difficulty": 2,
+      "image_url": "nan"
+    },
+    {
+      "id": "q15",
+      "type": "mc",
+      "topic": "Goniometrie",
+      "text": "Wat is de cosinusregel?",
+      "choices": [
+        "a²=b²+c²-2bc·cos(A)",
+        "a²=b²+c²+2bc·cos(A)",
+        "a²=b²-c²+2bc·cos(A)"
+      ],
+      "answer": 0,
+      "explanation": "cosinusregel",
+      "image_path": NaN,
+      "formula_latex": "a²=b²+c²−2bc·cos(A)",
+      "tags": "[\"cosinusregel\"]",
+      "difficulty": 3,
+      "image_url": "nan"
+    },
+    {
+      "id": "q16",
+      "type": "mc",
+      "topic": "Goniometrie",
+      "text": "Wat is de sinusregel?",
+      "choices": [
+        "a/sin(A)=b/sin(B)=c/sin(C)",
+        "a·sin(A)=b·sin(B)",
+        "a/b=sin(A)/sin(B)"
+      ],
+      "answer": 0,
+      "explanation": "sinusregel",
+      "image_path": NaN,
+      "formula_latex": "a/sin(A)=b/sin(B)=c/sin(C)",
+      "tags": "[\"sinusregel\"]",
+      "difficulty": 3,
+      "image_url": "nan"
+    },
+    {
+      "id": "q17",
+      "type": "input",
+      "topic": "Goniometrie",
+      "text": "Bereken de hoogte h in een driehoek met zijde c=10 en hoek A=30°: h=c·sin(A)",
+      "choices": [],
+      "answer": "nan",
+      "explanation": "h=10·sin(30°)=5",
+      "image_path": NaN,
+      "formula_latex": NaN,
+      "tags": "[\"sinus\",\"toepassing\"]",
+      "difficulty": 2,
+      "image_url": "nan"
+    },
+    {
+      "id": "q18",
+      "type": "tf",
+      "topic": "Goniometrie",
+      "text": "In de eenheidscirkel is de x-coördinaat gelijk aan de cosinuswaarde.",
+      "choices": [],
+      "answer": true,
+      "explanation": "cos(x) = x-as",
+      "image_path": NaN,
+      "formula_latex": NaN,
+      "tags": "[\"eenheidscirkel\",\"cosinus\"]",
+      "difficulty": 2,
+      "image_url": "nan"
+    },
+    {
+      "id": "q19",
+      "type": "tf",
+      "topic": "Goniometrie",
+      "text": "In de eenheidscirkel is de y-coördinaat gelijk aan de tangens.",
+      "choices": [],
+      "answer": false,
+      "explanation": "Nee, dat is de sinus.",
+      "image_path": NaN,
+      "formula_latex": NaN,
+      "tags": "[\"eenheidscirkel\",\"tangens\"]",
+      "difficulty": 2,
+      "image_url": "nan"
+    },
+    {
+      "id": "q20",
+      "type": "input",
+      "topic": "Goniometrie",
+      "text": "Bereken cos(45°) afgerond op 2 decimalen.",
+      "choices": [],
+      "answer": "nan",
+      "explanation": "cos(45°)=√2/2≈0.71",
+      "image_path": NaN,
+      "formula_latex": NaN,
+      "tags": "[\"cosinus\",\"hoek\"]",
+      "difficulty": 1,
+      "image_url": "nan"
+    }
+  ],
+  "AC": [
+    {
+      "id": "q1",
+      "type": "tf",
+      "topic": "AC",
+      "text": "De frequentie van het lichtnet is 50 Hz.",
+      "choices": [],
+      "answer": true,
+      "explanation": "In Europa is de netfrequentie 50 Hz.",
+      "image_path": NaN,
+      "formula_latex": NaN,
+      "tags": "['AC','basis']",
+      "difficulty": 1.0,
+      "image_url": "nan"
+    },
+    {
+      "id": NaN,
+      "type": "input",
+      "topic": NaN,
+      "text": "Werkt het toevoegen nu?",
+      "choices": [],
+      "answer": "125",
+      "explanation": NaN,
+      "image_path": NaN,
+      "formula_latex": NaN,
+      "tags": NaN,
+      "difficulty": NaN,
+      "image_url": "nan"
+    }
+  ]
 }
