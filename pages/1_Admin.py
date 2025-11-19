@@ -215,13 +215,13 @@ for i, q in enumerate(questions):
         if st.button("✏️", key=f"edit_btn_{current_vak}_{i}"):
             st.session_state["edit_ctx"] = (current_vak, i)
             st.session_state["delete_ctx"] = None
-            st.experimental_rerun()
+            st.rerun()
 
     with col4:
         if st.button("❌", key=f"del_btn_{current_vak}_{i}"):
             st.session_state["delete_ctx"] = (current_vak, i)
             st.session_state["edit_ctx"] = None
-            st.experimental_rerun()
+            st.rerun()
 
 
 # -------------------------------------------------------------
@@ -245,12 +245,12 @@ if st.session_state["delete_ctx"] is not None:
                     st.success("Vraag verwijderd!")
                     st.session_state["delete_ctx"] = None
                     time.sleep(1)
-                    st.experimental_rerun()
+                    st.rerun()
 
         with c2:
             if st.button("✖ Nee, annuleren", key="confirm_delete_no"):
                 st.session_state["delete_ctx"] = None
-                st.experimental_rerun()
+                st.rerun()
 
 
 # =============================================================
@@ -383,12 +383,12 @@ if is_editing:
                         st.success("Vraag opgeslagen!")
                         st.session_state["edit_ctx"] = None
                         time.sleep(1)
-                        st.experimental_rerun()
+                        st.rerun()
 
             with c2:
                 if st.button("Annuleer", key=f"edit_cancel_btn_{ev}_{ei}"):
                     st.session_state["edit_ctx"] = None
-                    st.experimental_rerun()
+                    st.rerun()
 
 # -------------------------------------------------------------
 # NIEUWE VRAAG (alleen als je NIET aan het editen bent)
@@ -451,4 +451,4 @@ if not is_editing:
             if save_json(data):
                 st.success("Nieuwe vraag toegevoegd!")
                 time.sleep(1)
-                st.experimental_rerun()
+                st.rerun()
