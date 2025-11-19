@@ -36,6 +36,16 @@
       "choices": [],
       "answer": true,
       "image_url": ""
+    },
+    {
+      "id": "qd4428f",
+      "text": "Wat betekend gelijkstroom3",
+      "type": "tf",
+      "topic": "",
+      "explanation": "",
+      "choices": [],
+      "answer": true,
+      "image_url": ""
     }
   ],
   "Wiskunde 3": [
