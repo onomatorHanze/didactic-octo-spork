@@ -300,57 +300,63 @@ if st.session_state["edit_vak"] is not None:
 
 
 # -------------------------------------------------------------
-# Nieuwe vraag
+# FORMULIER: EDIT OF NIEUW (nooit tegelijk!)
 # -------------------------------------------------------------
-st.markdown("---")
-st.subheader("➕ Nieuwe vraag toevoegen")
 
-new_t = st.text_input("Vraagtekst", key="new_t")
-new_ty = st.selectbox("Type", ["mc", "tf", "input"], key="new_ty")
-new_top = st.text_input("Topic", key="new_top")
-new_ex = st.text_area("Uitleg", key="new_ex")
+is_editing = st.session_state["edit_vak"] is not None
 
-if new_ty == "mc":
-    new_opts_str = st.text_input("Opties", key="new_opts")
-    new_ans = st.number_input("Juiste index", min_value=0, value=0, key="new_ans")
-elif new_ty == "tf":
-    new_opts_str = ""
-    new_ans = st.selectbox("Correct?", [True, False], key="new_ans_tf")
-else:
-    new_opts_str = ""
-    new_ans = st.text_input("Juiste antwoord", key="new_ans_inp")
+if not is_editing:
+    # ---------------------------------------------------------
+    # NIEUWE VRAAG TOEVOEGEN
+    # ---------------------------------------------------------
+    st.markdown("---")
+    st.subheader("➕ Nieuwe vraag toevoegen")
 
-new_img = st.file_uploader("Afbeelding", type=["png", "jpg", "jpeg"],
-                           key="new_imgfile")
+    new_q_text = st.text_input("Vraagtekst", key="new_text")
+    new_q_type = st.selectbox("Type", ["mc", "tf", "input"], key="new_type")
+    new_q_topic = st.text_input("Topic", key="new_topic")
+    new_q_expl = st.text_area("Uitleg", key="new_expl")
 
-if st.button("Toevoegen", key="new_add"):
-    if not new_t.strip():
-        st.error("Vraagtekst mag niet leeg zijn.")
+    if new_q_type == "mc":
+        new_q_opts_str = st.text_input("Opties (komma gescheiden)", key="new_opts")
+        new_q_ans = st.number_input("Juiste index", min_value=0, value=0, key="new_ans_mc")
+    elif new_q_type == "tf":
+        new_q_opts_str = ""
+        new_q_ans = st.selectbox("Correct?", [True, False], key="new_ans_tf")
     else:
-        img_url = ""
-        if new_img:
-            ext = new_img.name.split(".")[-1].lower()
-            fname = f"{current_vak}_{uuid.uuid4().hex[:6]}.{ext}"
-            url = upload_image(new_img.read(), fname)
-            if url:
-                img_url = url
+        new_q_opts_str = ""
+        new_q_ans = st.text_input("Antwoord", key="new_ans_input")
 
-        opts = [s.strip() for s in new_opts_str.split(",") if s.strip()] if new_ty == "mc" else []
+    new_q_img = st.file_uploader("Afbeelding (optioneel)", type=["png","jpg","jpeg"], key="new_img")
 
-        q = {
-            "id": f"q{uuid.uuid4().hex[:6]}",
-            "text": clean(new_t),
-            "type": new_ty,
-            "topic": clean(new_top),
-            "explanation": clean(new_ex),
-            "choices": opts,
-            "answer": new_ans,
-            "image_url": img_url,
-        }
+    if st.button("Toevoegen", key="add_new_btn"):
+        if new_q_text.strip() == "":
+            st.error("Vraagtekst mag niet leeg zijn.")
+        else:
+            img_url = ""
+            if new_q_img:
+                ext = new_q_img.name.split(".")[-1].lower()
+                fname = f"{current_vak}_{uuid.uuid4().hex[:6]}.{ext}"
+                url = upload_image(new_q_img.read(), fname)
+                if url:
+                    img_url = url
 
-        data[current_vak].append(q)
+            opts = [s.strip() for s in new_q_opts_str.split(",") if s.strip()] if new_q_type == "mc" else []
 
-        if save_json(data):
-            st.success("Vraag toegevoegd!")
-            time.sleep(1)
-            st.rerun()
+            new_question = {
+                "id": f"q{uuid.uuid4().hex[:6]}",
+                "text": clean(new_q_text),
+                "type": new_q_type,
+                "topic": clean(new_q_topic),
+                "explanation": clean(new_q_expl),
+                "choices": opts,
+                "answer": new_q_ans,
+                "image_url": img_url,
+            }
+
+            data[current_vak].append(new_question)
+
+            if save_json(data):
+                st.success("Nieuwe vraag toegevoegd!")
+                time.sleep(1)
+                st.rerun()
