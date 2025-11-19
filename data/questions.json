@@ -15,19 +15,6 @@
       "image_url": "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/images/DC_b2c0df.jpg"
     },
     {
-      "id": "q00c582",
-      "text": "Gaat het wel goed met indexeren?2",
-      "type": "mc",
-      "topic": "",
-      "explanation": "",
-      "choices": [
-        "nee",
-        "ja"
-      ],
-      "answer": 1,
-      "image_url": ""
-    },
-    {
       "id": "qe7573b",
       "text": "Wat betekend gelijkstroom",
       "type": "tf",
@@ -45,16 +32,6 @@
       "explanation": "",
       "choices": [],
       "answer": "Nee?",
-      "image_url": ""
-    },
-    {
-      "id": "qfd8f60",
-      "text": "nog niet werken? ",
-      "type": "tf",
-      "topic": "",
-      "explanation": "",
-      "choices": [],
-      "answer": true,
       "image_url": ""
     }
   ],
