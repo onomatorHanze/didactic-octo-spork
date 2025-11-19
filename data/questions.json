@@ -349,7 +349,7 @@
       "formula_latex": NaN,
       "tags": "['AC','basis']",
       "difficulty": 1.0,
-      "image_url": "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/images/AC_q0_1763538412.png"
+      "image_url": "nan"
     },
     {
       "id": NaN,
@@ -364,6 +364,13 @@
       "tags": NaN,
       "difficulty": NaN,
       "image_url": "nan"
+    },
+    {
+      "text": "Wat is de status van het opslaan?",
+      "type": "input",
+      "choices": [],
+      "answer": "ds",
+      "image_url": ""
     }
   ]
 }
