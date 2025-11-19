@@ -12,7 +12,7 @@ import uuid
 TOKEN = st.secrets["GITHUB_TOKEN"]
 OWNER = st.secrets["REPO_OWNER"]
 REPO = st.secrets["REPO_NAME"]
-JSON_PATH = st.secrets["JSON_PATH"]           # data/questions.json
+JSON_PATH = st.secrets["FILE_PATH"]           # data/questions.json
 IMAGE_DIR = "data/images"
 
 JSON_RAW_URL = f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main/{JSON_PATH}"
