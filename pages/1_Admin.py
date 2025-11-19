@@ -72,22 +72,24 @@ def safe_image(url: str):
 # LOAD DATA (GEEN CACHE!)
 # -------------------------------------------------------------
 def load_data():
-    r = github_get(JSON_RAW_URL)
+    # Forceer GitHub om geen gecachete versie te geven
+    url = f"{JSON_RAW_URL}?cb={int(time.time())}"
+
+    r = github_get(url)
     if r.status_code != 200:
         st.error(f"Kon JSON niet laden ({r.status_code}).")
         st.stop()
 
     try:
         data = r.json()
-    except:
-        st.error("JSON is ongeldig op GitHub.")
+    except Exception:
+        st.error("JSON kon niet worden geparsed. Controleer vragenbestand.")
         st.stop()
 
     fixed = {}
     for tab, qs in data.items():
         fixed[tab] = qs if isinstance(qs, list) else []
     return fixed
-
 
 # -------------------------------------------------------------
 # SAVE JSON + force reload
