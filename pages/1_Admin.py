@@ -190,13 +190,13 @@ else:
             if st.button("✏️", key=f"edit_{vak}_{idx}"):
                 st.session_state.edit_index = idx
                 st.session_state.delete_index = None
-                st.experimental_rerun()
+                st.rerun()
 
         with col4:
             if st.button("❌", key=f"del_{vak}_{idx}"):
                 st.session_state.delete_index = idx
                 st.session_state.edit_index = None
-                st.experimental_rerun()
+                st.rerun()
 
 
 # ============================================================
@@ -221,12 +221,12 @@ if st.session_state.delete_index is not None:
                     st.success("Vraag verwijderd.")
                     time.sleep(1)
                     st.session_state.delete_index = None
-                    st.experimental_rerun()
+                    st.rerun()
 
         with c2:
             if st.button("✖ Nee, annuleren", key="delete_no"):
                 st.session_state.delete_index = None
-                st.experimental_rerun()
+                st.rerun()
 
 
 # ============================================================
@@ -356,12 +356,12 @@ if st.session_state.edit_index is not None:
                         st.success("Vraag bijgewerkt.")
                         time.sleep(1)
                         st.session_state.edit_index = None
-                        st.experimental_rerun()
+                        st.rerun()
 
             with c2:
                 if st.button("✖ Annuleer", key=f"cancel_{idx}"):
                     st.session_state.edit_index = None
-                    st.experimental_rerun()
+                    st.rerun()
 
 
 # ============================================================
@@ -437,4 +437,4 @@ if st.button("➕ Toevoegen", key="new_add_btn"):
         st.cache_data.clear()
         st.success("Nieuwe vraag toegevoegd.")
         time.sleep(1)
-        st.experimental_rerun()
+        st.rerun()
