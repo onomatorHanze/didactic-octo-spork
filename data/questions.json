@@ -29,7 +29,7 @@
     },
     {
       "id": "q96a141",
-      "text": "Zou het nu wel werken?/",
+      "text": "Zou het nu wel werken?",
       "topic": "",
       "explanation": "",
       "type": "mc",
@@ -39,7 +39,7 @@
         "een beetje"
       ],
       "answer": 1,
-      "image_url": ""
+      "image_url": "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/images/DC_cbf69c.jpg"
     }
   ],
   "Wiskunde 3": [
