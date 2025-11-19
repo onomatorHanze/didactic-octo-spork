@@ -12,19 +12,7 @@
       "formula_latex": "P = U \\cdot I",
       "tags": "['DC','vermogen']",
       "difficulty": 3,
-      "image_url": "nan"
-    },
-    {
-      "id": "q83e0c8",
-      "text": "Wat betekend gelijkstroom",
-      "type": "mc",
-      "topic": "test, test1, test2",
-      "explanation": "",
-      "choices": [
-        ""
-      ],
-      "answer": 1,
-      "image_url": ""
+      "image_url": "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/images/DC_b2c0df.jpg"
     }
   ],
   "Wiskunde 3": [
