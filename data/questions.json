@@ -26,6 +26,16 @@
       ],
       "answer": 1,
       "image_url": ""
+    },
+    {
+      "id": "qe82ff7",
+      "text": "Is dit een goede nieuwe vraag??",
+      "type": "tf",
+      "topic": "",
+      "explanation": "",
+      "choices": [],
+      "answer": true,
+      "image_url": ""
     }
   ],
   "Wiskunde 3": [
