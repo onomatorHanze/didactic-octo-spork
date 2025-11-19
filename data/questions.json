@@ -4,7 +4,7 @@
       "id": "q3",
       "type": "input",
       "topic": "Vermogen",
-      "text": "Bereken het vermogen bij U=12V en I=1A (Watt).3",
+      "text": "Bereken het vermogen bij U=12V en I=1A (Watt).",
       "choices": [],
       "answer": "12",
       "explanation": "P = U * I",
@@ -25,6 +25,16 @@
         "ja"
       ],
       "answer": 1,
+      "image_url": ""
+    },
+    {
+      "id": "q3f2cdd",
+      "text": "Test 1",
+      "topic": "",
+      "explanation": "",
+      "type": "tf",
+      "choices": [],
+      "answer": false,
       "image_url": ""
     }
   ],
