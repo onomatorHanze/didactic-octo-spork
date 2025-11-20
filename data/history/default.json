@@ -12,6 +12,12 @@
       "box": 0,
       "correct": 0,
       "wrong": 1
+    },
+    "q003": {
+      "last": "2025-11-20T14:55:39.503862",
+      "box": 1,
+      "correct": 1,
+      "wrong": 0
     }
   },
   "tag_stats": {}
