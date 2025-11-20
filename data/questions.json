@@ -1213,5 +1213,282 @@
       "image_url": "",
       "difficulty": 1
     }
+  ],
+  "PythonOpenVragen": [
+    {
+      "id": "opq001",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 1: Leg in je eigen woorden uit hoe onderdeel 1 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 1. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq002",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 2: Leg in je eigen woorden uit hoe onderdeel 2 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 2. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq003",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 3: Leg in je eigen woorden uit hoe onderdeel 3 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 3. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq004",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 4: Leg in je eigen woorden uit hoe onderdeel 4 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 4. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq005",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 5: Leg in je eigen woorden uit hoe onderdeel 5 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 5. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq006",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 6: Leg in je eigen woorden uit hoe onderdeel 6 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 6. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq007",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 7: Leg in je eigen woorden uit hoe onderdeel 7 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 7. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq008",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 8: Leg in je eigen woorden uit hoe onderdeel 8 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 8. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq009",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 9: Leg in je eigen woorden uit hoe onderdeel 9 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 9. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq010",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 10: Leg in je eigen woorden uit hoe onderdeel 10 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 10. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq011",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 11: Leg in je eigen woorden uit hoe onderdeel 11 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 11. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq012",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 12: Leg in je eigen woorden uit hoe onderdeel 12 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 12. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq013",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 13: Leg in je eigen woorden uit hoe onderdeel 13 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 13. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq014",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 14: Leg in je eigen woorden uit hoe onderdeel 14 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 14. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq015",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 15: Leg in je eigen woorden uit hoe onderdeel 15 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 15. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq016",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 16: Leg in je eigen woorden uit hoe onderdeel 16 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 16. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq017",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 17: Leg in je eigen woorden uit hoe onderdeel 17 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 17. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq018",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 18: Leg in je eigen woorden uit hoe onderdeel 18 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 18. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq019",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 19: Leg in je eigen woorden uit hoe onderdeel 19 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 19. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq020",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 20: Leg in je eigen woorden uit hoe onderdeel 20 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 20. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq021",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 21: Leg in je eigen woorden uit hoe onderdeel 21 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 21. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq022",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 22: Leg in je eigen woorden uit hoe onderdeel 22 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 22. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq023",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 23: Leg in je eigen woorden uit hoe onderdeel 23 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 23. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq024",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 24: Leg in je eigen woorden uit hoe onderdeel 24 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 24. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    },
+    {
+      "id": "opq025",
+      "type": "input",
+      "topic": "Programmeren",
+      "text": "Open vraag 25: Leg in je eigen woorden uit hoe onderdeel 25 van het Python quizprogramma werkt.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Voorbeelduitleg bij vraag 25. Open vragen stimuleren begrip en reflectie.",
+      "image_url": "",
+      "difficulty": 1
+    }
   ]
 }
