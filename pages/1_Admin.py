@@ -6,7 +6,6 @@ import uuid
 import time
 import math
 
-
 # -------------------------------------------------------------
 # SETTINGS & GITHUB CONFIG
 # -------------------------------------------------------------
@@ -16,47 +15,31 @@ REPO = st.secrets["REPO_NAME"]
 JSON_PATH = st.secrets["FILE_PATH"]
 IMAGE_DIR = "data/images"
 
-RAW = (
-    f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main/{JSON_PATH}"
-)
-API = (
-    f"https://api.github.com/repos/{OWNER}/{REPO}/contents/{JSON_PATH}"
-)
+RAW = f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main/{JSON_PATH}"
+API = f"https://api.github.com/repos/{OWNER}/{REPO}/contents/{JSON_PATH}"
 
 st.set_page_config(page_title="DocQuiz Admin", layout="centered")
 st.title("🔧 DocQuiz Admin")
-
 
 # -------------------------------------------------------------
 # HELPERS
 # -------------------------------------------------------------
 def clean(v):
-    if v is None:
-        return ""
-    if isinstance(v, float) and math.isnan(v):
-        return ""
+    if v is None: return ""
+    if isinstance(v, float) and math.isnan(v): return ""
     return v
-
 
 def github_get(url):
     return requests.get(url, headers={"Authorization": f"token {TOKEN}"})
 
-
 def github_put(url, bytes, sha, msg):
     encoded = base64.b64encode(bytes).decode()
     payload = {"message": msg, "content": encoded}
-    if sha:
-        payload["sha"] = sha
-    return requests.put(
-        url,
-        headers={"Authorization": f"token {TOKEN}"},
-        data=json.dumps(payload),
-    )
-
+    if sha: payload["sha"] = sha
+    return requests.put(url, headers={"Authorization": f"token {TOKEN}"}, data=json.dumps(payload))
 
 def safe_img(url):
-    if not url:
-        return
+    if not url: return
     try:
         r = requests.get(url, timeout=4)
         if r.status_code == 200:
@@ -64,12 +47,11 @@ def safe_img(url):
     except:
         pass
 
-
 # -------------------------------------------------------------
-# LOAD JSON — always fresh
+# LOAD JSON
 # -------------------------------------------------------------
-# 🔧 BELANGRIJK: reload_key als parameter zodat Streamlit opnieuw uitvoert
-def load_data(reload_key):
+def load_data(_reload):
+    """Altijd verse data ophalen."""
     url = f"{RAW}?ts={int(time.time())}"
     r = github_get(url)
 
@@ -83,11 +65,8 @@ def load_data(reload_key):
         st.error("JSON corrupt!")
         st.stop()
 
-    fixed = {}
-    for tab, qs in data.items():
-        fixed[tab] = qs if isinstance(qs, list) else []
+    fixed = {tab: qs if isinstance(qs, list) else [] for tab, qs in data.items()}
     return fixed
-
 
 # -------------------------------------------------------------
 # SAVE JSON
@@ -95,12 +74,10 @@ def load_data(reload_key):
 def save_json(data):
     cleaned = {}
     for tab, qs in data.items():
-        cl = []
-        for q in qs:
-            cl.append({k: clean(v) for k, v in q.items()})
-        cleaned[tab] = cl
+        cleaned[tab] = [{k: clean(v) for k, v in q.items()} for q in qs]
 
     raw_bytes = json.dumps(cleaned, indent=2).encode()
+
     meta = github_get(API).json()
     sha = meta.get("sha")
 
@@ -111,11 +88,8 @@ def save_json(data):
         st.code(r.text)
         return False
 
-    # 🔧 FIX: Forceer een echte reload van load_data()
-    st.session_state["reload_key"] = time.time()
-
+    st.session_state["reload_key"] = time.time()   # Force reload
     return True
-
 
 # -------------------------------------------------------------
 # UPLOAD IMAGE
@@ -128,61 +102,39 @@ def upload_image(bytes, filename):
     sha = meta.get("sha")
 
     encoded = base64.b64encode(bytes).decode()
-    payload = {
-        "message": f"Upload {filename}",
-        "content": encoded
-    }
-    if sha:
-        payload["sha"] = sha
+    payload = {"message": f"Upload {filename}", "content": encoded}
+    if sha: payload["sha"] = sha
 
-    r = requests.put(
-        api,
-        headers={"Authorization": f"token {TOKEN}"},
-        data=json.dumps(payload),
-    )
+    r = requests.put(api, headers={"Authorization": f"token {TOKEN}"}, data=json.dumps(payload))
 
     if r.status_code not in (200, 201):
         return None
 
-    return (
-        f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main/{path}"
-    )
-
+    return f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main/{path}"
 
 # -------------------------------------------------------------
 # SESSION STATE
 # -------------------------------------------------------------
-if "mode" not in st.session_state:
-    st.session_state.mode = "new"   # "new" / "edit"
-
-if "edit_vak" not in st.session_state:
-    st.session_state.edit_vak = None
-
-if "edit_idx" not in st.session_state:
-    st.session_state.edit_idx = None
-
-# 🔧 reload_key default
-if "reload_key" not in st.session_state:
-    st.session_state.reload_key = 0
-
+st.session_state.setdefault("mode", "new")
+st.session_state.setdefault("edit_vak", None)
+st.session_state.setdefault("edit_idx", None)
+st.session_state.setdefault("reload_key", 0)
 
 # -------------------------------------------------------------
 # LOAD DATA
 # -------------------------------------------------------------
-# 🔧 FIXED: load_data herlaadt nu ECHT
 data = load_data(st.session_state.reload_key)
 
-
 # -------------------------------------------------------------
-# SELECT VAK
+# SELECT VAK  (KEY VERWIJDERD! DIT IS DE FIX)
 # -------------------------------------------------------------
 st.subheader("📘 Kies een vak")
-vak = st.selectbox("Vak:", list(data.keys()), key="vak_select")
+vak = st.selectbox("Vak:", list(data.keys()))   # <– GEEN key=
+
 vragen = data[vak]
 
-
 # -------------------------------------------------------------
-# LIJST MET VRAGEN
+# LIST OF QUESTIONS
 # -------------------------------------------------------------
 st.subheader("📄 Overzicht vragen")
 
@@ -193,70 +145,58 @@ for i, q in enumerate(vragen):
         st.write(f"**{i} — {q.get('text','')[:70]}**")
 
     with c2:
-        if st.button("✏️", key=f"edit_btn_{vak}_{i}"):
+        if st.button("✏️", key=f"edit_{vak}_{i}"):
             st.session_state.mode = "edit"
             st.session_state.edit_vak = vak
             st.session_state.edit_idx = i
             st.rerun()
 
     with c3:
-        if st.button("❌", key=f"del_btn_{vak}_{i}"):
+        if st.button("❌", key=f"del_{vak}_{i}"):
             vragen.pop(i)
             if save_json(data):
                 st.success("Verwijderd!")
                 st.rerun()
 
-
 # -------------------------------------------------------------
-# EDIT MODE FORM
+# EDIT MODE
 # -------------------------------------------------------------
 if st.session_state.mode == "edit":
-
     ev = st.session_state.edit_vak
     ei = st.session_state.edit_idx
     q = data[ev][ei]
 
     st.markdown("---")
-    st.subheader(f"✏️ Vraag bewerken — [{ev}] #{ei}")
+    st.subheader(f"✏️ Vraag bewerken — {ev} #{ei}")
 
-    text = st.text_input("Vraagtekst", value=q.get("text"), key="e_text")
-    qtype = st.selectbox("Type", ["mc", "tf", "input"],
-                         index=["mc", "tf", "input"].index(q.get("type")),
-                         key="e_type")
-
-    topic = st.text_input("Topic", value=q.get("topic"), key="e_topic")
-    expl = st.text_area("Uitleg", value=q.get("explanation"), key="e_expl")
+    text = st.text_input("Vraagtekst", value=q.get("text"))
+    qtype = st.selectbox("Type", ["mc", "tf", "input"], index=["mc","tf","input"].index(q.get("type")))
+    topic = st.text_input("Topic", value=q.get("topic"))
+    expl = st.text_area("Uitleg", value=q.get("explanation"))
 
     if qtype == "mc":
         opts_str = ", ".join(q.get("choices"))
-        opts = st.text_input("Opties", value=opts_str, key="e_opts")
-        ans = st.number_input("Correct index", value=int(q.get("answer")), min_value=0, key="e_ans_mc")
+        opts = st.text_input("Opties", value=opts_str)
+        ans = st.number_input("Correct index", value=int(q.get("answer")), min_value=0)
     elif qtype == "tf":
         opts = ""
-        ans = st.selectbox("Correct?", [True, False],
-                           index=0 if q.get("answer") else 1,
-                           key="e_ans_tf")
+        ans = st.selectbox("Correct?", [True, False], index=0 if q.get("answer") else 1)
     else:
         opts = ""
-        ans = st.text_input("Antwoord", value=str(q.get("answer")), key="e_ans_input")
+        ans = st.text_input("Antwoord", value=str(q.get("answer")))
 
     st.markdown("### Afbeelding")
     safe_img(q.get("image_url"))
+    new_img = st.file_uploader("Nieuwe afbeelding", type=["png","jpg","jpeg"])
+    rem_img = st.checkbox("Verwijder afbeelding")
 
-    new_img = st.file_uploader("Nieuwe afbeelding", type=["png", "jpg", "jpeg"], key="e_img")
-    rem_img = st.checkbox("Verwijder afbeelding", key="e_rem")
-
-    if st.button("💾 Opslaan", key="save_edit"):
+    if st.button("💾 Opslaan"):
         q["text"] = text
         q["type"] = qtype
         q["topic"] = topic
         q["explanation"] = expl
 
-        if qtype == "mc":
-            q["choices"] = [s.strip() for s in opts.split(",") if s.strip()]
-        else:
-            q["choices"] = []
-
+        q["choices"] = [s.strip() for s in opts.split(",")] if qtype == "mc" else []
         q["answer"] = ans
 
         if rem_img:
@@ -269,52 +209,47 @@ if st.session_state.mode == "edit":
                 q["image_url"] = url
 
         if save_json(data):
-            st.success("Opgeslagen!")
             st.session_state.mode = "new"
             st.rerun()
 
-    if st.button("Annuleren", key="cancel_edit"):
+    if st.button("Annuleren"):
         st.session_state.mode = "new"
         st.rerun()
 
-
 # -------------------------------------------------------------
-# NIEUWE VRAAG TOEVOEGEN
+# NEW QUESTION
 # -------------------------------------------------------------
 if st.session_state.mode == "new":
-
     st.markdown("---")
     st.subheader("➕ Nieuwe vraag toevoegen")
 
-    nt = st.text_input("Vraagtekst", key="n_text")
-    ntp = st.selectbox("Type", ["mc", "tf", "input"], key="n_type")
-    ntopic = st.text_input("Topic", key="n_topic")
-    nexp = st.text_area("Uitleg", key="n_expl")
+    nt = st.text_input("Vraagtekst")
+    ntp = st.selectbox("Type", ["mc","tf","input"])
+    ntopic = st.text_input("Topic")
+    nexp = st.text_area("Uitleg")
 
     if ntp == "mc":
-        nop = st.text_input("Opties", key="n_opts")
-        nans = st.number_input("Correct index", min_value=0, value=0, key="n_ans_mc")
+        nop = st.text_input("Opties")
+        nans = st.number_input("Correct index", min_value=0, value=0)
     elif ntp == "tf":
         nop = ""
-        nans = st.selectbox("Correct?", [True, False], key="n_ans_tf")
+        nans = st.selectbox("Correct?", [True, False])
     else:
         nop = ""
-        nans = st.text_input("Antwoord", key="n_ans_inp")
+        nans = st.text_input("Antwoord")
 
-    nimg = st.file_uploader("Afbeelding", type=["png", "jpg", "jpeg"], key="n_img")
+    nimg = st.file_uploader("Afbeelding", type=["png","jpg","jpeg"])
 
-    if st.button("Toevoegen", key="btn_add"):
+    if st.button("Toevoegen"):
         if nt.strip() == "":
             st.error("Vraagtekst mag niet leeg zijn.")
         else:
-
             img = ""
             if nimg:
                 ext = nimg.name.split(".")[-1]
                 fname = f"{vak}_{uuid.uuid4().hex[:6]}.{ext}"
                 url = upload_image(nimg.read(), fname)
-                if url:
-                    img = url
+                if url: img = url
 
             newq = {
                 "id": f"q{uuid.uuid4().hex[:6]}",
@@ -322,7 +257,7 @@ if st.session_state.mode == "new":
                 "type": ntp,
                 "topic": ntopic,
                 "explanation": nexp,
-                "choices": [s.strip() for s in nop.split(",")] if ntp == "mc" else [],
+                "choices": [s.strip() for s in nop.split(",")] if ntp=="mc" else [],
                 "answer": nans,
                 "image_url": img,
             }
