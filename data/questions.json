@@ -2,20 +2,6 @@
   "DC": [],
   "Wiskunde 3": [
     {
-      "id": "q5",
-      "type": "tf",
-      "topic": "Goniometrie",
-      "text": "sin\u00b2(\u03b1)+cos\u00b2(\u03b1)=1 is een goniometrische identiteit.",
-      "choices": [],
-      "answer": true,
-      "explanation": "Altijd waar, ongeacht \u03b1.",
-      "image_path": "",
-      "formula_latex": "",
-      "tags": "[\"identiteit\",\"pytagoras\"]",
-      "difficulty": 2,
-      "image_url": "nan"
-    },
-    {
       "id": "q6",
       "type": "input",
       "topic": "Goniometrie",
