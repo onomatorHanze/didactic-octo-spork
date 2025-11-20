@@ -287,20 +287,6 @@
       "tags": "[\"eenheidscirkel\",\"tangens\"]",
       "difficulty": 2,
       "image_url": "nan"
-    },
-    {
-      "id": "q20",
-      "type": "input",
-      "topic": "Goniometrie",
-      "text": "Bereken cos(45\u00b0) afgerond op 2 decimalen.",
-      "choices": [],
-      "answer": "nan",
-      "explanation": "cos(45\u00b0)=\u221a2/2\u22480.71",
-      "image_path": "",
-      "formula_latex": "",
-      "tags": "[\"cosinus\",\"hoek\"]",
-      "difficulty": 1,
-      "image_url": "nan"
     }
   ],
   "AC": [
