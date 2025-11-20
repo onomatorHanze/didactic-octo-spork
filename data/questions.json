@@ -3,20 +3,6 @@
   "Wiskunde 3": [],
   "AC": [
     {
-      "id": "q1",
-      "type": "tf",
-      "topic": "AC",
-      "text": "De frequentie van het lichtnet is 50 Hz.",
-      "choices": [],
-      "answer": true,
-      "explanation": "In Europa is de netfrequentie 50 Hz.",
-      "image_path": "",
-      "formula_latex": "",
-      "tags": "['AC','basis']",
-      "difficulty": 1.0,
-      "image_url": "nan"
-    },
-    {
       "id": "",
       "type": "input",
       "topic": "",
