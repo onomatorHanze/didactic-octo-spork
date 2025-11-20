@@ -211,10 +211,42 @@ for i, q in enumerate(vragen):
 
     with c3:
         if st.button("❌", key=f"delete_{vak}_{i}"):
-            vragen.pop(i)
-            if save_json(data):
-                st.success("Verwijderd!")
-                st.rerun()
+
+    # 🚫 Verwijderen blokkeren tijdens het bewerken
+            if st.session_state.mode == "edit":
+                st.warning("Je kunt geen vraag verwijderen terwijl je een vraag bewerkt.")
+                st.stop()
+
+    # Opslaan welke vraag verwijderd moet worden
+            st.session_state["confirm_delete"] = (vak, i)
+            st.rerun()
+
+# -------------------------------------------------------------
+# CONFIRM DELETE
+# -------------------------------------------------------------
+if "confirm_delete" in st.session_state and st.session_state.confirm_delete is not None:
+    dvak, di = st.session_state.confirm_delete
+
+    st.error(f"❗ Weet je zeker dat je vraag #{di} uit '{dvak}' wilt verwijderen?")
+
+    c1, c2 = st.columns(2)
+
+    with c1:
+        if st.button("Ja, verwijderen"):
+            try:
+                data[dvak].pop(di)
+                if save_json(data):
+                    st.success("Vraag verwijderd.")
+            except Exception as e:
+                st.error(f"Kon vraag niet verwijderen: {e}")
+
+            st.session_state.confirm_delete = None
+            st.rerun()
+
+    with c2:
+        if st.button("Nee, annuleren"):
+            st.session_state.confirm_delete = None
+            st.rerun()
 
 
 # -------------------------------------------------------------
