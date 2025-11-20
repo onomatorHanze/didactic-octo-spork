@@ -76,16 +76,6 @@
       "choices": [],
       "answer": true,
       "image_url": ""
-    },
-    {
-      "id": "q792c66",
-      "text": "Wat betekend gelijkstroom1234",
-      "type": "tf",
-      "topic": "",
-      "explanation": "",
-      "choices": [],
-      "answer": true,
-      "image_url": "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/images/DC_cf699b.JPEG"
     }
   ],
   "Wiskunde 3": [
