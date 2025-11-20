@@ -358,6 +358,306 @@
       "explanation": "Streamlit biedt eenvoudige UI-componenten en is ideaal voor interactieve tools.",
       "image_url": "",
       "difficulty": 2
+    },
+    {
+      "id": "tech001",
+      "type": "mc",
+      "topic": "Geavanceerde Architectuur",
+      "text": "Hoe wordt de wachttijd in het Leitner-algoritme berekend?",
+      "choices": [
+        "Op basis van box + tijd sinds laatste antwoord",
+        "Random",
+        "Op basis van difficulty alleen"
+      ],
+      "answer": 0,
+      "explanation": "De wachttijd komt uit een tabel gekoppeld aan de box en wordt vergeleken met de tijd sinds het laatste antwoord.",
+      "image_url": "",
+      "difficulty": 3
+    },
+    {
+      "id": "tech002",
+      "type": "mc",
+      "topic": "Geavanceerde Architectuur",
+      "text": "Waarom is base64 encoding nodig bij GitHub API uploads?",
+      "choices": [
+        "GitHub vereist base64 voor bestanden",
+        "Omdat JSON sneller wordt",
+        "Zodat Python het automatisch kan lezen"
+      ],
+      "answer": 0,
+      "explanation": "GitHub verwacht de inhoud van het bestand altijd base64-gecodeerd bij een PUT request.",
+      "image_url": "",
+      "difficulty": 3
+    },
+    {
+      "id": "tech003",
+      "type": "mc",
+      "topic": "Geavanceerde Architectuur",
+      "text": "Wat is het nut van de SHA bij GitHub file updates?",
+      "choices": [
+        "Voorkomt conflicten en overschrijven",
+        "Voor styling",
+        "Voor sortering"
+      ],
+      "answer": 0,
+      "explanation": "De SHA zorgt ervoor dat GitHub zeker weet dat je het juiste bestand bijwerkt.",
+      "image_url": "",
+      "difficulty": 3
+    },
+    {
+      "id": "tech004",
+      "type": "mc",
+      "topic": "Geavanceerde Architectuur",
+      "text": "Welke datastructuur gebruikt de quiz om de prioriteit te bepalen?",
+      "choices": [
+        "Tuple (priority, question)",
+        "Matrix",
+        "Linked list"
+      ],
+      "answer": 0,
+      "explanation": "Elke vraag krijgt een priority score op basis van box en tijd, opgeslagen als tuples.",
+      "image_url": "",
+      "difficulty": 3
+    },
+    {
+      "id": "tech005",
+      "type": "mc",
+      "topic": "Geavanceerde Architectuur",
+      "text": "Waarom is session_state noodzakelijk in Streamlit?",
+      "choices": [
+        "Om status te bewaren tussen pagina-renders",
+        "Voor background tasks",
+        "Omdat Python dat verplicht"
+      ],
+      "answer": 0,
+      "explanation": "Streamlit herlaadt de pagina constant; session_state houd de quiz voortgang vast.",
+      "image_url": "",
+      "difficulty": 3
+    },
+    {
+      "id": "tech006",
+      "type": "mc",
+      "topic": "Geavanceerde Architectuur",
+      "text": "Waarom is object-geori\u00ebnteerd ontwerpen geschikt voor quizsystemen?",
+      "choices": [
+        "Modulaire ontwikkeling",
+        "Betere kleuropties",
+        "Sneller laden"
+      ],
+      "answer": 0,
+      "explanation": "OOP maakt uitbreiden en beheren van data-objecten zoals vragen en history eenvoudig.",
+      "image_url": "",
+      "difficulty": 3
+    },
+    {
+      "id": "tech007",
+      "type": "mc",
+      "topic": "Geavanceerde Architectuur",
+      "text": "Wat gebeurt er als een PUT-request naar GitHub mislukt?",
+      "choices": [
+        "Er wordt een fout teruggegeven",
+        "GitHub past automatisch aan",
+        "Het bestand wordt toch opgeslagen"
+      ],
+      "answer": 0,
+      "explanation": "De API stuurt een foutstatuscode die je moet controleren.",
+      "image_url": "",
+      "difficulty": 3
+    },
+    {
+      "id": "tech008",
+      "type": "mc",
+      "topic": "Geavanceerde Architectuur",
+      "text": "Waarom is een unique id noodzakelijk voor elke vraag?",
+      "choices": [
+        "Voor tracking in history",
+        "Voor grafieken",
+        "Voor UI layouts"
+      ],
+      "answer": 0,
+      "explanation": "De history koppelt een vraag aan voortgang via het id-veld.",
+      "image_url": "",
+      "difficulty": 3
+    },
+    {
+      "id": "tech009",
+      "type": "mc",
+      "topic": "Geavanceerde Architectuur",
+      "text": "Wat is het voordeel van vakken opslaan als dictionary keys in JSON?",
+      "choices": [
+        "Directe indexering en snelle lookup",
+        "Mooiere structuur",
+        "Betere kleuren"
+      ],
+      "answer": 0,
+      "explanation": "Dictionary keys maken directe toegang tot vragenlijsten per vak mogelijk.",
+      "image_url": "",
+      "difficulty": 3
+    },
+    {
+      "id": "tech010",
+      "type": "mc",
+      "topic": "Geavanceerde Architectuur",
+      "text": "Welke rol speelt pandas in dit systeem?",
+      "choices": [
+        "Excel inlezen",
+        "HTML genereren",
+        "GitHub API controleren"
+      ],
+      "answer": 0,
+      "explanation": "Pandas is essentieel voor het inlezen van CSV en Excel-gegevens.",
+      "image_url": "",
+      "difficulty": 3
+    },
+    {
+      "id": "tech011",
+      "type": "mc",
+      "topic": "Geavanceerde Architectuur",
+      "text": "Waarom is async niet nodig voor dit project?",
+      "choices": [
+        "Omdat GitHub-requests meestal snel genoeg zijn",
+        "Omdat Python geen async ondersteunt",
+        "Omdat alle code lokaal draait"
+      ],
+      "answer": 0,
+      "explanation": "Het systeem doet weinig I/O-intensieve taken tegelijk.",
+      "image_url": "",
+      "difficulty": 3
+    },
+    {
+      "id": "tech012",
+      "type": "mc",
+      "topic": "Geavanceerde Architectuur",
+      "text": "Wat is een voordeel van JSON t.o.v. SQL voor dit project?",
+      "choices": [
+        "Makkelijker bewerken en versiebeheer",
+        "Sneller",
+        "Meer beveiliging"
+      ],
+      "answer": 0,
+      "explanation": "JSON werkt perfect samen met GitHub en is makkelijk te lezen/bewerken.",
+      "image_url": "",
+      "difficulty": 3
+    },
+    {
+      "id": "tech013",
+      "type": "mc",
+      "topic": "Geavanceerde Architectuur",
+      "text": "Waarom is het verstandig om history per gebruiker op te slaan?",
+      "choices": [
+        "Om meerdere gebruikers te ondersteunen",
+        "Om sneller te laden",
+        "Om fouten te voorkomen"
+      ],
+      "answer": 0,
+      "explanation": "Elke gebruiker krijgt zo zijn eigen adaptieve leergeschiedenis.",
+      "image_url": "",
+      "difficulty": 3
+    },
+    {
+      "id": "tech014",
+      "type": "mc",
+      "topic": "Geavanceerde Architectuur",
+      "text": "Wat doet de admin bij het bewerken van vragen?",
+      "choices": [
+        "Update JSON via GitHub API",
+        "SQL queries sturen",
+        "Lokale bestanden verwijderen"
+      ],
+      "answer": 0,
+      "explanation": "Elke bewerking wordt als commit naar GitHub gestuurd.",
+      "image_url": "",
+      "difficulty": 3
+    },
+    {
+      "id": "tech015",
+      "type": "mc",
+      "topic": "Geavanceerde Architectuur",
+      "text": "Waarom mag je requests.get niet zonder timeout doen?",
+      "choices": [
+        "Kan app laten hangen",
+        "Errors worden niet getoond",
+        "Streamlit ondersteunt geen GET"
+      ],
+      "answer": 0,
+      "explanation": "Timeout voorkomt dat de app blijft wachten bij netwerkfouten.",
+      "image_url": "",
+      "difficulty": 3
+    },
+    {
+      "id": "tech016",
+      "type": "mc",
+      "topic": "Geavanceerde Architectuur",
+      "text": "Waarom is smart_select_questions gescheiden van HistoryStore?",
+      "choices": [
+        "Betere modulariteit",
+        "Sneller",
+        "Graphical design"
+      ],
+      "answer": 0,
+      "explanation": "HistoryStore slaat alleen data op; smart_select berekent logica.",
+      "image_url": "",
+      "difficulty": 3
+    },
+    {
+      "id": "tech017",
+      "type": "mc",
+      "topic": "Geavanceerde Architectuur",
+      "text": "Welke factor be\u00efnvloedt NIET de prioriteit van een vraag?",
+      "choices": [
+        "Vraaglengte",
+        "Boxniveau",
+        "Tijd sinds laatste antwoord"
+      ],
+      "answer": 0,
+      "explanation": "De vraagtekstlengte speelt geen rol in selectie.",
+      "image_url": "",
+      "difficulty": 3
+    },
+    {
+      "id": "tech018",
+      "type": "mc",
+      "topic": "Geavanceerde Architectuur",
+      "text": "Waarom worden afbeeldingen als URL's opgeslagen?",
+      "choices": [
+        "Flexibel en schaalbaar",
+        "Minder RAM gebruik",
+        "Omdat JSON geen bytes ondersteunt"
+      ],
+      "answer": 0,
+      "explanation": "Een URL verwijst naar een afbeelding zonder opslaan in JSON.",
+      "image_url": "",
+      "difficulty": 3
+    },
+    {
+      "id": "tech019",
+      "type": "mc",
+      "topic": "Geavanceerde Architectuur",
+      "text": "Wat gebeurt er als twee vragen dezelfde id hebben?",
+      "choices": [
+        "Historie wordt overschreven",
+        "GitHub stopt met opslaan",
+        "Niets"
+      ],
+      "answer": 0,
+      "explanation": "Unieke id's zijn essentieel om historie niet te verliezen.",
+      "image_url": "",
+      "difficulty": 3
+    },
+    {
+      "id": "tech020",
+      "type": "mc",
+      "topic": "Geavanceerde Architectuur",
+      "text": "Waarom gebruikt de admin uuid voor vraag-id's?",
+      "choices": [
+        "Unieke, botsingsvrije id's",
+        "Voor kleurverdeling",
+        "Om Excel te formatteren"
+      ],
+      "answer": 0,
+      "explanation": "UUID's garanderen unieke identifiers voor elke vraag.",
+      "image_url": "",
+      "difficulty": 3
     }
   ]
 }
