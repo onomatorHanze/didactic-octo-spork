@@ -127,25 +127,6 @@
       "image_url": "nan"
     },
     {
-      "id": "q10",
-      "type": "mc",
-      "topic": "Goniometrie",
-      "text": "Wat is cos(30\u00b0)?",
-      "choices": [
-        "0.866",
-        "0.5",
-        "0",
-        "1"
-      ],
-      "answer": 0,
-      "explanation": "cos(30\u00b0)=\u221a3/2\u22480.866",
-      "image_path": "",
-      "formula_latex": "",
-      "tags": "[\"cosinus\",\"hoek\"]",
-      "difficulty": 1,
-      "image_url": "nan"
-    },
-    {
       "id": "q11",
       "type": "mc",
       "topic": "Goniometrie",
