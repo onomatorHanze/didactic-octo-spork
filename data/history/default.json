@@ -6,6 +6,12 @@
       "box": 1,
       "correct": 1,
       "wrong": 0
+    },
+    "": {
+      "last": "2025-11-20T13:31:12.184535",
+      "box": 0,
+      "correct": 0,
+      "wrong": 1
     }
   },
   "tag_stats": {}
