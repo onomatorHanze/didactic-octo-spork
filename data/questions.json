@@ -2,24 +2,6 @@
   "DC": [],
   "Wiskunde 3": [
     {
-      "id": "q2",
-      "type": "mc",
-      "topic": "Goniometrie",
-      "text": "Wat is de formule voor cos(\u03b1)?",
-      "choices": [
-        "overstaande / schuine",
-        "aanliggende / schuine",
-        "aanliggende / overstaande"
-      ],
-      "answer": 1,
-      "explanation": "cos(\u03b1) = aanliggende / schuine",
-      "image_path": "",
-      "formula_latex": "cos(\u03b1)=a/h",
-      "tags": "[\"cosinus\",\"basisformule\"]",
-      "difficulty": 1,
-      "image_url": "nan"
-    },
-    {
       "id": "q3",
       "type": "mc",
       "topic": "Goniometrie",
