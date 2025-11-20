@@ -1,15 +1,7 @@
 {
   "DC": [],
   "Wiskunde 3": [],
-  "AC": [
-    {
-      "text": "Wat is de status van het opslaan?",
-      "type": "input",
-      "choices": [],
-      "answer": "ds",
-      "image_url": ""
-    }
-  ],
+  "AC": [],
   "Wiskunde": [
     {
       "id": "q001",
