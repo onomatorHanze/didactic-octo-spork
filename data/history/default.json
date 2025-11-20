@@ -192,6 +192,12 @@
       "box": 0,
       "correct": 0,
       "wrong": 1
+    },
+    "tech010": {
+      "last": "2025-11-20T15:46:55.637165",
+      "box": 0,
+      "correct": 0,
+      "wrong": 1
     }
   },
   "tag_stats": {}
