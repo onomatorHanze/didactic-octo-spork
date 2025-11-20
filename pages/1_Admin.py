@@ -6,6 +6,7 @@ import uuid
 import time
 import math
 
+
 # -------------------------------------------------------------
 # SETTINGS & GITHUB CONFIG
 # -------------------------------------------------------------
@@ -15,31 +16,43 @@ REPO = st.secrets["REPO_NAME"]
 JSON_PATH = st.secrets["FILE_PATH"]
 IMAGE_DIR = "data/images"
 
-RAW = f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main/{JSON_PATH}"
-API = f"https://api.github.com/repos/{OWNER}/{REPO}/contents/{JSON_PATH}"
+API_RAW = f"https://api.github.com/repos/{OWNER}/{REPO}/contents/{JSON_PATH}"
+
 
 st.set_page_config(page_title="DocQuiz Admin", layout="centered")
 st.title("🔧 DocQuiz Admin")
+
 
 # -------------------------------------------------------------
 # HELPERS
 # -------------------------------------------------------------
 def clean(v):
-    if v is None: return ""
-    if isinstance(v, float) and math.isnan(v): return ""
+    if v is None:
+        return ""
+    if isinstance(v, float) and math.isnan(v):
+        return ""
     return v
+
 
 def github_get(url):
     return requests.get(url, headers={"Authorization": f"token {TOKEN}"})
 
+
 def github_put(url, bytes, sha, msg):
     encoded = base64.b64encode(bytes).decode()
     payload = {"message": msg, "content": encoded}
-    if sha: payload["sha"] = sha
-    return requests.put(url, headers={"Authorization": f"token {TOKEN}"}, data=json.dumps(payload))
+    if sha:
+        payload["sha"] = sha
+    return requests.put(
+        url,
+        headers={"Authorization": f"token {TOKEN}"},
+        data=json.dumps(payload),
+    )
+
 
 def safe_img(url):
-    if not url: return
+    if not url:
+        return
     try:
         r = requests.get(url, timeout=4)
         if r.status_code == 200:
@@ -47,26 +60,36 @@ def safe_img(url):
     except:
         pass
 
+
 # -------------------------------------------------------------
-# LOAD JSON
+# LOAD JSON (VIA API) — altijd nieuwste versie
 # -------------------------------------------------------------
 def load_data(_reload):
-    """Altijd verse data ophalen."""
-    url = f"{RAW}?ts={int(time.time())}"
-    r = github_get(url)
+    """Laad JSON via GitHub API (nooit gecached)."""
+
+    r = github_get(API_RAW)
 
     if r.status_code != 200:
-        st.error("Kon JSON niet laden!")
+        st.error("Kon JSON niet laden via GitHub API!")
+        st.code(r.text)
         st.stop()
 
     try:
-        data = r.json()
-    except:
-        st.error("JSON corrupt!")
+        content = r.json().get("content", "")
+        decoded = base64.b64decode(content).decode("utf-8")
+        data = json.loads(decoded)
+    except Exception as e:
+        st.error("JSON decode error!")
+        st.text(str(e))
         st.stop()
 
-    fixed = {tab: qs if isinstance(qs, list) else [] for tab, qs in data.items()}
+    # Zorg dat alle tabs lijsten zijn
+    fixed = {}
+    for tab, qs in data.items():
+        fixed[tab] = qs if isinstance(qs, list) else []
+
     return fixed
+
 
 # -------------------------------------------------------------
 # SAVE JSON
@@ -78,18 +101,21 @@ def save_json(data):
 
     raw_bytes = json.dumps(cleaned, indent=2).encode()
 
-    meta = github_get(API).json()
+    meta = github_get(API_RAW).json()
     sha = meta.get("sha")
 
-    r = github_put(API, raw_bytes, sha, "Update questions.json")
+    r = github_put(API_RAW, raw_bytes, sha, "Update questions.json")
 
     if r.status_code not in (200, 201):
         st.error("❌ Opslaan mislukt!")
         st.code(r.text)
         return False
 
-    st.session_state["reload_key"] = time.time()   # Force reload
+    # Force reload van load_data()
+    st.session_state["reload_key"] = time.time()
+
     return True
+
 
 # -------------------------------------------------------------
 # UPLOAD IMAGE
@@ -103,56 +129,70 @@ def upload_image(bytes, filename):
 
     encoded = base64.b64encode(bytes).decode()
     payload = {"message": f"Upload {filename}", "content": encoded}
-    if sha: payload["sha"] = sha
+    if sha:
+        payload["sha"] = sha
 
-    r = requests.put(api, headers={"Authorization": f"token {TOKEN}"}, data=json.dumps(payload))
+    r = requests.put(
+        api,
+        headers={"Authorization": f"token {TOKEN}"},
+        data=json.dumps(payload),
+    )
 
     if r.status_code not in (200, 201):
         return None
 
     return f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main/{path}"
 
+
 # -------------------------------------------------------------
 # SESSION STATE
 # -------------------------------------------------------------
-st.session_state.setdefault("mode", "new")
-st.session_state.setdefault("edit_vak", None)
-st.session_state.setdefault("edit_idx", None)
-st.session_state.setdefault("reload_key", 0)
+if "mode" not in st.session_state:
+    st.session_state.mode = "new"
+
+if "edit_vak" not in st.session_state:
+    st.session_state.edit_vak = None
+
+if "edit_idx" not in st.session_state:
+    st.session_state.edit_idx = None
+
+if "reload_key" not in st.session_state:
+    st.session_state.reload_key = 0
+
 
 # -------------------------------------------------------------
 # LOAD DATA
 # -------------------------------------------------------------
 data = load_data(st.session_state.reload_key)
 
+
 # -------------------------------------------------------------
-# SELECT VAK  (KEY VERWIJDERD! DIT IS DE FIX)
+# DEBUG OUTPUT
+# -------------------------------------------------------------
+st.markdown("## 🐛 DEBUG INFO")
+st.write("Reload key:", st.session_state.reload_key)
+st.write("Tabs:", list(data.keys()))
+for d in data:
+    st.write(f"Tab {d}: {len(data[d])} vragen")
+
+
+# -------------------------------------------------------------
+# SELECT VAK (NO KEY → FIX)
 # -------------------------------------------------------------
 st.subheader("📘 Kies een vak")
-vak = st.selectbox("Vak:", list(data.keys()))   # <– GEEN key=
+vak = st.selectbox("Vak:", list(data.keys()))
 
 vragen = data[vak]
 
-# --- DEBUG -------------------------------------------------
-st.markdown("## 🐛 DEBUG — INGELEZEN DATA")
-st.write("Reload key:", st.session_state.reload_key)
-st.write("Aantal vragen in JSON:", len(data[vak]))
+# Meer debug:
+st.markdown("### 🐛 DEBUG — huidige tab")
+st.write("Aantal vragen:", len(vragen))
+if len(vragen) > 0:
+    st.write("Laatste vraag:", vragen[-1])
 
-# Toon de laatste vraag (als test)
-if len(data[vak]) > 0:
-    st.write("Laatste vraag in JSON:", data[vak][-1])
-else:
-    st.write("Nog geen vragen.")
-# ------------------------------------------------------------
-
-# RAW DEBUG
-url = f"{RAW}?ts={int(time.time())}"
-raw_test = requests.get(url).text
-
-st.text_area("🐛 RAW GitHub content (eerste 500 chars):", raw_test[:500])
 
 # -------------------------------------------------------------
-# LIST OF QUESTIONS
+# LIJST MET VRAGEN
 # -------------------------------------------------------------
 st.subheader("📄 Overzicht vragen")
 
@@ -170,14 +210,15 @@ for i, q in enumerate(vragen):
             st.rerun()
 
     with c3:
-        if st.button("❌", key=f"del_{vak}_{i}"):
+        if st.button("❌", key=f"delete_{vak}_{i}"):
             vragen.pop(i)
             if save_json(data):
                 st.success("Verwijderd!")
                 st.rerun()
 
+
 # -------------------------------------------------------------
-# EDIT MODE
+# EDIT MODE FORM
 # -------------------------------------------------------------
 if st.session_state.mode == "edit":
     ev = st.session_state.edit_vak
@@ -185,10 +226,12 @@ if st.session_state.mode == "edit":
     q = data[ev][ei]
 
     st.markdown("---")
-    st.subheader(f"✏️ Vraag bewerken — {ev} #{ei}")
+    st.subheader(f"✏️ Vraag bewerken — [{ev}] #{ei}")
 
     text = st.text_input("Vraagtekst", value=q.get("text"))
-    qtype = st.selectbox("Type", ["mc", "tf", "input"], index=["mc","tf","input"].index(q.get("type")))
+    qtype = st.selectbox("Type", ["mc", "tf", "input"],
+                         index=["mc", "tf", "input"].index(q.get("type")))
+
     topic = st.text_input("Topic", value=q.get("topic"))
     expl = st.text_area("Uitleg", value=q.get("explanation"))
 
@@ -205,7 +248,8 @@ if st.session_state.mode == "edit":
 
     st.markdown("### Afbeelding")
     safe_img(q.get("image_url"))
-    new_img = st.file_uploader("Nieuwe afbeelding", type=["png","jpg","jpeg"])
+
+    new_img = st.file_uploader("Nieuwe afbeelding", type=["png", "jpg", "jpeg"])
     rem_img = st.checkbox("Verwijder afbeelding")
 
     if st.button("💾 Opslaan"):
@@ -234,15 +278,17 @@ if st.session_state.mode == "edit":
         st.session_state.mode = "new"
         st.rerun()
 
+
 # -------------------------------------------------------------
-# NEW QUESTION
+# NIEUWE VRAAG TOEVOEGEN
 # -------------------------------------------------------------
 if st.session_state.mode == "new":
+
     st.markdown("---")
     st.subheader("➕ Nieuwe vraag toevoegen")
 
     nt = st.text_input("Vraagtekst")
-    ntp = st.selectbox("Type", ["mc","tf","input"])
+    ntp = st.selectbox("Type", ["mc", "tf", "input"])
     ntopic = st.text_input("Topic")
     nexp = st.text_area("Uitleg")
 
@@ -256,18 +302,20 @@ if st.session_state.mode == "new":
         nop = ""
         nans = st.text_input("Antwoord")
 
-    nimg = st.file_uploader("Afbeelding", type=["png","jpg","jpeg"])
+    nimg = st.file_uploader("Afbeelding", type=["png", "jpg", "jpeg"])
 
     if st.button("Toevoegen"):
         if nt.strip() == "":
             st.error("Vraagtekst mag niet leeg zijn.")
         else:
+
             img = ""
             if nimg:
                 ext = nimg.name.split(".")[-1]
                 fname = f"{vak}_{uuid.uuid4().hex[:6]}.{ext}"
                 url = upload_image(nimg.read(), fname)
-                if url: img = url
+                if url:
+                    img = url
 
             newq = {
                 "id": f"q{uuid.uuid4().hex[:6]}",
@@ -275,7 +323,7 @@ if st.session_state.mode == "new":
                 "type": ntp,
                 "topic": ntopic,
                 "explanation": nexp,
-                "choices": [s.strip() for s in nop.split(",")] if ntp=="mc" else [],
+                "choices": [s.strip() for s in nop.split(",")] if ntp == "mc" else [],
                 "answer": nans,
                 "image_url": img,
             }
