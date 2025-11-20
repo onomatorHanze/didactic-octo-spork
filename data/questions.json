@@ -245,20 +245,6 @@
       "tags": "[\"sinusregel\"]",
       "difficulty": 3,
       "image_url": "nan"
-    },
-    {
-      "id": "q17",
-      "type": "input",
-      "topic": "Goniometrie",
-      "text": "Bereken de hoogte h in een driehoek met zijde c=10 en hoek A=30\u00b0: h=c\u00b7sin(A)",
-      "choices": [],
-      "answer": "nan",
-      "explanation": "h=10\u00b7sin(30\u00b0)=5",
-      "image_path": "",
-      "formula_latex": "",
-      "tags": "[\"sinus\",\"toepassing\"]",
-      "difficulty": 2,
-      "image_url": "nan"
     }
   ],
   "AC": [
