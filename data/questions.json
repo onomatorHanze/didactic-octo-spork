@@ -2,24 +2,6 @@
   "DC": [],
   "Wiskunde 3": [
     {
-      "id": "q1",
-      "type": "mc",
-      "topic": "Goniometrie",
-      "text": "Wat is de juiste formule voor de stroom I?",
-      "choices": [
-        "I = U/R",
-        "U = I*R",
-        "R = U/I"
-      ],
-      "answer": 0,
-      "explanation": "sin(\u03b1) = overstaande / schuine",
-      "image_path": "",
-      "formula_latex": "sin(\u03b1)=o/h",
-      "tags": "[\"sinus\",\"basisformule\"]",
-      "difficulty": 1,
-      "image_url": "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/images/Wiskunde_3_q0_1763116823.jpg"
-    },
-    {
       "id": "q2",
       "type": "mc",
       "topic": "Goniometrie",
