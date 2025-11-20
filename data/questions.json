@@ -45,14 +45,14 @@
       "id": "q004",
       "type": "mc",
       "topic": "Cellen",
-      "text": "Welke celonderdelen komen voor in planten maar niet in dieren?",
+      "text": "Welke celonderdelen komen voor in planten maar niet in dieren??",
       "choices": [
         "Celwand",
         "Chloroplast",
         "Mitochondrium",
         "Kern"
       ],
-      "answer": "0",
+      "answer": 0,
       "explanation": "Planten hebben een celwand; dierlijke cellen niet.",
       "image_url": "nan",
       "difficulty": 2
