@@ -354,3 +354,49 @@ if st.session_state.mode == "new":
             if save_json(data):
                 st.success("Toegevoegd!")
                 st.rerun()
+import pandas as pd
+import ast
+
+st.markdown("---")
+st.subheader("📥 Excel importeren")
+
+excel_file = st.file_uploader("Upload een Excel-bestand (.xlsx)", type=["xlsx"])
+
+if excel_file and st.button("Importeer Excel"):
+    try:
+        df = pd.read_excel(excel_file)
+
+        required_cols = {"id","type","topic","text","answer","vak"}
+        if not required_cols.issubset(df.columns):
+            st.error(f"Excel mist verplichte kolommen: {required_cols}")
+            st.stop()
+
+        count = 0
+
+        for _, row in df.iterrows():
+            vak = str(row["vak"]).strip()
+
+            # nieuw vak automatisch maken
+            if vak not in data:
+                data[vak] = []
+
+            q = {
+                "id": str(row["id"]),
+                "type": str(row["type"]),
+                "topic": str(row.get("topic","")),
+                "text": str(row.get("text","")),
+                "choices": ast.literal_eval(str(row["choices"])) if str(row.get("choices")) not in ["", "nan", None] else [],
+                "answer": row.get("answer"),
+                "explanation": str(row.get("explanation","")),
+                "image_url": str(row.get("image_url","")),
+                "difficulty": int(row.get("difficulty", 1)),
+            }
+
+            data[vak].append(q)
+            count += 1
+
+        if save_json(data):
+            st.success(f"Succesvol {count} vragen geïmporteerd!")
+
+    except Exception as e:
+        st.error(f"❌ Fout bij importeren: {e}")
