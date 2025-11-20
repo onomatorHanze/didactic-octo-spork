@@ -209,24 +209,6 @@
       "tags": "[\"sinus\",\"berekening\"]",
       "difficulty": 2,
       "image_url": "nan"
-    },
-    {
-      "id": "q15",
-      "type": "mc",
-      "topic": "Goniometrie",
-      "text": "Wat is de cosinusregel?",
-      "choices": [
-        "a\u00b2=b\u00b2+c\u00b2-2bc\u00b7cos(A)",
-        "a\u00b2=b\u00b2+c\u00b2+2bc\u00b7cos(A)",
-        "a\u00b2=b\u00b2-c\u00b2+2bc\u00b7cos(A)"
-      ],
-      "answer": 0,
-      "explanation": "cosinusregel",
-      "image_path": "",
-      "formula_latex": "a\u00b2=b\u00b2+c\u00b2\u22122bc\u00b7cos(A)",
-      "tags": "[\"cosinusregel\"]",
-      "difficulty": 3,
-      "image_url": "nan"
     }
   ],
   "AC": [
