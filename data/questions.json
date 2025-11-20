@@ -2,20 +2,6 @@
   "DC": [],
   "Wiskunde 3": [
     {
-      "id": "q4",
-      "type": "tf",
-      "topic": "Goniometrie",
-      "text": "De formule tan(\u03b1)=sin(\u03b1)/cos(\u03b1) is juist.",
-      "choices": [],
-      "answer": true,
-      "explanation": "Fundamentele identiteit.",
-      "image_path": "",
-      "formula_latex": "",
-      "tags": "[\"identiteit\",\"tangens\"]",
-      "difficulty": 1,
-      "image_url": "nan"
-    },
-    {
       "id": "q5",
       "type": "tf",
       "topic": "Goniometrie",
