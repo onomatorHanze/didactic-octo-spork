@@ -1,19 +1,6 @@
 {
   "DC": [
     {
-      "id": "q00c582",
-      "text": "Gaat het wel goed met indexeren?2",
-      "type": "mc",
-      "topic": "",
-      "explanation": "",
-      "choices": [
-        "nee",
-        "ja"
-      ],
-      "answer": 1,
-      "image_url": ""
-    },
-    {
       "id": "qe7573b",
       "text": "Wat betekend gelijkstroom",
       "type": "tf",
