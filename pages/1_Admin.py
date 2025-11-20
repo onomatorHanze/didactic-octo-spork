@@ -133,6 +133,19 @@ vak = st.selectbox("Vak:", list(data.keys()))   # <– GEEN key=
 
 vragen = data[vak]
 
+# --- DEBUG -------------------------------------------------
+st.markdown("## 🐛 DEBUG — INGELEZEN DATA")
+st.write("Reload key:", st.session_state.reload_key)
+st.write("Aantal vragen in JSON:", len(data[vak]))
+
+# Toon de laatste vraag (als test)
+if len(data[vak]) > 0:
+    st.write("Laatste vraag in JSON:", data[vak][-1])
+else:
+    st.write("Nog geen vragen.")
+# ------------------------------------------------------------
+
+
 # -------------------------------------------------------------
 # LIST OF QUESTIONS
 # -------------------------------------------------------------
