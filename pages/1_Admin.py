@@ -340,7 +340,7 @@ if st.session_state.mode == "new":
     nt = st.text_input("Vraagtekst")
     ntp = st.selectbox("Type", ["mc", "tf", "input"])
     ntopic = st.text_input("Topic")
-    nexp = st.textarea("Uitleg")
+    nexp = st.text_area("Uitleg")
 
     if ntp == "mc":
         nop = st.text_input("Opties")
