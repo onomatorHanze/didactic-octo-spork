@@ -66,16 +66,6 @@
       "choices": [],
       "answer": true,
       "image_url": ""
-    },
-    {
-      "id": "q291d70",
-      "text": "Wat is de laatste vraag?",
-      "type": "tf",
-      "topic": "",
-      "explanation": "",
-      "choices": [],
-      "answer": true,
-      "image_url": ""
     }
   ],
   "Wiskunde 3": [
