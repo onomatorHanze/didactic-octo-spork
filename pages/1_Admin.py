@@ -153,15 +153,6 @@ data = load_data(st.session_state.reload_key)
 
 
 # -------------------------------------------------------------
-# DEBUG INFO
-# -------------------------------------------------------------
-with st.expander("🐛 DEBUG INFO", expanded=False):
-    st.write("Reload key:", st.session_state.reload_key)
-    for tab in data:
-        st.write(f"Vak '{tab}': {len(data[tab])} vragen")
-
-
-# -------------------------------------------------------------
 # SELECT VAK
 # -------------------------------------------------------------
 st.subheader("📘 Kies een vak")
