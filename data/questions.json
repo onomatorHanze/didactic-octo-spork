@@ -56,16 +56,6 @@
       "choices": [],
       "answer": false,
       "image_url": ""
-    },
-    {
-      "id": "q6bdd8f",
-      "text": "Dieptrekken wat is dat?",
-      "type": "tf",
-      "topic": "",
-      "explanation": "",
-      "choices": [],
-      "answer": true,
-      "image_url": ""
     }
   ],
   "Wiskunde 3": [
