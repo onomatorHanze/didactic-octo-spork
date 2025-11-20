@@ -5,16 +5,30 @@ import ast
 from datetime import datetime
 from builtins import min
 import pandas as pd
+import base64
+import requests
 
 
 # ------------------------------------------------------------
 # 1️⃣ Klasse voor één quizvraag
 # ------------------------------------------------------------
 class Question:
-    def __init__(self, id, type, topic, text, tags=None,
-                 choices=None, answer=None, answer_numeric=None,
-                 tolerance=0.0, explanation=None, image_path=None,
-                 formula_latex=None, difficulty=2):
+    def __init__(
+        self,
+        id,
+        type,
+        topic,
+        text,
+        tags=None,
+        choices=None,
+        answer=None,
+        answer_numeric=None,
+        tolerance=0.0,
+        explanation=None,
+        image_path=None,
+        formula_latex=None,
+        difficulty=2
+    ):
         self.id = id
         self.type = type
         self.topic = topic
@@ -31,9 +45,14 @@ class Question:
 
 
 # ------------------------------------------------------------
-# 2️⃣ Verzameling van vragen + CSV/Excel import
+# 2️⃣ QuestionBank (Excel/CSV import)
 # ------------------------------------------------------------
 class QuestionBank:
+    """
+    Wordt NIET door de Streamlit-app gebruikt voor quizzen.
+    Alleen handig voor bulk-import van CSV of Excel.
+    """
+
     def __init__(self, path="data/questions.json"):
         if not os.path.exists(path):
             raise FileNotFoundError(f"Bestand niet gevonden: {path}")
@@ -42,7 +61,6 @@ class QuestionBank:
         self.questions = [Question(**q) for q in data.get("questions", [])]
 
     def filter(self, topics=None, tags=None):
-        """Filter vragen op onderwerp of tag."""
         result = self.questions
         if topics:
             result = [q for q in result if q.topic in topics]
@@ -53,12 +71,12 @@ class QuestionBank:
     # ---- CSV import ----
     @staticmethod
     def import_from_csv(csv_path: str, json_path: str = "data/questions.json"):
-        """Importeer vragen uit CSV en sla op in JSON."""
         questions = []
         try:
             with open(csv_path, newline='', encoding="utf-8") as csvfile:
                 reader = csv.DictReader(csvfile)
                 for row in reader:
+
                     q = {
                         "id": row["id"],
                         "type": row["type"],
@@ -74,25 +92,25 @@ class QuestionBank:
                     }
                     questions.append(q)
 
-            data = {"meta": {"title": "Imported from CSV", "version": 1}, "questions": questions}
+            data = {"meta": {"title": "Imported from CSV"}, "questions": questions}
 
             with open(json_path, "w", encoding="utf-8") as f:
                 json.dump(data, f, indent=4, ensure_ascii=False)
 
-            print(f"✅ CSV succesvol geïmporteerd ({len(questions)} vragen). Opgeslagen in {json_path}")
+            print(f"✅ CSV succesvol geïmporteerd ({len(questions)} vragen).")
 
         except Exception as e:
-            print(f"❌ Fout bij importeren CSV: {e}")
+            print(f"❌ CSV importfout: {e}")
 
     # ---- Excel import ----
     @staticmethod
     def import_from_excel(excel_path: str, sheet_name: str = "DC", json_path: str = "data/questions.json"):
-        """Importeer vragen uit een Excel-tabblad en sla op als JSON."""
         try:
             df = pd.read_excel(excel_path, sheet_name=sheet_name)
             questions = []
 
             for _, row in df.iterrows():
+
                 q = {
                     "id": str(row["id"]),
                     "type": row["type"],
@@ -106,61 +124,62 @@ class QuestionBank:
                     "tags": ast.literal_eval(str(row["tags"])) if pd.notna(row["tags"]) else [],
                     "difficulty": int(row.get("difficulty", 1)),
                 }
+
                 if q["type"] == "input":
-                    # Als answer_numeric niet is ingevuld, neem de numerieke waarde van 'answer'
                     try:
                         q["answer_numeric"] = float(q["answer"])
-                    except (TypeError, ValueError):
+                    except:
                         q["answer_numeric"] = None
                 else:
                     q["answer_numeric"] = None
 
-                
                 questions.append(q)
 
-            data = {"meta": {"source": excel_path, "sheet": sheet_name}, "questions": questions}
+            data = {"meta": {"source": excel_path}, "questions": questions}
 
             with open(json_path, "w", encoding="utf-8") as f:
                 json.dump(data, f, indent=4, ensure_ascii=False)
 
-            print(f"✅ {len(questions)} vragen uit tabblad '{sheet_name}' geïmporteerd en opgeslagen in {json_path}")
+            print(f"✅ Excel-import geslaagd ({len(questions)} vragen).")
+
         except Exception as e:
-            print(f"❌ Fout bij importeren Excel: {e}")
+            print(f"❌ Excel importfout: {e}")
 
 
 # ------------------------------------------------------------
-# 3️⃣ Voortgang en resultaten
-# ------------------------------------------------------------import json
-import requests
-from datetime import datetime
-import base64
-import os
-
-
+# 3️⃣ HistoryStore – GitHub versie (GEHEEL VERBETERD)
+# ------------------------------------------------------------
 class HistoryStore:
     """
-    History wordt opgeslagen op GitHub via dezelfde methode als questions.json.
+    Geschiedenis van beantwoorde vragen wordt opgeslagen in GitHub.
+    Pad: data/history/<user>.json
     """
 
-    def __init__(self, user="default",
-                 token=None,
-                 repo_owner=None,
-                 repo_name=None):
-
+    def __init__(
+        self,
+        user="default",
+        token=None,
+        repo_owner=None,
+        repo_name=None
+    ):
         self.user = user
+
+        # Validatie configs
         self.token = token or os.environ.get("GITHUB_TOKEN")
         self.repo_owner = repo_owner or os.environ.get("REPO_OWNER")
         self.repo_name = repo_name or os.environ.get("REPO_NAME")
 
-        self.path = f"data/history/{self.user}.json"
+        if not all([self.token, self.repo_owner, self.repo_name]):
+            raise ValueError("HistoryStore mist GitHub configuratie (token/owner/repo).")
 
+        self.path = f"data/history/{self.user}.json"
         self.api_url = f"https://api.github.com/repos/{self.repo_owner}/{self.repo_name}/contents/{self.path}"
         self.headers = {"Authorization": f"token {self.token}"}
 
         self.data = self._load()
 
     # ---------------------------------------------------------
-    # Laden
+    # Laden vanuit GitHub (of nieuw maken)
     # ---------------------------------------------------------
     def _load(self):
         r = requests.get(self.api_url, headers=self.headers)
@@ -169,36 +188,41 @@ class HistoryStore:
             content = r.json().get("content", "")
             decoded = base64.b64decode(content).decode("utf-8")
             return json.loads(decoded)
-        else:
-            # Nieuw bestand aanmaken
-            data = {"user": self.user, "history": {}, "tag_stats": {}}
-            self._save(data)
-            return data
+
+        # nieuw bestand
+        data = {"user": self.user, "history": {}, "tag_stats": {}}
+        self._save(data)
+        return data
 
     # ---------------------------------------------------------
-    # Opslaan
+    # Opslaan naar GitHub
     # ---------------------------------------------------------
     def _save(self, content):
         encoded = base64.b64encode(json.dumps(content, indent=2).encode()).decode()
 
-        # probeer sha te lezen
-        meta = requests.get(self.api_url, headers=self.headers).json()
-        sha = meta.get("sha", None)
+        # SHA ophalen
+        meta = requests.get(self.api_url, headers=self.headers)
+        sha = meta.json().get("sha") if meta.status_code == 200 else None
 
         payload = {
-            "message": f"Update history {self.user}",
+            "message": f"Update history for {self.user}",
             "content": encoded,
         }
         if sha:
             payload["sha"] = sha
 
-        requests.put(self.api_url, headers=self.headers, json=payload)
+        r = requests.put(self.api_url, headers=self.headers, json=payload)
+        if r.status_code not in (200, 201):
+            print("⚠️ Opslagfout:", r.status_code, r.text)
 
     # ---------------------------------------------------------
-    # Update vraagresultaat
+    # Update bij vraagbeantwoording
     # ---------------------------------------------------------
     def update_question(self, qid, is_correct):
-        hist = self.data["history"].get(qid, {"last": None, "box": 0, "correct": 0, "wrong": 0})
+        hist = self.data["history"].get(
+            qid,
+            {"last": None, "box": 0, "correct": 0, "wrong": 0}
+        )
 
         hist["last"] = datetime.now().isoformat()
 
@@ -211,5 +235,3 @@ class HistoryStore:
 
         self.data["history"][qid] = hist
         self._save(self.data)
-
-
