@@ -145,6 +145,11 @@ else:
     st.write("Nog geen vragen.")
 # ------------------------------------------------------------
 
+# RAW DEBUG
+url = f"{RAW}?ts={int(time.time())}"
+raw_test = requests.get(url).text
+
+st.text_area("🐛 RAW GitHub content (eerste 500 chars):", raw_test[:500])
 
 # -------------------------------------------------------------
 # LIST OF QUESTIONS
