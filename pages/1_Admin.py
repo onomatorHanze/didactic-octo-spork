@@ -5,6 +5,8 @@ import base64
 import uuid
 import time
 import math
+import pandas as pd
+import ast
 
 
 # -------------------------------------------------------------
@@ -42,9 +44,9 @@ def github_put(url, bytes_data, sha, msg):
     payload = {"message": msg, "content": encoded}
     if sha:
         payload["sha"] = sha
-    return requests.put(url,
-                        headers={"Authorization": f"token {TOKEN}"},
-                        data=json.dumps(payload))
+    return requests.put(
+        url, headers={"Authorization": f"token {TOKEN}"}, data=json.dumps(payload)
+    )
 
 
 def safe_img(url):
@@ -59,10 +61,9 @@ def safe_img(url):
 
 
 # -------------------------------------------------------------
-# LOAD JSON (API – altijd nieuwste versie)
+# LOAD JSON (GitHub API)
 # -------------------------------------------------------------
 def load_data(_reload):
-
     r = github_get(API_RAW)
     if r.status_code != 200:
         st.error("Kon JSON niet laden via GitHub API!")
@@ -89,7 +90,6 @@ def load_data(_reload):
 # SAVE JSON
 # -------------------------------------------------------------
 def save_json(data):
-
     cleaned = {}
     for tab, qs in data.items():
         cleaned[tab] = [{k: clean(v) for k, v in q.items()} for q in qs]
@@ -125,9 +125,9 @@ def upload_image(bytes_data, filename):
     if sha:
         payload["sha"] = sha
 
-    r = requests.put(api,
-                     headers={"Authorization": f"token {TOKEN}"},
-                     data=json.dumps(payload))
+    r = requests.put(
+        api, headers={"Authorization": f"token {TOKEN}"}, data=json.dumps(payload)
+    )
 
     if r.status_code not in (200, 201):
         return None
@@ -143,6 +143,7 @@ st.session_state.setdefault("edit_vak", None)
 st.session_state.setdefault("edit_idx", None)
 st.session_state.setdefault("reload_key", 0)
 st.session_state.setdefault("confirm_delete", None)
+st.session_state.setdefault("confirm_delete_vak", None)
 
 
 # -------------------------------------------------------------
@@ -154,28 +155,62 @@ data = load_data(st.session_state.reload_key)
 # -------------------------------------------------------------
 # DEBUG INFO
 # -------------------------------------------------------------
-st.markdown("## 🐛 DEBUG INFO")
-st.write("Reload key:", st.session_state.reload_key)
-for tab in data:
-    st.write(f"Tab '{tab}': {len(data[tab])} vragen")
+with st.expander("🐛 DEBUG INFO", expanded=False):
+    st.write("Reload key:", st.session_state.reload_key)
+    for tab in data:
+        st.write(f"Vak '{tab}': {len(data[tab])} vragen")
 
 
 # -------------------------------------------------------------
 # SELECT VAK
 # -------------------------------------------------------------
 st.subheader("📘 Kies een vak")
-vak = st.selectbox("Vak:", list(data.keys()))
+vak = st.selectbox("Vak:", list(data.keys()) if data else [])
 
-vragen = data[vak]
-
-st.markdown("### 🐛 DEBUG — actuele tab")
-st.write("Aantal vragen:", len(vragen))
-if vragen:
-    st.write("Laatste vraag:", vragen[-1])
+if vak:
+    vragen = data[vak]
+else:
+    vragen = []
 
 
 # -------------------------------------------------------------
-# LIST OF QUESTIONS
+# VAK VERWIJDEREN
+# -------------------------------------------------------------
+st.markdown("### ⚠️ Vak beheren")
+
+if vak and st.button(f"❌ Verwijder vak '{vak}'"):
+    if st.session_state.mode == "edit":
+        st.warning("Je kunt geen vak verwijderen terwijl je een vraag bewerkt.")
+    else:
+        st.session_state.confirm_delete_vak = vak
+    st.rerun()
+
+if st.session_state.confirm_delete_vak:
+    dvak = st.session_state.confirm_delete_vak
+    st.error(f"❗ Weet je zeker dat je het vak '{dvak}' wilt verwijderen?")
+    st.write("Alle vragen in dit vak gaan verloren.")
+
+    c1, c2 = st.columns(2)
+
+    with c1:
+        if st.button("Ja, verwijder vak"):
+            try:
+                data.pop(dvak)
+                save_json(data)
+                st.success(f"Vak '{dvak}' verwijderd.")
+            except Exception as e:
+                st.error(f"Fout bij verwijderen: {e}")
+            st.session_state.confirm_delete_vak = None
+            st.rerun()
+
+    with c2:
+        if st.button("Nee, annuleren"):
+            st.session_state.confirm_delete_vak = None
+            st.rerun()
+
+
+# -------------------------------------------------------------
+# OVERZICHT VRAGEN
 # -------------------------------------------------------------
 st.subheader("📄 Overzicht vragen")
 
@@ -183,7 +218,7 @@ for i, q in enumerate(vragen):
     c1, c2, c3 = st.columns([7, 1, 1])
 
     with c1:
-        st.write(f"**{i} — {q.get('text','')[:70]}**")
+        st.write(f"**{i} — {q.get('text', '')[:70]}**")
 
     with c2:
         if st.button("✏️", key=f"edit_{vak}_{i}"):
@@ -195,22 +230,19 @@ for i, q in enumerate(vragen):
     with c3:
         if st.button("❌", key=f"del_{vak}_{i}"):
 
-            # 🚫 FIx: Verwijderen blokkeren tijdens edit-mode
             if st.session_state.mode == "edit":
                 st.warning("Je kunt geen vraag verwijderen terwijl je een vraag bewerkt.")
                 st.session_state.confirm_delete = None
                 st.rerun()
 
-            # Normale verwijder-flow
             st.session_state.confirm_delete = (vak, i)
             st.rerun()
 
 
 # -------------------------------------------------------------
-# CONFIRM DELETE SECTION
+# CONFIRM DELETE QUESTION
 # -------------------------------------------------------------
-if st.session_state.confirm_delete is not None:
-
+if st.session_state.confirm_delete:
     dvak, di = st.session_state.confirm_delete
     st.error(f"❗ Weet je zeker dat je vraag #{di} uit '{dvak}' wilt verwijderen?")
 
@@ -224,7 +256,6 @@ if st.session_state.confirm_delete is not None:
                 st.success("Vraag verwijderd.")
             except Exception as e:
                 st.error(f"Fout bij verwijderen: {e}")
-
             st.session_state.confirm_delete = None
             st.rerun()
 
@@ -241,7 +272,6 @@ if st.session_state.mode == "edit":
 
     ev = st.session_state.edit_vak
     ei = st.session_state.edit_idx
-
     q = data[ev][ei]
 
     st.markdown("---")
@@ -301,7 +331,56 @@ if st.session_state.mode == "edit":
 
 
 # -------------------------------------------------------------
-# NEW QUESTION
+# EXCEL IMPORT
+# -------------------------------------------------------------
+st.markdown("---")
+st.subheader("📥 Excel importeren")
+
+excel_file = st.file_uploader("Upload een Excel-bestand (.xlsx)", type=["xlsx"])
+
+if excel_file and st.button("Importeer Excel"):
+    try:
+        df = pd.read_excel(excel_file)
+
+        required_cols = {"vak", "id", "type", "topic", "text", "answer"}
+        if not required_cols.issubset(df.columns):
+            st.error(f"Excel mist verplichte kolommen: {required_cols}")
+            st.stop()
+
+        count = 0
+
+        for _, row in df.iterrows():
+            dvak = str(row["vak"]).strip()
+
+            if dvak not in data:
+                data[dvak] = []
+
+            q = {
+                "id": str(row["id"]),
+                "type": str(row["type"]),
+                "topic": str(row.get("topic", "")),
+                "text": str(row.get("text", "")),
+                "choices": ast.literal_eval(str(row["choices"]))
+                if str(row.get("choices")) not in ["", "nan", None]
+                else [],
+                "answer": row.get("answer"),
+                "explanation": str(row.get("explanation", "")),
+                "image_url": str(row.get("image_url", "")),
+                "difficulty": int(row.get("difficulty", 1)),
+            }
+
+            data[dvak].append(q)
+            count += 1
+
+        if save_json(data):
+            st.success(f"Succesvol {count} vragen geïmporteerd!")
+
+    except Exception as e:
+        st.error(f"❌ Fout bij importeren: {e}")
+
+
+# -------------------------------------------------------------
+# NIEUWE VRAAG TOEVOEGEN
 # -------------------------------------------------------------
 if st.session_state.mode == "new":
 
@@ -354,49 +433,3 @@ if st.session_state.mode == "new":
             if save_json(data):
                 st.success("Toegevoegd!")
                 st.rerun()
-import pandas as pd
-import ast
-
-st.markdown("---")
-st.subheader("📥 Excel importeren")
-
-excel_file = st.file_uploader("Upload een Excel-bestand (.xlsx)", type=["xlsx"])
-
-if excel_file and st.button("Importeer Excel"):
-    try:
-        df = pd.read_excel(excel_file)
-
-        required_cols = {"id","type","topic","text","answer","vak"}
-        if not required_cols.issubset(df.columns):
-            st.error(f"Excel mist verplichte kolommen: {required_cols}")
-            st.stop()
-
-        count = 0
-
-        for _, row in df.iterrows():
-            vak = str(row["vak"]).strip()
-
-            # nieuw vak automatisch maken
-            if vak not in data:
-                data[vak] = []
-
-            q = {
-                "id": str(row["id"]),
-                "type": str(row["type"]),
-                "topic": str(row.get("topic","")),
-                "text": str(row.get("text","")),
-                "choices": ast.literal_eval(str(row["choices"])) if str(row.get("choices")) not in ["", "nan", None] else [],
-                "answer": row.get("answer"),
-                "explanation": str(row.get("explanation","")),
-                "image_url": str(row.get("image_url","")),
-                "difficulty": int(row.get("difficulty", 1)),
-            }
-
-            data[vak].append(q)
-            count += 1
-
-        if save_json(data):
-            st.success(f"Succesvol {count} vragen geïmporteerd!")
-
-    except Exception as e:
-        st.error(f"❌ Fout bij importeren: {e}")
