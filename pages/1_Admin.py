@@ -18,7 +18,6 @@ IMAGE_DIR = "data/images"
 
 API_RAW = f"https://api.github.com/repos/{OWNER}/{REPO}/contents/{JSON_PATH}"
 
-
 st.set_page_config(page_title="DocQuiz Admin", layout="centered")
 st.title("🔧 DocQuiz Admin")
 
@@ -38,16 +37,14 @@ def github_get(url):
     return requests.get(url, headers={"Authorization": f"token {TOKEN}"})
 
 
-def github_put(url, bytes, sha, msg):
-    encoded = base64.b64encode(bytes).decode()
+def github_put(url, bytes_data, sha, msg):
+    encoded = base64.b64encode(bytes_data).decode()
     payload = {"message": msg, "content": encoded}
     if sha:
         payload["sha"] = sha
-    return requests.put(
-        url,
-        headers={"Authorization": f"token {TOKEN}"},
-        data=json.dumps(payload),
-    )
+    return requests.put(url,
+                        headers={"Authorization": f"token {TOKEN}"},
+                        data=json.dumps(payload))
 
 
 def safe_img(url):
@@ -62,13 +59,11 @@ def safe_img(url):
 
 
 # -------------------------------------------------------------
-# LOAD JSON (VIA API) — altijd nieuwste versie
+# LOAD JSON (API – altijd nieuwste versie)
 # -------------------------------------------------------------
 def load_data(_reload):
-    """Laad JSON via GitHub API (nooit gecached)."""
 
     r = github_get(API_RAW)
-
     if r.status_code != 200:
         st.error("Kon JSON niet laden via GitHub API!")
         st.code(r.text)
@@ -79,11 +74,10 @@ def load_data(_reload):
         decoded = base64.b64decode(content).decode("utf-8")
         data = json.loads(decoded)
     except Exception as e:
-        st.error("JSON decode error!")
+        st.error("Kon JSON niet decoderen!")
         st.text(str(e))
         st.stop()
 
-    # Zorg dat alle tabs lijsten zijn
     fixed = {}
     for tab, qs in data.items():
         fixed[tab] = qs if isinstance(qs, list) else []
@@ -95,6 +89,7 @@ def load_data(_reload):
 # SAVE JSON
 # -------------------------------------------------------------
 def save_json(data):
+
     cleaned = {}
     for tab, qs in data.items():
         cleaned[tab] = [{k: clean(v) for k, v in q.items()} for q in qs]
@@ -111,32 +106,28 @@ def save_json(data):
         st.code(r.text)
         return False
 
-    # Force reload van load_data()
     st.session_state["reload_key"] = time.time()
-
     return True
 
 
 # -------------------------------------------------------------
 # UPLOAD IMAGE
 # -------------------------------------------------------------
-def upload_image(bytes, filename):
+def upload_image(bytes_data, filename):
     path = f"{IMAGE_DIR}/{filename}"
     api = f"https://api.github.com/repos/{OWNER}/{REPO}/contents/{path}"
 
     meta = github_get(api).json()
     sha = meta.get("sha")
 
-    encoded = base64.b64encode(bytes).decode()
+    encoded = base64.b64encode(bytes_data).decode()
     payload = {"message": f"Upload {filename}", "content": encoded}
     if sha:
         payload["sha"] = sha
 
-    r = requests.put(
-        api,
-        headers={"Authorization": f"token {TOKEN}"},
-        data=json.dumps(payload),
-    )
+    r = requests.put(api,
+                     headers={"Authorization": f"token {TOKEN}"},
+                     data=json.dumps(payload))
 
     if r.status_code not in (200, 201):
         return None
@@ -147,17 +138,11 @@ def upload_image(bytes, filename):
 # -------------------------------------------------------------
 # SESSION STATE
 # -------------------------------------------------------------
-if "mode" not in st.session_state:
-    st.session_state.mode = "new"
-
-if "edit_vak" not in st.session_state:
-    st.session_state.edit_vak = None
-
-if "edit_idx" not in st.session_state:
-    st.session_state.edit_idx = None
-
-if "reload_key" not in st.session_state:
-    st.session_state.reload_key = 0
+st.session_state.setdefault("mode", "new")
+st.session_state.setdefault("edit_vak", None)
+st.session_state.setdefault("edit_idx", None)
+st.session_state.setdefault("reload_key", 0)
+st.session_state.setdefault("confirm_delete", None)
 
 
 # -------------------------------------------------------------
@@ -167,32 +152,30 @@ data = load_data(st.session_state.reload_key)
 
 
 # -------------------------------------------------------------
-# DEBUG OUTPUT
+# DEBUG INFO
 # -------------------------------------------------------------
 st.markdown("## 🐛 DEBUG INFO")
 st.write("Reload key:", st.session_state.reload_key)
-st.write("Tabs:", list(data.keys()))
-for d in data:
-    st.write(f"Tab {d}: {len(data[d])} vragen")
+for tab in data:
+    st.write(f"Tab '{tab}': {len(data[tab])} vragen")
 
 
 # -------------------------------------------------------------
-# SELECT VAK (NO KEY → FIX)
+# SELECT VAK
 # -------------------------------------------------------------
 st.subheader("📘 Kies een vak")
 vak = st.selectbox("Vak:", list(data.keys()))
 
 vragen = data[vak]
 
-# Meer debug:
-st.markdown("### 🐛 DEBUG — huidige tab")
+st.markdown("### 🐛 DEBUG — actuele tab")
 st.write("Aantal vragen:", len(vragen))
-if len(vragen) > 0:
+if vragen:
     st.write("Laatste vraag:", vragen[-1])
 
 
 # -------------------------------------------------------------
-# LIJST MET VRAGEN
+# LIST OF QUESTIONS
 # -------------------------------------------------------------
 st.subheader("📄 Overzicht vragen")
 
@@ -210,23 +193,25 @@ for i, q in enumerate(vragen):
             st.rerun()
 
     with c3:
-        if st.button("❌", key=f"delete_{vak}_{i}"):
+        if st.button("❌", key=f"del_{vak}_{i}"):
 
-    # 🚫 Verwijderen blokkeren tijdens het bewerken
+            # 🚫 FIx: Verwijderen blokkeren tijdens edit-mode
             if st.session_state.mode == "edit":
                 st.warning("Je kunt geen vraag verwijderen terwijl je een vraag bewerkt.")
-                st.stop()
+                st.session_state.confirm_delete = None
+                st.rerun()
 
-    # Opslaan welke vraag verwijderd moet worden
-            st.session_state["confirm_delete"] = (vak, i)
+            # Normale verwijder-flow
+            st.session_state.confirm_delete = (vak, i)
             st.rerun()
 
-# -------------------------------------------------------------
-# CONFIRM DELETE
-# -------------------------------------------------------------
-if "confirm_delete" in st.session_state and st.session_state.confirm_delete is not None:
-    dvak, di = st.session_state.confirm_delete
 
+# -------------------------------------------------------------
+# CONFIRM DELETE SECTION
+# -------------------------------------------------------------
+if st.session_state.confirm_delete is not None:
+
+    dvak, di = st.session_state.confirm_delete
     st.error(f"❗ Weet je zeker dat je vraag #{di} uit '{dvak}' wilt verwijderen?")
 
     c1, c2 = st.columns(2)
@@ -235,10 +220,10 @@ if "confirm_delete" in st.session_state and st.session_state.confirm_delete is n
         if st.button("Ja, verwijderen"):
             try:
                 data[dvak].pop(di)
-                if save_json(data):
-                    st.success("Vraag verwijderd.")
+                save_json(data)
+                st.success("Vraag verwijderd.")
             except Exception as e:
-                st.error(f"Kon vraag niet verwijderen: {e}")
+                st.error(f"Fout bij verwijderen: {e}")
 
             st.session_state.confirm_delete = None
             st.rerun()
@@ -250,11 +235,13 @@ if "confirm_delete" in st.session_state and st.session_state.confirm_delete is n
 
 
 # -------------------------------------------------------------
-# EDIT MODE FORM
+# EDIT MODE
 # -------------------------------------------------------------
 if st.session_state.mode == "edit":
+
     ev = st.session_state.edit_vak
     ei = st.session_state.edit_idx
+
     q = data[ev][ei]
 
     st.markdown("---")
@@ -270,10 +257,12 @@ if st.session_state.mode == "edit":
     if qtype == "mc":
         opts_str = ", ".join(q.get("choices"))
         opts = st.text_input("Opties", value=opts_str)
-        ans = st.number_input("Correct index", value=int(q.get("answer")), min_value=0)
+        ans = st.number_input("Correct index", value=int(q.get("answer")),
+                              min_value=0)
     elif qtype == "tf":
         opts = ""
-        ans = st.selectbox("Correct?", [True, False], index=0 if q.get("answer") else 1)
+        ans = st.selectbox("Correct?", [True, False],
+                           index=0 if q.get("answer") else 1)
     else:
         opts = ""
         ans = st.text_input("Antwoord", value=str(q.get("answer")))
@@ -312,7 +301,7 @@ if st.session_state.mode == "edit":
 
 
 # -------------------------------------------------------------
-# NIEUWE VRAAG TOEVOEGEN
+# NEW QUESTION
 # -------------------------------------------------------------
 if st.session_state.mode == "new":
 
