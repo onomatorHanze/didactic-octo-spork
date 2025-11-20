@@ -1,16 +1,6 @@
 {
   "DC": [
     {
-      "id": "qe7573b",
-      "text": "Wat betekend gelijkstroom",
-      "type": "tf",
-      "topic": "",
-      "explanation": "",
-      "choices": [],
-      "answer": true,
-      "image_url": ""
-    },
-    {
       "id": "q48c778",
       "text": "Wat betekend gelijkstroom1234",
       "type": "tf",
