@@ -659,5 +659,157 @@
       "image_url": "",
       "difficulty": 3
     }
+  ],
+  "SoftwareArchitectuur": [
+    {
+      "id": "mix001",
+      "type": "mc",
+      "topic": "Algoritmes & Systemen",
+      "text": "Wat is het hoofddoel van de UI-laag?",
+      "choices": [
+        "Interacties met gebruiker",
+        "Data-opslag",
+        "Algoritmes uitvoeren"
+      ],
+      "answer": 0,
+      "explanation": "De UI toont knoppen, vragen en feedback aan de gebruiker.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mix002",
+      "type": "mc",
+      "topic": "Algoritmes & Systemen",
+      "text": "Welke laag verwerkt de Excel-import?",
+      "choices": [
+        "Data-laag",
+        "UI-laag",
+        "Algoritme-laag"
+      ],
+      "answer": 0,
+      "explanation": "Excel-import hoort bij de datalaag waar input binnenkomt.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mix003",
+      "type": "mc",
+      "topic": "Algoritmes & Systemen",
+      "text": "Wat betekent 'modulariteit' in software?",
+      "choices": [
+        "Het opdelen van code in losse onderdelen",
+        "Code dubbel schrijven",
+        "Meer grafische elementen"
+      ],
+      "answer": 0,
+      "explanation": "Modulariteit maakt een programma overzichtelijk en uitbreidbaar.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mix004",
+      "type": "mc",
+      "topic": "Algoritmes & Systemen",
+      "text": "Welke laag kiest welke vragen getoond worden?",
+      "choices": [
+        "Algoritme-laag",
+        "UI-laag",
+        "Netwerk-laag"
+      ],
+      "answer": 0,
+      "explanation": "Het algoritme bepaalt de selectie van vragen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mix005",
+      "type": "mc",
+      "topic": "Algoritmes & Systemen",
+      "text": "Wat is een voordeel van Streamlit boven Tkinter?",
+      "choices": [
+        "Web-based en mobiel toegankelijk",
+        "Werkte sneller in Windows",
+        "Gebruikt geen HTML"
+      ],
+      "answer": 0,
+      "explanation": "Streamlit werkt in de browser en heeft veel UI-componenten.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mix006",
+      "type": "mc",
+      "topic": "Algoritmes & Systemen",
+      "text": "Waarom is GitHub geschikt voor history-opslag?",
+      "choices": [
+        "Versiebeheer en toegankelijk",
+        "Lokaal sneller",
+        "Gebruikt SQL"
+      ],
+      "answer": 0,
+      "explanation": "GitHub beheert bestanden met commits en is online bereikbaar.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mix007",
+      "type": "mc",
+      "topic": "Algoritmes & Systemen",
+      "text": "Wat doet een 'class' in Python?",
+      "choices": [
+        "Definieert objecten en gedrag",
+        "Voert direct acties uit",
+        "Is alleen voor variabelen"
+      ],
+      "answer": 0,
+      "explanation": "Een class beschrijft data \u00e9n functies die erbij horen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mix008",
+      "type": "mc",
+      "topic": "Algoritmes & Systemen",
+      "text": "Welke laag vertaalt JSON naar Question-objecten?",
+      "choices": [
+        "Logica-laag",
+        "UI-laag",
+        "Systeem-laag"
+      ],
+      "answer": 0,
+      "explanation": "De logica-laag beheert conversies en objectconstructies.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mix009",
+      "type": "mc",
+      "topic": "Algoritmes & Systemen",
+      "text": "Waarom heeft het algoritme wachttijden nodig?",
+      "choices": [
+        "Om leren te optimaliseren",
+        "Om netwerk te besparen",
+        "Voor UI layout"
+      ],
+      "answer": 0,
+      "explanation": "Spaced repetition optimaliseert het geheugenproces.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mix010",
+      "type": "mc",
+      "topic": "Algoritmes & Systemen",
+      "text": "Welke input gebruikt de quiz tijdens uitvoeren?",
+      "choices": [
+        "Keuzes van gebruiker",
+        "Excel-bestanden",
+        "GitHub commits"
+      ],
+      "answer": 0,
+      "explanation": "De gebruiker selecteert antwoorden die verder verwerkt worden.",
+      "image_url": "",
+      "difficulty": 2
+    }
   ]
 }
