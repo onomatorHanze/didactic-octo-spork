@@ -276,6 +276,12 @@
       "box": 1,
       "correct": 1,
       "wrong": 0
+    },
+    "tech020": {
+      "last": "2025-11-20T16:33:59.894275",
+      "box": 0,
+      "correct": 0,
+      "wrong": 1
     }
   },
   "tag_stats": {}
