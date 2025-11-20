@@ -72,6 +72,12 @@
       "box": 1,
       "correct": 1,
       "wrong": 0
+    },
+    "arch010": {
+      "last": "2025-11-20T15:45:31.825500",
+      "box": 0,
+      "correct": 0,
+      "wrong": 1
     }
   },
   "tag_stats": {}
