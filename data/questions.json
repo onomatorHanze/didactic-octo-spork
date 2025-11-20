@@ -3,20 +3,6 @@
   "Wiskunde 3": [],
   "AC": [
     {
-      "id": "",
-      "type": "input",
-      "topic": "",
-      "text": "Werkt het toevoegen nu?",
-      "choices": [],
-      "answer": "125",
-      "explanation": "",
-      "image_path": "",
-      "formula_latex": "",
-      "tags": "",
-      "difficulty": "",
-      "image_url": "nan"
-    },
-    {
       "text": "Wat is de status van het opslaan?",
       "type": "input",
       "choices": [],
