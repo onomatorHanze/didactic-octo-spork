@@ -125,25 +125,6 @@
       "tags": "[\"sinus\",\"hoek\"]",
       "difficulty": 1,
       "image_url": "nan"
-    },
-    {
-      "id": "q11",
-      "type": "mc",
-      "topic": "Goniometrie",
-      "text": "Wat is tan(60\u00b0)?",
-      "choices": [
-        "1",
-        "0.5",
-        "1.73",
-        "0.866"
-      ],
-      "answer": 2,
-      "explanation": "tan(60\u00b0)=\u221a3\u22481.73",
-      "image_path": "",
-      "formula_latex": "",
-      "tags": "[\"tangens\",\"hoek\"]",
-      "difficulty": 1,
-      "image_url": "nan"
     }
   ],
   "AC": [
