@@ -2,24 +2,6 @@
   "DC": [],
   "Wiskunde 3": [
     {
-      "id": "q3",
-      "type": "mc",
-      "topic": "Goniometrie",
-      "text": "Wat is de formule voor tan(\u03b1)?",
-      "choices": [
-        "aanliggende / overstaande",
-        "overstaande / aanliggende",
-        "schuine / overstaande"
-      ],
-      "answer": 1,
-      "explanation": "tan(\u03b1) = overstaande / aanliggende",
-      "image_path": "",
-      "formula_latex": "tan(\u03b1)=o/a",
-      "tags": "[\"tangens\",\"basisformule\"]",
-      "difficulty": 1,
-      "image_url": "nan"
-    },
-    {
       "id": "q4",
       "type": "tf",
       "topic": "Goniometrie",
