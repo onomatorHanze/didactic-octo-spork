@@ -107,7 +107,7 @@ if st.button("Start quiz"):
     questions_all = data.get(vak, [])
     history = HistoryStore("data/user_history.json")
 
-    # ✔ Slim algoritme
+    # ✔ Slim algoritme kiezen
     questions = smart_select_questions(
         questions_all,
         history,
