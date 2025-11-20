@@ -227,24 +227,6 @@
       "tags": "[\"cosinusregel\"]",
       "difficulty": 3,
       "image_url": "nan"
-    },
-    {
-      "id": "q16",
-      "type": "mc",
-      "topic": "Goniometrie",
-      "text": "Wat is de sinusregel?",
-      "choices": [
-        "a/sin(A)=b/sin(B)=c/sin(C)",
-        "a\u00b7sin(A)=b\u00b7sin(B)",
-        "a/b=sin(A)/sin(B)"
-      ],
-      "answer": 0,
-      "explanation": "sinusregel",
-      "image_path": "",
-      "formula_latex": "a/sin(A)=b/sin(B)=c/sin(C)",
-      "tags": "[\"sinusregel\"]",
-      "difficulty": 3,
-      "image_url": "nan"
     }
   ],
   "AC": [
