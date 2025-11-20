@@ -259,20 +259,6 @@
       "tags": "[\"sinus\",\"toepassing\"]",
       "difficulty": 2,
       "image_url": "nan"
-    },
-    {
-      "id": "q18",
-      "type": "tf",
-      "topic": "Goniometrie",
-      "text": "In de eenheidscirkel is de x-co\u00f6rdinaat gelijk aan de cosinuswaarde.",
-      "choices": [],
-      "answer": true,
-      "explanation": "cos(x) = x-as",
-      "image_path": "",
-      "formula_latex": "",
-      "tags": "[\"eenheidscirkel\",\"cosinus\"]",
-      "difficulty": 2,
-      "image_url": "nan"
     }
   ],
   "AC": [
