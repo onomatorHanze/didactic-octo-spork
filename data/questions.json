@@ -163,20 +163,6 @@
       "tags": "[\"tangens\",\"hoek\"]",
       "difficulty": 1,
       "image_url": "nan"
-    },
-    {
-      "id": "q12",
-      "type": "tf",
-      "topic": "Goniometrie",
-      "text": "cos(90\u00b0)=0.",
-      "choices": [],
-      "answer": true,
-      "explanation": "Juist \u2014 cos(90\u00b0)=0",
-      "image_path": "",
-      "formula_latex": "",
-      "tags": "[\"cosinus\",\"hoek\"]",
-      "difficulty": 1,
-      "image_url": "nan"
     }
   ],
   "AC": [
