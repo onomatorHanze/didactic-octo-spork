@@ -8,7 +8,7 @@ import random
 st.set_page_config(page_title="DocQuiz Web", layout="centered")
 
 # ---------------------------------------------------------
-# JSON met vragen
+# JSON met vragen (vanuit GitHub - raw)
 # ---------------------------------------------------------
 JSON_URL = "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/questions.json"
 
@@ -105,9 +105,16 @@ num_questions = st.number_input("Aantal vragen:", 1, 50, 5)
 
 if st.button("Start quiz"):
     questions_all = data.get(vak, [])
-    history = HistoryStore("data/user_history.json")
 
-    # ✔ Slim algoritme kiezen
+    # HistoryStore via GitHub
+    history = HistoryStore(
+        user="default",
+        token=st.secrets["GITHUB_TOKEN"],
+        repo_owner=st.secrets["REPO_OWNER"],
+        repo_name=st.secrets["REPO_NAME"],
+    )
+
+    # ✔ Slim algoritme
     questions = smart_select_questions(
         questions_all,
         history,
@@ -128,6 +135,14 @@ if "questions" in st.session_state and st.session_state["questions"]:
 
     qs = st.session_state["questions"]
     i = st.session_state["index"]
+
+    # HistoryStore ook hier beschikbaar
+    history = HistoryStore(
+        user="default",
+        token=st.secrets["GITHUB_TOKEN"],
+        repo_owner=st.secrets["REPO_OWNER"],
+        repo_name=st.secrets["REPO_NAME"],
+    )
 
     # EINDE
     if i >= len(qs):
@@ -172,7 +187,8 @@ if "questions" in st.session_state and st.session_state["questions"]:
                 st.error(f"❌ Fout! Correct was: {choices[int(correct_raw)]}")
                 st.session_state["score"]["wrong"] += 1
 
-            HistoryStore("data/user_history.json").update_question(q["id"], correct)
+            # Update geschiedenis op GitHub
+            history.update_question(q["id"], correct)
 
             time.sleep(1)
             st.session_state["index"] += 1
@@ -195,7 +211,8 @@ if "questions" in st.session_state and st.session_state["questions"]:
                 st.error(f"❌ Fout! Correct was: {correct}")
                 st.session_state["score"]["wrong"] += 1
 
-            HistoryStore("data/user_history.json").update_question(q["id"], is_correct)
+            # Update geschiedenis op GitHub
+            history.update_question(q["id"], is_correct)
 
             time.sleep(1)
             st.session_state["index"] += 1
@@ -219,7 +236,8 @@ if "questions" in st.session_state and st.session_state["questions"]:
                 st.error(f"❌ Fout! Correct was: {correct}")
                 st.session_state["score"]["wrong"] += 1
 
-            HistoryStore("data/user_history.json").update_question(q["id"], is_correct)
+            # Update geschiedenis op GitHub
+            history.update_question(q["id"], is_correct)
 
             time.sleep(1)
             st.session_state["index"] += 1
