@@ -2,13 +2,16 @@ import streamlit as st
 import requests
 import time
 from datetime import datetime
-from models import HistoryStore   # ✔ gebruikt jouw models.py
+from models import HistoryStore
 import random
 
 st.set_page_config(page_title="DocQuiz Web", layout="centered")
 
-# JSON met vragen (GitHub versie)
+# ---------------------------------------------------------
+# JSON met vragen
+# ---------------------------------------------------------
 JSON_URL = "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/questions.json"
+
 
 @st.cache_data(ttl=60)
 def load_data():
@@ -16,6 +19,7 @@ def load_data():
     r.raise_for_status()
     data = r.json()
     return data if isinstance(data, dict) else {}
+
 
 def safe_show_image(url: str):
     if not isinstance(url, str) or not url.strip():
@@ -27,41 +31,65 @@ def safe_show_image(url: str):
     except:
         pass
 
+
 # ---------------------------------------------------------
-# SLIM SELECTIE-ALGORITME  (Leitner box + tijd sinds oefening)
+# SLIMME SELECTIE (Spaced Repetition + Leitner)
 # ---------------------------------------------------------
 def smart_select_questions(questions, history: HistoryStore, n=5):
-    enriched = []
+    """Selecteer vragen via spaced repetition + Leitner boxes."""
+
+    BOX_WAIT = {
+        0: 0,                  # direct opnieuw
+        1: 5 * 60,             # 5 minuten
+        2: 15 * 60,            # 15 minuten
+        3: 60 * 60,            # 1 uur
+        4: 24 * 60 * 60,       # 1 dag
+        5: 3 * 24 * 60 * 60    # 3 dagen
+    }
+
     now = datetime.now()
+    candidates = []
 
     for q in questions:
         qid = q.get("id")
-        hist = history.data["history"].get(qid, None)
+        h = history.data["history"].get(qid, None)
 
-        if hist:
-            box = hist.get("box", 0)
-            last = hist.get("last")
+        if h:
+            box = h.get("box", 0)
+            last = h.get("last")
             if last:
                 last_dt = datetime.fromisoformat(last)
-                days_ago = (now - last_dt).days
+                delta = (now - last_dt).total_seconds()
             else:
-                days_ago = 999
+                delta = 999999999
         else:
             box = 0
-            days_ago = 999
+            delta = 999999999
 
-        # prioriteit berekening
-        priority = (5 - box) * 3 + days_ago / 5
-        enriched.append((priority, q))
+        # ❌ Wachttijd niet verstreken → blokkeer vraag
+        if delta < BOX_WAIT[box]:
+            continue
 
-    # Sorteren op prioriteit
-    enriched.sort(key=lambda x: x[0], reverse=True)
+        # ✔ Prioriteit: slechter beheerde vragen eerder
+        days_ago = delta / 86400
+        priority = (5 - box) * 3 + days_ago
 
-    return [q for _, q in enriched[:n]]
+        candidates.append((priority, q))
 
-# ----------------------------
-# Startscherm
-# ----------------------------
+    # Als er te weinig kandidaten zijn → vul aan met willekeur
+    if len(candidates) < n:
+        rest = [q for q in questions if q not in [qq for _, qq in candidates]]
+        random.shuffle(rest)
+        while len(candidates) < n and rest:
+            candidates.append((0, rest.pop()))
+
+    candidates.sort(key=lambda x: x[0], reverse=True)
+    return [q for _, q in candidates[:n]]
+
+
+# ---------------------------------------------------------
+# STARTSCHERM
+# ---------------------------------------------------------
 data = load_data()
 vakken = sorted(data.keys())
 
@@ -77,10 +105,14 @@ num_questions = st.number_input("Aantal vragen:", 1, 50, 5)
 
 if st.button("Start quiz"):
     questions_all = data.get(vak, [])
-
-    # ✔ SLIM ALGORITME HIER
     history = HistoryStore("data/user_history.json")
-    questions = smart_select_questions(questions_all, history, int(num_questions))
+
+    # ✔ Slim algoritme
+    questions = smart_select_questions(
+        questions_all,
+        history,
+        int(num_questions)
+    )
 
     st.session_state["questions"] = questions
     st.session_state["vak"] = vak
@@ -88,14 +120,16 @@ if st.button("Start quiz"):
     st.session_state["score"] = {"correct": 0, "wrong": 0}
     st.rerun()
 
-# ----------------------------
-# Quiz
-# ----------------------------
+
+# ---------------------------------------------------------
+# QUIZ
+# ---------------------------------------------------------
 if "questions" in st.session_state and st.session_state["questions"]:
+
     qs = st.session_state["questions"]
     i = st.session_state["index"]
 
-    # EINDE?
+    # EINDE
     if i >= len(qs):
         st.balloons()
         st.success("🎉 **Klaar!**")
@@ -129,7 +163,6 @@ if "questions" in st.session_state and st.session_state["questions"]:
         )
 
         if st.button("Controleer", key=f"mc_check_{i}"):
-
             correct = answer_idx == int(correct_raw)
 
             if correct:
@@ -139,7 +172,6 @@ if "questions" in st.session_state and st.session_state["questions"]:
                 st.error(f"❌ Fout! Correct was: {choices[int(correct_raw)]}")
                 st.session_state["score"]["wrong"] += 1
 
-            # ✔ UPDATE HISTORYSTORE
             HistoryStore("data/user_history.json").update_question(q["id"], correct)
 
             time.sleep(1)
@@ -147,7 +179,7 @@ if "questions" in st.session_state and st.session_state["questions"]:
             st.rerun()
 
     # ---------------------------------------------------------
-    # WAAR / ONWAAR
+    # WAAR/ONWAAR
     # ---------------------------------------------------------
     elif qtype == "tf":
         user_choice = st.radio("Waar of onwaar?", ["Waar", "Onwaar"], key=f"tf_{i}")
@@ -163,7 +195,6 @@ if "questions" in st.session_state and st.session_state["questions"]:
                 st.error(f"❌ Fout! Correct was: {correct}")
                 st.session_state["score"]["wrong"] += 1
 
-            # ✔ UPDATE HISTORYSTORE
             HistoryStore("data/user_history.json").update_question(q["id"], is_correct)
 
             time.sleep(1)
@@ -188,7 +219,6 @@ if "questions" in st.session_state and st.session_state["questions"]:
                 st.error(f"❌ Fout! Correct was: {correct}")
                 st.session_state["score"]["wrong"] += 1
 
-            # ✔ UPDATE HISTORYSTORE
             HistoryStore("data/user_history.json").update_question(q["id"], is_correct)
 
             time.sleep(1)
