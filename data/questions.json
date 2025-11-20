@@ -66,6 +66,16 @@
       "choices": [],
       "answer": true,
       "image_url": ""
+    },
+    {
+      "id": "q337588",
+      "text": "Wat betekend gelijkstroom1234",
+      "type": "tf",
+      "topic": "",
+      "explanation": "",
+      "choices": [],
+      "answer": true,
+      "image_url": ""
     }
   ],
   "Wiskunde 3": [
