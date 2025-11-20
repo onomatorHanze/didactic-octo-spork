@@ -57,5 +57,307 @@
       "image_url": "nan",
       "difficulty": 2
     }
+  ],
+  "SoftwareOntwerp": [
+    {
+      "id": "arch001",
+      "type": "mc",
+      "topic": "Programmastructuur",
+      "text": "Wat is het doel van het algoritme in het quizprogramma?",
+      "choices": [
+        "Vragen random tonen",
+        "Vragen adaptief selecteren",
+        "UI styling regelen"
+      ],
+      "answer": 1,
+      "explanation": "Het algoritme bepaalt welke vraag wanneer wordt getoond, gebaseerd op kennisniveau van de gebruiker.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "arch002",
+      "type": "mc",
+      "topic": "Programmastructuur",
+      "text": "Waarom gebruikt het systeem een Leitner-box algoritme?",
+      "choices": [
+        "Om vragen op vaste volgorde te tonen",
+        "Om fout beantwoorde vragen sneller terug te laten komen",
+        "Om vragen te verwijderen"
+      ],
+      "answer": 1,
+      "explanation": "Het Leitner-systeem zorgt ervoor dat je moeilijke vragen vaker ziet.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "arch003",
+      "type": "mc",
+      "topic": "Programmastructuur",
+      "text": "Welke rol speelt de HistoryStore klasse?",
+      "choices": [
+        "Slaat gebruikersvoortgang op",
+        "Genereert nieuwe vragen",
+        "Toont de UI"
+      ],
+      "answer": 0,
+      "explanation": "HistoryStore bewaart statistieken zoals correct/fout en box-niveau.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "arch004",
+      "type": "mc",
+      "topic": "Programmastructuur",
+      "text": "Wat wordt er opgeslagen in history/<user>.json?",
+      "choices": [
+        "Afbeeldingen",
+        "Vragen en voortgang van gebruiker",
+        "Programmacode"
+      ],
+      "answer": 1,
+      "explanation": "In dit JSON-bestand staat voor elke vraag de voortgang van de gebruiker.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "arch005",
+      "type": "mc",
+      "topic": "Programmastructuur",
+      "text": "Wat doet de Question klasse?",
+      "choices": [
+        "Beheert een enkele quizvraag",
+        "Beheert een gehele quiz",
+        "Beheert UI knoppen"
+      ],
+      "answer": 0,
+      "explanation": "Question bevat tekst, type, opties, antwoorden en uitleg van \u00e9\u00e9n vraag.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "arch006",
+      "type": "mc",
+      "topic": "Programmastructuur",
+      "text": "Welke input gebruikt het programma voor vragenbeheer?",
+      "choices": [
+        "SQL database",
+        "Excel of JSON bestanden",
+        "Alleen handmatige invoer"
+      ],
+      "answer": 1,
+      "explanation": "Het Admin-paneel kan Excel importeren en convert naar JSON.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "arch007",
+      "type": "mc",
+      "topic": "Programmastructuur",
+      "text": "Welke user interface bibliotheek wordt gebruikt?",
+      "choices": [
+        "Streamlit",
+        "Django",
+        "React"
+      ],
+      "answer": 0,
+      "explanation": "Streamlit zorgt voor knoppen, selecties en dynamische layouts.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "arch008",
+      "type": "mc",
+      "topic": "Programmastructuur",
+      "text": "Wat is de functie van session_state in Streamlit?",
+      "choices": [
+        "Pagina opmaak",
+        "Opslaan van voortgang tijdens quiz",
+        "Server beveiliging"
+      ],
+      "answer": 1,
+      "explanation": "Session_state bewaart index, score en gekozen vragen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "arch009",
+      "type": "mc",
+      "topic": "Programmastructuur",
+      "text": "Waarom is object geori\u00ebnteerd programmeren handig in dit project?",
+      "choices": [
+        "Minder bestanden nodig",
+        "Betere structuur en herbruikbare onderdelen",
+        "Sneller typen"
+      ],
+      "answer": 1,
+      "explanation": "OOP maakt het systeem schaalbaar en overzichtelijk.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "arch010",
+      "type": "mc",
+      "topic": "Programmastructuur",
+      "text": "Welke output produceert het algoritme?",
+      "choices": [
+        "Een lijst geselecteerde vragen",
+        "HTML code",
+        "SQL queries"
+      ],
+      "answer": 0,
+      "explanation": "Het algoritme levert een lijst met vragen die getoond moeten worden.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "arch011",
+      "type": "mc",
+      "topic": "Programmastructuur",
+      "text": "Wat doet de Admin interface?",
+      "choices": [
+        "Vragen beheren",
+        "Scores berekenen",
+        "Programma stoppen"
+      ],
+      "answer": 0,
+      "explanation": "In de Admin kun je vakken, vragen en afbeeldingen beheren.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "arch012",
+      "type": "mc",
+      "topic": "Programmastructuur",
+      "text": "Wat doet smart_select_questions?",
+      "choices": [
+        "Selecteert slimme volgorde van vragen",
+        "Uploadt afbeeldingen",
+        "Beheert Excel imports"
+      ],
+      "answer": 0,
+      "explanation": "Deze functie gebruikt het algoritme om vragen adaptief te kiezen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "arch013",
+      "type": "mc",
+      "topic": "Programmastructuur",
+      "text": "Waarom worden bestanden op GitHub opgeslagen?",
+      "choices": [
+        "Om samen te werken en geschiedenis centraal te bewaren",
+        "Omdat lokale opslag sneller is",
+        "Omdat JSON niet lokaal kan"
+      ],
+      "answer": 0,
+      "explanation": "GitHub maakt opslag deelbaar en persistent.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "arch014",
+      "type": "mc",
+      "topic": "Programmastructuur",
+      "text": "Wat betekent 'Input/Output' in dit project?",
+      "choices": [
+        "Invoer/uitvoer van bestanden en gebruikersacties",
+        "Een USB-poort",
+        "Geluidssignalen"
+      ],
+      "answer": 0,
+      "explanation": "Input zijn user keuzes en loaded bestanden; Output zijn scores, JSON en UI reacties.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "arch015",
+      "type": "mc",
+      "topic": "Programmastructuur",
+      "text": "Wat gebeurt er bij een fout antwoord volgens het algoritme?",
+      "choices": [
+        "Vraag wordt verwijderd",
+        "Vraag gaat terug naar box 0",
+        "Vraag wordt overgeslagen"
+      ],
+      "answer": 1,
+      "explanation": "Fout? Dan opnieuw oefenen \u2192 box 0.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "arch016",
+      "type": "mc",
+      "topic": "Programmastructuur",
+      "text": "Waarom heeft elke vraag een unieke id?",
+      "choices": [
+        "Voor grafische weergave",
+        "Om geschiedenis correct op te slaan",
+        "Voor styling doeleinden"
+      ],
+      "answer": 1,
+      "explanation": "De id koppelt quizvragen aan history-tracking.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "arch017",
+      "type": "mc",
+      "topic": "Programmastructuur",
+      "text": "Wat doet de Admin bij een Excel import?",
+      "choices": [
+        "Maakt HTML bestanden",
+        "Converteert Excel naar JSON",
+        "Start de quiz automatisch"
+      ],
+      "answer": 1,
+      "explanation": "Excel wordt omgezet naar JSON voor gebruik in de quiz.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "arch018",
+      "type": "mc",
+      "topic": "Programmastructuur",
+      "text": "Wat bewaart \u2018correct\u2019 en \u2018wrong\u2019 in history?",
+      "choices": [
+        "Aantal keren juist/fout",
+        "Lettertype",
+        "UI instellingen"
+      ],
+      "answer": 0,
+      "explanation": "Deze statistieken bepalen hoe goed je een vraag kent.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "arch019",
+      "type": "mc",
+      "topic": "Programmastructuur",
+      "text": "Waarvoor is de box-waarde in history?",
+      "choices": [
+        "Voor UI posities",
+        "Voor vraagprioriteit",
+        "Voor kleurinstellingen"
+      ],
+      "answer": 1,
+      "explanation": "De box bepaalt de wachttijd en prioriteit in het algoritme.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "arch020",
+      "type": "mc",
+      "topic": "Programmastructuur",
+      "text": "Waarom is Streamlit geschikt voor dit project?",
+      "choices": [
+        "Maakt UI bouwen eenvoudig",
+        "Is alleen voor beeldbewerking",
+        "Ondersteunt geen Python"
+      ],
+      "answer": 0,
+      "explanation": "Streamlit biedt eenvoudige UI-componenten en is ideaal voor interactieve tools.",
+      "image_url": "",
+      "difficulty": 2
+    }
   ]
 }
