@@ -59,7 +59,7 @@ def safe_img(url):
 
 
 # -------------------------------------------------------------
-# LOAD JSON (API – altijd nieuwste versie)
+# LOAD JSON VIA API (altijd nieuwste versie)
 # -------------------------------------------------------------
 def load_data(_reload):
 
@@ -143,6 +143,7 @@ st.session_state.setdefault("edit_vak", None)
 st.session_state.setdefault("edit_idx", None)
 st.session_state.setdefault("reload_key", 0)
 st.session_state.setdefault("confirm_delete", None)
+st.session_state.setdefault("delete_warning", False)
 
 
 # -------------------------------------------------------------
@@ -190,20 +191,44 @@ for i, q in enumerate(vragen):
             st.session_state.mode = "edit"
             st.session_state.edit_vak = vak
             st.session_state.edit_idx = i
+            st.session_state.delete_warning = False
             st.rerun()
 
     with c3:
         if st.button("❌", key=f"del_{vak}_{i}"):
 
-            # 🚫 FIx: Verwijderen blokkeren tijdens edit-mode
+            # ❌ Prevent deletion during edit mode
             if st.session_state.mode == "edit":
-                st.warning("Je kunt geen vraag verwijderen terwijl je een vraag bewerkt.")
+                st.session_state.delete_warning = True
                 st.session_state.confirm_delete = None
-                st.rerun()
+                st.stop()   # ← stop renderen en toon warning
+   # ← geen rerun, laat de warning zien
 
-            # Normale verwijder-flow
+            # Normale delete-flow
             st.session_state.confirm_delete = (vak, i)
+            st.session_state.delete_warning = False
             st.rerun()
+
+
+# -------------------------------------------------------------
+# DELETE WARNING (HORIZONTAL MESSAGE)
+# -------------------------------------------------------------
+if st.session_state.delete_warning:
+    st.markdown(
+        """
+        <div style="
+            background-color:#fff4c2;
+            padding:16px;
+            border-left:6px solid #ffcc00;
+            border-radius:4px;
+            margin:20px 0;
+            font-size:16px;
+        ">
+            ⚠️ Je kunt geen vraag verwijderen terwijl je een vraag aan het bewerken bent.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 
 # -------------------------------------------------------------
@@ -226,11 +251,13 @@ if st.session_state.confirm_delete is not None:
                 st.error(f"Fout bij verwijderen: {e}")
 
             st.session_state.confirm_delete = None
+            st.session_state.delete_warning = False
             st.rerun()
 
     with c2:
         if st.button("Nee, annuleren"):
             st.session_state.confirm_delete = None
+            st.session_state.delete_warning = False
             st.rerun()
 
 
@@ -293,10 +320,12 @@ if st.session_state.mode == "edit":
 
         if save_json(data):
             st.session_state.mode = "new"
+            st.session_state.delete_warning = False
             st.rerun()
 
     if st.button("Annuleren"):
         st.session_state.mode = "new"
+        st.session_state.delete_warning = False
         st.rerun()
 
 
@@ -311,7 +340,7 @@ if st.session_state.mode == "new":
     nt = st.text_input("Vraagtekst")
     ntp = st.selectbox("Type", ["mc", "tf", "input"])
     ntopic = st.text_input("Topic")
-    nexp = st.text_area("Uitleg")
+    nexp = st.textarea("Uitleg")
 
     if ntp == "mc":
         nop = st.text_input("Opties")
@@ -328,29 +357,31 @@ if st.session_state.mode == "new":
     if st.button("Toevoegen"):
         if nt.strip() == "":
             st.error("Vraagtekst mag niet leeg zijn.")
-        else:
+            st.stop()   # ← stop renderen en toon warning
 
-            img = ""
-            if nimg:
-                ext = nimg.name.split(".")[-1]
-                fname = f"{vak}_{uuid.uuid4().hex[:6]}.{ext}"
-                url = upload_image(nimg.read(), fname)
-                if url:
-                    img = url
 
-            newq = {
-                "id": f"q{uuid.uuid4().hex[:6]}",
-                "text": nt,
-                "type": ntp,
-                "topic": ntopic,
-                "explanation": nexp,
-                "choices": [s.strip() for s in nop.split(",")] if ntp == "mc" else [],
-                "answer": nans,
-                "image_url": img,
-            }
+        img = ""
+        if nimg:
+            ext = nimg.name.split(".")[-1]
+            fname = f"{vak}_{uuid.uuid4().hex[:6]}.{ext}"
+            url = upload_image(nimg.read(), fname)
+            if url:
+                img = url
 
-            data[vak].append(newq)
+        newq = {
+            "id": f"q{uuid.uuid4().hex[:6]}",
+            "text": nt,
+            "type": ntp,
+            "topic": ntopic,
+            "explanation": nexp,
+            "choices": [s.strip() for s in nop.split(",")] if ntp == "mc" else [],
+            "answer": nans,
+            "image_url": img,
+        }
 
-            if save_json(data):
-                st.success("Toegevoegd!")
-                st.rerun()
+        data[vak].append(newq)
+
+        if save_json(data):
+            st.success("Toegevoegd!")
+            st.session_state.delete_warning = False
+            st.rerun()
