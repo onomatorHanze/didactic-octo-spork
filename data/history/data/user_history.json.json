@@ -1,5 +1,12 @@
 {
   "user": "data/user_history.json",
-  "history": {},
+  "history": {
+    "q1": {
+      "last": "2025-11-20T13:13:45.617725",
+      "box": 1,
+      "correct": 1,
+      "wrong": 0
+    }
+  },
   "tag_stats": {}
 }
