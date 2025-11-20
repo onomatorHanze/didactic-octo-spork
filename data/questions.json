@@ -78,20 +78,6 @@
       "tags": "[\"tangens\",\"hoek\"]",
       "difficulty": 1,
       "image_url": "nan"
-    },
-    {
-      "id": "q7",
-      "type": "input",
-      "topic": "Goniometrie",
-      "text": "Bereken sin(90\u00b0)",
-      "choices": [],
-      "answer": "nan",
-      "explanation": "sin(90\u00b0)=1",
-      "image_path": "",
-      "formula_latex": "",
-      "tags": "[\"sinus\",\"hoek\"]",
-      "difficulty": 1,
-      "image_url": "nan"
     }
   ],
   "AC": [
