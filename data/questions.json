@@ -177,24 +177,6 @@
       "tags": "[\"cosinus\",\"hoek\"]",
       "difficulty": 1,
       "image_url": "nan"
-    },
-    {
-      "id": "q14",
-      "type": "mc",
-      "topic": "Goniometrie",
-      "text": "Wat is de formule om een zijde te berekenen bij een rechte driehoek met bekende hoek en schuine zijde?",
-      "choices": [
-        "sinusregel",
-        "cosinusregel",
-        "tangensregel"
-      ],
-      "answer": 0,
-      "explanation": "overstaande = schuine * sin(\u03b1)",
-      "image_path": "",
-      "formula_latex": "",
-      "tags": "[\"sinus\",\"berekening\"]",
-      "difficulty": 2,
-      "image_url": "nan"
     }
   ],
   "AC": [
