@@ -1,5 +1,12 @@
 {
   "user": "default",
-  "history": {},
+  "history": {
+    "q1": {
+      "last": "2025-11-20T13:31:08.519923",
+      "box": 1,
+      "correct": 1,
+      "wrong": 0
+    }
+  },
   "tag_stats": {}
 }
