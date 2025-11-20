@@ -1,21 +1,6 @@
 {
   "DC": [],
-  "Wiskunde 3": [
-    {
-      "id": "q6",
-      "type": "input",
-      "topic": "Goniometrie",
-      "text": "Bereken tan(45\u00b0)",
-      "choices": [],
-      "answer": "nan",
-      "explanation": "tan(45\u00b0)=1",
-      "image_path": "",
-      "formula_latex": "",
-      "tags": "[\"tangens\",\"hoek\"]",
-      "difficulty": 1,
-      "image_url": "nan"
-    }
-  ],
+  "Wiskunde 3": [],
   "AC": [
     {
       "id": "q1",
