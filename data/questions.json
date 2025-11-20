@@ -46,16 +46,6 @@
       "choices": [],
       "answer": "Nee?",
       "image_url": "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/images/DC_273b50.png"
-    },
-    {
-      "id": "q9675b2",
-      "text": "Nieuwe vragen toevoegen, werkt dat nu?1",
-      "type": "tf",
-      "topic": "",
-      "explanation": "",
-      "choices": [],
-      "answer": false,
-      "image_url": ""
     }
   ],
   "Wiskunde 3": [
