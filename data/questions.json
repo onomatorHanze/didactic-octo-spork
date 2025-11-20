@@ -179,20 +179,6 @@
       "image_url": "nan"
     },
     {
-      "id": "q13",
-      "type": "input",
-      "topic": "Goniometrie",
-      "text": "Bereken sin(0\u00b0)",
-      "choices": [],
-      "answer": "nan",
-      "explanation": "sin(0\u00b0)=0",
-      "image_path": "",
-      "formula_latex": "",
-      "tags": "[\"sinus\",\"hoek\"]",
-      "difficulty": 1,
-      "image_url": "nan"
-    },
-    {
       "id": "q14",
       "type": "mc",
       "topic": "Goniometrie",
