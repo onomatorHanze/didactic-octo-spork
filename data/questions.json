@@ -405,5 +405,64 @@
       "answer": "ds",
       "image_url": ""
     }
+  ],
+  "Wiskunde": [
+    {
+      "id": "q001",
+      "type": "mc",
+      "topic": "Breuken",
+      "text": "Wat is 1/2?",
+      "choices": [
+        "0.5",
+        "2",
+        "1/3"
+      ],
+      "answer": "0",
+      "explanation": "1/2 is gelijk aan 0.5.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "q002",
+      "type": "input",
+      "topic": "Breuken",
+      "text": "Vul de decimale waarde in van 2/4:",
+      "choices": [],
+      "answer": "0.5",
+      "explanation": "2/4 = 0.5",
+      "image_url": "nan",
+      "difficulty": 1
+    }
+  ],
+  "Natuurkunde": [
+    {
+      "id": "q003",
+      "type": "tf",
+      "topic": "Licht",
+      "text": "Licht is zowel een golf als een deeltje.",
+      "choices": [],
+      "answer": "True",
+      "explanation": "Volgens de kwantummechanica is licht een golf-deeltje-dualiteit.",
+      "image_url": "nan",
+      "difficulty": 2
+    }
+  ],
+  "Biologie": [
+    {
+      "id": "q004",
+      "type": "mc",
+      "topic": "Cellen",
+      "text": "Welke celonderdelen komen voor in planten maar niet in dieren?",
+      "choices": [
+        "Celwand",
+        "Chloroplast",
+        "Mitochondrium",
+        "Kern"
+      ],
+      "answer": "0",
+      "explanation": "Planten hebben een celwand; dierlijke cellen niet.",
+      "image_url": "nan",
+      "difficulty": 2
+    }
   ]
 }
