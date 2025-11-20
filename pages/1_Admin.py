@@ -172,6 +172,35 @@ if vak:
 else:
     vragen = []
 
+# -------------------------------------------------------------
+# VAK TOEVOEGEN
+# -------------------------------------------------------------
+st.markdown("### ➕ Nieuw vak toevoegen")
+
+new_vak = st.text_input("Nieuwe vaknaam:", key="new_vak_input")
+
+if st.button("Vak toevoegen"):
+    if st.session_state.mode == "edit":
+        st.warning("Je kunt geen nieuw vak toevoegen terwijl je een vraag bewerkt.")
+        st.stop()
+
+    if not new_vak or new_vak.strip() == "":
+        st.warning("Vul eerst een naam in.")
+        st.stop()
+
+    new_vak = new_vak.strip()
+
+    if new_vak in data:
+        st.error(f"Vak '{new_vak}' bestaat al!")
+        st.stop()
+
+    # nieuw vak toevoegen
+    data[new_vak] = []
+
+    if save_json(data):
+        st.success(f"Vak '{new_vak}' toegevoegd!")
+        st.session_state["new_vak_input"] = ""
+        st.rerun()
 
 # -------------------------------------------------------------
 # VAK VERWIJDEREN
