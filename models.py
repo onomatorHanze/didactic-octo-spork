@@ -130,39 +130,86 @@ class QuestionBank:
 
 # ------------------------------------------------------------
 # 3️⃣ Voortgang en resultaten
-# ------------------------------------------------------------
+# ------------------------------------------------------------import json
+import requests
+from datetime import datetime
+import base64
+import os
+
+
 class HistoryStore:
-    def __init__(self, path="data/user_history.json"):
-        self.path = path
-        if os.path.exists(path):
-            with open(path, "r", encoding="utf-8") as f:
-                self.data = json.load(f)
+    """
+    History wordt opgeslagen op GitHub via dezelfde methode als questions.json.
+    """
+
+    def __init__(self, user="default",
+                 token=None,
+                 repo_owner=None,
+                 repo_name=None):
+
+        self.user = user
+        self.token = token or os.environ.get("GITHUB_TOKEN")
+        self.repo_owner = repo_owner or os.environ.get("REPO_OWNER")
+        self.repo_name = repo_name or os.environ.get("REPO_NAME")
+
+        self.path = f"data/history/{self.user}.json"
+
+        self.api_url = f"https://api.github.com/repos/{self.repo_owner}/{self.repo_name}/contents/{self.path}"
+        self.headers = {"Authorization": f"token {self.token}"}
+
+        self.data = self._load()
+
+    # ---------------------------------------------------------
+    # Laden
+    # ---------------------------------------------------------
+    def _load(self):
+        r = requests.get(self.api_url, headers=self.headers)
+
+        if r.status_code == 200:
+            content = r.json().get("content", "")
+            decoded = base64.b64decode(content).decode("utf-8")
+            return json.loads(decoded)
         else:
-            self.data = {"user": "default", "history": {}, "tag_stats": {}, "sessions": []}
-            self.save()
+            # Nieuw bestand aanmaken
+            data = {"user": self.user, "history": {}, "tag_stats": {}}
+            self._save(data)
+            return data
 
-    def save(self):
-        with open(self.path, "w", encoding="utf-8") as f:
-            json.dump(self.data, f, indent=2)
+    # ---------------------------------------------------------
+    # Opslaan
+    # ---------------------------------------------------------
+    def _save(self, content):
+        encoded = base64.b64encode(json.dumps(content, indent=2).encode()).decode()
 
+        # probeer sha te lezen
+        meta = requests.get(self.api_url, headers=self.headers).json()
+        sha = meta.get("sha", None)
+
+        payload = {
+            "message": f"Update history {self.user}",
+            "content": encoded,
+        }
+        if sha:
+            payload["sha"] = sha
+
+        requests.put(self.api_url, headers=self.headers, json=payload)
+
+    # ---------------------------------------------------------
+    # Update vraagresultaat
+    # ---------------------------------------------------------
     def update_question(self, qid, is_correct):
-        qhist = self.data["history"].get(qid, {"last": None, "box": 0, "correct": 0, "wrong": 0})
-        qhist["last"] = datetime.now().isoformat()
-        if is_correct:
-            qhist["box"] = min(qhist["box"] + 1, 5)
-            qhist["correct"] += 1
-        else:
-            qhist["box"] = 0
-            qhist["wrong"] += 1
-        self.data["history"][qid] = qhist
-        self.save()
+        hist = self.data["history"].get(qid, {"last": None, "box": 0, "correct": 0, "wrong": 0})
 
-    def update_tags(self, tags, is_correct):
-        for tag in tags:
-            stat = self.data["tag_stats"].get(tag, {"correct": 0, "wrong": 0})
-            if is_correct:
-                stat["correct"] += 1
-            else:
-                stat["wrong"] += 1
-            self.data["tag_stats"][tag] = stat
-        self.save()
+        hist["last"] = datetime.now().isoformat()
+
+        if is_correct:
+            hist["box"] = min(hist["box"] + 1, 5)
+            hist["correct"] += 1
+        else:
+            hist["box"] = 0
+            hist["wrong"] += 1
+
+        self.data["history"][qid] = hist
+        self._save(self.data)
+
+
