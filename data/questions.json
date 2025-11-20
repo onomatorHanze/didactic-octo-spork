@@ -76,6 +76,16 @@
       "choices": [],
       "answer": true,
       "image_url": ""
+    },
+    {
+      "id": "qaa2270",
+      "text": "Wat zou wel werken? ",
+      "type": "tf",
+      "topic": "",
+      "explanation": "",
+      "choices": [],
+      "answer": true,
+      "image_url": ""
     }
   ],
   "Wiskunde 3": [
