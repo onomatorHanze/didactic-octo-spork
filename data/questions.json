@@ -273,20 +273,6 @@
       "tags": "[\"eenheidscirkel\",\"cosinus\"]",
       "difficulty": 2,
       "image_url": "nan"
-    },
-    {
-      "id": "q19",
-      "type": "tf",
-      "topic": "Goniometrie",
-      "text": "In de eenheidscirkel is de y-co\u00f6rdinaat gelijk aan de tangens.",
-      "choices": [],
-      "answer": false,
-      "explanation": "Nee, dat is de sinus.",
-      "image_path": "",
-      "formula_latex": "",
-      "tags": "[\"eenheidscirkel\",\"tangens\"]",
-      "difficulty": 2,
-      "image_url": "nan"
     }
   ],
   "AC": [
