@@ -48,6 +48,12 @@
       "box": 1,
       "correct": 1,
       "wrong": 0
+    },
+    "arch006": {
+      "last": "2025-11-20T15:45:00.384294",
+      "box": 0,
+      "correct": 0,
+      "wrong": 1
     }
   },
   "tag_stats": {}
