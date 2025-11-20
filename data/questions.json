@@ -39,23 +39,13 @@
     },
     {
       "id": "q3b328c",
-      "text": "Werkt het nu?",
+      "text": "Werkt het nu",
       "type": "input",
       "topic": "",
       "explanation": "",
       "choices": [],
-      "answer": "Nee?",
+      "answer": "Nee",
       "image_url": "https://raw.githubusercontent.com/onomatorHanze/didactic-octo-spork/main/data/images/DC_273b50.png"
-    },
-    {
-      "id": "qb41d19",
-      "text": "Dieptrekken wat is dat?",
-      "type": "input",
-      "topic": "",
-      "explanation": "",
-      "choices": [],
-      "answer": "125",
-      "image_url": ""
     }
   ],
   "Wiskunde 3": [
