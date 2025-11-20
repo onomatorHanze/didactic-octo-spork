@@ -60,6 +60,12 @@
       "box": 0,
       "correct": 0,
       "wrong": 1
+    },
+    "arch008": {
+      "last": "2025-11-20T15:45:11.536505",
+      "box": 0,
+      "correct": 0,
+      "wrong": 1
     }
   },
   "tag_stats": {}
