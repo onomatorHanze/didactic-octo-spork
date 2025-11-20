@@ -92,20 +92,6 @@
       "tags": "[\"sinus\",\"hoek\"]",
       "difficulty": 1,
       "image_url": "nan"
-    },
-    {
-      "id": "q8",
-      "type": "input",
-      "topic": "Goniometrie",
-      "text": "Bereken cos(60\u00b0)",
-      "choices": [],
-      "answer": "nan",
-      "explanation": "cos(60\u00b0)=0.5",
-      "image_path": "",
-      "formula_latex": "",
-      "tags": "[\"cosinus\",\"hoek\"]",
-      "difficulty": 1,
-      "image_url": "nan"
     }
   ],
   "AC": [
