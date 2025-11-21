@@ -1613,5 +1613,1293 @@
       "image_url": "",
       "difficulty": 2
     }
+  ],
+  "UI": [
+    {
+      "id": "q100",
+      "type": "mc",
+      "topic": "Rendering",
+      "text": "Waarom wordt deze functie gebruikt?\n\nresult = [q for q in result if q.topic in topics]",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: result = [q for q in result if q.topic in topics]",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "q104",
+      "type": "mc",
+      "topic": "Session State",
+      "text": "Wat doet de volgende code?\n\nrandom.choices(candidates, weights=weights, k=n)",
+      "choices": [
+        "Initialiseert een object",
+        "Voert een API-call uit",
+        "Maakt een lijst",
+        "Slaat data op"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: random.choices(candidates, weights=weights, k=n)",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q110",
+      "type": "mc",
+      "topic": "Rendering",
+      "text": "Wat doet de volgende code?\n\nws.append(headers)",
+      "choices": [
+        "Initialiseert een object",
+        "Voert een API-call uit",
+        "Maakt een lijst",
+        "Slaat data op"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: ws.append(headers)",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "q112",
+      "type": "mc",
+      "topic": "Session State",
+      "text": "Waarom wordt deze functie gebruikt?\n\nrandom.choices(candidates, weights=weights, k=n)",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: random.choices(candidates, weights=weights, k=n)",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q124",
+      "type": "mc",
+      "topic": "Rendering",
+      "text": "Waarom wordt deze functie gebruikt?\n\ndf = pd.read_excel(excel_file)",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: df = pd.read_excel(excel_file)",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "q131",
+      "type": "mc",
+      "topic": "Rendering",
+      "text": "Welke variabele wordt hier gemuteerd?\n\nhistory.update_question(q['id'], is_correct)",
+      "choices": [
+        "self.data",
+        "question.id",
+        "ws[1]",
+        "choices"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: history.update_question(q['id'], is_correct)",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q137",
+      "type": "mc",
+      "topic": "Session State",
+      "text": "Waarom wordt deze functie gebruikt?\n\nr = requests.get(JSON_URL).json()",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: r = requests.get(JSON_URL).json()",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q149",
+      "type": "mc",
+      "topic": "Session State",
+      "text": "Welke variabele wordt hier gemuteerd?\n\nr = requests.get(JSON_URL).json()",
+      "choices": [
+        "self.data",
+        "question.id",
+        "ws[1]",
+        "choices"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: r = requests.get(JSON_URL).json()",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q150",
+      "type": "mc",
+      "topic": "Rendering",
+      "text": "Welke variabele wordt hier gemuteerd?\n\nhistory.update_question(q['id'], is_correct)",
+      "choices": [
+        "self.data",
+        "question.id",
+        "ws[1]",
+        "choices"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: history.update_question(q['id'], is_correct)",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q157",
+      "type": "mc",
+      "topic": "Rendering",
+      "text": "Wat is het resultaat van deze expressie?\n\nchoices = choices or []",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: choices = choices or []",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q162",
+      "type": "mc",
+      "topic": "Session State",
+      "text": "Wat doet de volgende code?\n\noverdue = (datetime.now() - last_time) > self.BOX_WAIT[box]",
+      "choices": [
+        "Initialiseert een object",
+        "Voert een API-call uit",
+        "Maakt een lijst",
+        "Slaat data op"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: overdue = (datetime.now() - last_time) > self.BOX_WAIT[box]",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q163",
+      "type": "mc",
+      "topic": "Session State",
+      "text": "Wat doet de volgende code?\n\nresult = [q for q in result if q.topic in topics]",
+      "choices": [
+        "Initialiseert een object",
+        "Voert een API-call uit",
+        "Maakt een lijst",
+        "Slaat data op"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: result = [q for q in result if q.topic in topics]",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "q173",
+      "type": "mc",
+      "topic": "Rendering",
+      "text": "Waarom wordt deze functie gebruikt?\n\nrandom.choices(candidates, weights=weights, k=n)",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: random.choices(candidates, weights=weights, k=n)",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "q175",
+      "type": "mc",
+      "topic": "Session State",
+      "text": "Waarom wordt deze functie gebruikt?\n\nresult = [q for q in result if q.topic in topics]",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: result = [q for q in result if q.topic in topics]",
+      "image_url": "nan",
+      "difficulty": 5
+    }
+  ],
+  "Models": [
+    {
+      "id": "q101",
+      "type": "mc",
+      "topic": "QuestionBank",
+      "text": "Welke variabele wordt hier gemuteerd?\n\nws.append(headers)",
+      "choices": [
+        "self.data",
+        "question.id",
+        "ws[1]",
+        "choices"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: ws.append(headers)",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "q102",
+      "type": "mc",
+      "topic": "Question Class",
+      "text": "Welke variabele wordt hier gemuteerd?\n\nrandom.choices(candidates, weights=weights, k=n)",
+      "choices": [
+        "self.data",
+        "question.id",
+        "ws[1]",
+        "choices"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: random.choices(candidates, weights=weights, k=n)",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "q106",
+      "type": "mc",
+      "topic": "HistoryStore",
+      "text": "Welke variabele wordt hier gemuteerd?\n\ndf = pd.read_excel(excel_file)",
+      "choices": [
+        "self.data",
+        "question.id",
+        "ws[1]",
+        "choices"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: df = pd.read_excel(excel_file)",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q107",
+      "type": "mc",
+      "topic": "Question Class",
+      "text": "Wat is het resultaat van deze expressie?\n\noverdue = (datetime.now() - last_time) > self.BOX_WAIT[box]",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: overdue = (datetime.now() - last_time) > self.BOX_WAIT[box]",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q108",
+      "type": "mc",
+      "topic": "Question Class",
+      "text": "Wat is het resultaat van deze expressie?\n\npayload = {'message': msg, 'content': encoded}",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: payload = {'message': msg, 'content': encoded}",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "q113",
+      "type": "mc",
+      "topic": "Question Class",
+      "text": "Wat doet de volgende code?\n\npayload = {'message': msg, 'content': encoded}",
+      "choices": [
+        "Initialiseert een object",
+        "Voert een API-call uit",
+        "Maakt een lijst",
+        "Slaat data op"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: payload = {'message': msg, 'content': encoded}",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "q114",
+      "type": "mc",
+      "topic": "Question Class",
+      "text": "Welke variabele wordt hier gemuteerd?\n\nrandom.choices(candidates, weights=weights, k=n)",
+      "choices": [
+        "self.data",
+        "question.id",
+        "ws[1]",
+        "choices"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: random.choices(candidates, weights=weights, k=n)",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q116",
+      "type": "mc",
+      "topic": "QuestionBank",
+      "text": "Wat doet de volgende code?\n\nst.session_state['index'] += 1",
+      "choices": [
+        "Initialiseert een object",
+        "Voert een API-call uit",
+        "Maakt een lijst",
+        "Slaat data op"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: st.session_state['index'] += 1",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q119",
+      "type": "mc",
+      "topic": "HistoryStore",
+      "text": "Wat is het resultaat van deze expressie?\n\nhistory.update_question(q['id'], is_correct)",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: history.update_question(q['id'], is_correct)",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "q120",
+      "type": "mc",
+      "topic": "QuestionBank",
+      "text": "Waarom wordt deze functie gebruikt?\n\ndf = pd.read_excel(excel_file)",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: df = pd.read_excel(excel_file)",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q121",
+      "type": "mc",
+      "topic": "Question Class",
+      "text": "Wat doet de volgende code?\n\nrandom.choices(candidates, weights=weights, k=n)",
+      "choices": [
+        "Initialiseert een object",
+        "Voert een API-call uit",
+        "Maakt een lijst",
+        "Slaat data op"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: random.choices(candidates, weights=weights, k=n)",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q125",
+      "type": "mc",
+      "topic": "Question Class",
+      "text": "Wat doet de volgende code?\n\nrandom.choices(candidates, weights=weights, k=n)",
+      "choices": [
+        "Initialiseert een object",
+        "Voert een API-call uit",
+        "Maakt een lijst",
+        "Slaat data op"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: random.choices(candidates, weights=weights, k=n)",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "q126",
+      "type": "mc",
+      "topic": "QuestionBank",
+      "text": "Welke variabele wordt hier gemuteerd?\n\nr = requests.get(JSON_URL).json()",
+      "choices": [
+        "self.data",
+        "question.id",
+        "ws[1]",
+        "choices"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: r = requests.get(JSON_URL).json()",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q127",
+      "type": "mc",
+      "topic": "Question Class",
+      "text": "Waarom wordt deze functie gebruikt?\n\nhistory.update_question(q['id'], is_correct)",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: history.update_question(q['id'], is_correct)",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q129",
+      "type": "mc",
+      "topic": "QuestionBank",
+      "text": "Wat doet de volgende code?\n\ndf = pd.read_excel(excel_file)",
+      "choices": [
+        "Initialiseert een object",
+        "Voert een API-call uit",
+        "Maakt een lijst",
+        "Slaat data op"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: df = pd.read_excel(excel_file)",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q133",
+      "type": "mc",
+      "topic": "QuestionBank",
+      "text": "Wat doet de volgende code?\n\nrandom.choices(candidates, weights=weights, k=n)",
+      "choices": [
+        "Initialiseert een object",
+        "Voert een API-call uit",
+        "Maakt een lijst",
+        "Slaat data op"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: random.choices(candidates, weights=weights, k=n)",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q135",
+      "type": "mc",
+      "topic": "QuestionBank",
+      "text": "Wat is het resultaat van deze expressie?\n\nresult = [q for q in result if q.topic in topics]",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: result = [q for q in result if q.topic in topics]",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "q138",
+      "type": "mc",
+      "topic": "QuestionBank",
+      "text": "Waarom wordt deze functie gebruikt?\n\npayload = {'message': msg, 'content': encoded}",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: payload = {'message': msg, 'content': encoded}",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "q139",
+      "type": "mc",
+      "topic": "Question Class",
+      "text": "Welke variabele wordt hier gemuteerd?\n\nrandom.choices(candidates, weights=weights, k=n)",
+      "choices": [
+        "self.data",
+        "question.id",
+        "ws[1]",
+        "choices"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: random.choices(candidates, weights=weights, k=n)",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "q142",
+      "type": "mc",
+      "topic": "Question Class",
+      "text": "Waarom wordt deze functie gebruikt?\n\noverdue = (datetime.now() - last_time) > self.BOX_WAIT[box]",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: overdue = (datetime.now() - last_time) > self.BOX_WAIT[box]",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q144",
+      "type": "mc",
+      "topic": "QuestionBank",
+      "text": "Welke variabele wordt hier gemuteerd?\n\nresult = [q for q in result if q.topic in topics]",
+      "choices": [
+        "self.data",
+        "question.id",
+        "ws[1]",
+        "choices"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: result = [q for q in result if q.topic in topics]",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "q147",
+      "type": "mc",
+      "topic": "Question Class",
+      "text": "Wat is het resultaat van deze expressie?\n\npayload = {'message': msg, 'content': encoded}",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: payload = {'message': msg, 'content': encoded}",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q151",
+      "type": "mc",
+      "topic": "QuestionBank",
+      "text": "Waarom wordt deze functie gebruikt?\n\noverdue = (datetime.now() - last_time) > self.BOX_WAIT[box]",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: overdue = (datetime.now() - last_time) > self.BOX_WAIT[box]",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "q153",
+      "type": "mc",
+      "topic": "Question Class",
+      "text": "Wat doet de volgende code?\n\nchoices = choices or []",
+      "choices": [
+        "Initialiseert een object",
+        "Voert een API-call uit",
+        "Maakt een lijst",
+        "Slaat data op"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: choices = choices or []",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "q155",
+      "type": "mc",
+      "topic": "Question Class",
+      "text": "Waarom wordt deze functie gebruikt?\n\nhistory.update_question(q['id'], is_correct)",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: history.update_question(q['id'], is_correct)",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "q159",
+      "type": "mc",
+      "topic": "QuestionBank",
+      "text": "Wat is het resultaat van deze expressie?\n\nr = requests.get(JSON_URL).json()",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: r = requests.get(JSON_URL).json()",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q165",
+      "type": "mc",
+      "topic": "Question Class",
+      "text": "Wat is het resultaat van deze expressie?\n\nhistory.update_question(q['id'], is_correct)",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: history.update_question(q['id'], is_correct)",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q167",
+      "type": "mc",
+      "topic": "QuestionBank",
+      "text": "Wat is het resultaat van deze expressie?\n\nr = requests.get(JSON_URL).json()",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: r = requests.get(JSON_URL).json()",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "q170",
+      "type": "mc",
+      "topic": "QuestionBank",
+      "text": "Wat is het resultaat van deze expressie?\n\nws.append(headers)",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: ws.append(headers)",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "q171",
+      "type": "mc",
+      "topic": "QuestionBank",
+      "text": "Wat is het resultaat van deze expressie?\n\nr = requests.get(JSON_URL).json()",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: r = requests.get(JSON_URL).json()",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q176",
+      "type": "mc",
+      "topic": "Question Class",
+      "text": "Wat is het resultaat van deze expressie?\n\nrandom.choices(candidates, weights=weights, k=n)",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: random.choices(candidates, weights=weights, k=n)",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q178",
+      "type": "mc",
+      "topic": "HistoryStore",
+      "text": "Wat is het resultaat van deze expressie?\n\nws.append(headers)",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: ws.append(headers)",
+      "image_url": "nan",
+      "difficulty": 1
+    }
+  ],
+  "Engine": [
+    {
+      "id": "q103",
+      "type": "mc",
+      "topic": "Weighting",
+      "text": "Welke variabele wordt hier gemuteerd?\n\nresult = [q for q in result if q.topic in topics]",
+      "choices": [
+        "self.data",
+        "question.id",
+        "ws[1]",
+        "choices"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: result = [q for q in result if q.topic in topics]",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "q105",
+      "type": "mc",
+      "topic": "Leitner Boxes",
+      "text": "Waarom wordt deze functie gebruikt?\n\nst.session_state['index'] += 1",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: st.session_state['index'] += 1",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "q109",
+      "type": "mc",
+      "topic": "Weighting",
+      "text": "Wat is het resultaat van deze expressie?\n\noverdue = (datetime.now() - last_time) > self.BOX_WAIT[box]",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: overdue = (datetime.now() - last_time) > self.BOX_WAIT[box]",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q111",
+      "type": "mc",
+      "topic": "Leitner Boxes",
+      "text": "Wat is het resultaat van deze expressie?\n\nst.session_state['index'] += 1",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: st.session_state['index'] += 1",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q115",
+      "type": "mc",
+      "topic": "Leitner Boxes",
+      "text": "Waarom wordt deze functie gebruikt?\n\noverdue = (datetime.now() - last_time) > self.BOX_WAIT[box]",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: overdue = (datetime.now() - last_time) > self.BOX_WAIT[box]",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q117",
+      "type": "mc",
+      "topic": "Overdue Logic",
+      "text": "Waarom wordt deze functie gebruikt?\n\nhistory.update_question(q['id'], is_correct)",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: history.update_question(q['id'], is_correct)",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q128",
+      "type": "mc",
+      "topic": "Weighting",
+      "text": "Wat is het resultaat van deze expressie?\n\ndf = pd.read_excel(excel_file)",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: df = pd.read_excel(excel_file)",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q130",
+      "type": "mc",
+      "topic": "Overdue Logic",
+      "text": "Wat is het resultaat van deze expressie?\n\nws.append(headers)",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: ws.append(headers)",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q136",
+      "type": "mc",
+      "topic": "Overdue Logic",
+      "text": "Wat doet de volgende code?\n\npayload = {'message': msg, 'content': encoded}",
+      "choices": [
+        "Initialiseert een object",
+        "Voert een API-call uit",
+        "Maakt een lijst",
+        "Slaat data op"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: payload = {'message': msg, 'content': encoded}",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q143",
+      "type": "mc",
+      "topic": "Overdue Logic",
+      "text": "Welke variabele wordt hier gemuteerd?\n\npayload = {'message': msg, 'content': encoded}",
+      "choices": [
+        "self.data",
+        "question.id",
+        "ws[1]",
+        "choices"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: payload = {'message': msg, 'content': encoded}",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "q146",
+      "type": "mc",
+      "topic": "Overdue Logic",
+      "text": "Wat is het resultaat van deze expressie?\n\nst.session_state['index'] += 1",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: st.session_state['index'] += 1",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "q154",
+      "type": "mc",
+      "topic": "Leitner Boxes",
+      "text": "Wat is het resultaat van deze expressie?\n\nrandom.choices(candidates, weights=weights, k=n)",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: random.choices(candidates, weights=weights, k=n)",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "q156",
+      "type": "mc",
+      "topic": "Overdue Logic",
+      "text": "Wat is het resultaat van deze expressie?\n\nhistory.update_question(q['id'], is_correct)",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: history.update_question(q['id'], is_correct)",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "q158",
+      "type": "mc",
+      "topic": "Overdue Logic",
+      "text": "Welke variabele wordt hier gemuteerd?\n\npayload = {'message': msg, 'content': encoded}",
+      "choices": [
+        "self.data",
+        "question.id",
+        "ws[1]",
+        "choices"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: payload = {'message': msg, 'content': encoded}",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "q160",
+      "type": "mc",
+      "topic": "Weighting",
+      "text": "Wat is het resultaat van deze expressie?\n\nresult = [q for q in result if q.topic in topics]",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: result = [q for q in result if q.topic in topics]",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "q161",
+      "type": "mc",
+      "topic": "Overdue Logic",
+      "text": "Waarom wordt deze functie gebruikt?\n\nws.append(headers)",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: ws.append(headers)",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "q168",
+      "type": "mc",
+      "topic": "Weighting",
+      "text": "Wat doet de volgende code?\n\nhistory.update_question(q['id'], is_correct)",
+      "choices": [
+        "Initialiseert een object",
+        "Voert een API-call uit",
+        "Maakt een lijst",
+        "Slaat data op"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: history.update_question(q['id'], is_correct)",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q169",
+      "type": "mc",
+      "topic": "Leitner Boxes",
+      "text": "Welke variabele wordt hier gemuteerd?\n\nws.append(headers)",
+      "choices": [
+        "self.data",
+        "question.id",
+        "ws[1]",
+        "choices"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: ws.append(headers)",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q172",
+      "type": "mc",
+      "topic": "Overdue Logic",
+      "text": "Wat doet de volgende code?\n\ndf = pd.read_excel(excel_file)",
+      "choices": [
+        "Initialiseert een object",
+        "Voert een API-call uit",
+        "Maakt een lijst",
+        "Slaat data op"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: df = pd.read_excel(excel_file)",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q174",
+      "type": "mc",
+      "topic": "Leitner Boxes",
+      "text": "Wat doet de volgende code?\n\nrandom.choices(candidates, weights=weights, k=n)",
+      "choices": [
+        "Initialiseert een object",
+        "Voert een API-call uit",
+        "Maakt een lijst",
+        "Slaat data op"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: random.choices(candidates, weights=weights, k=n)",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "q177",
+      "type": "mc",
+      "topic": "Leitner Boxes",
+      "text": "Wat is het resultaat van deze expressie?\n\noverdue = (datetime.now() - last_time) > self.BOX_WAIT[box]",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: overdue = (datetime.now() - last_time) > self.BOX_WAIT[box]",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q179",
+      "type": "mc",
+      "topic": "Leitner Boxes",
+      "text": "Waarom wordt deze functie gebruikt?\n\nr = requests.get(JSON_URL).json()",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: r = requests.get(JSON_URL).json()",
+      "image_url": "nan",
+      "difficulty": 2
+    }
+  ],
+  "Admin": [
+    {
+      "id": "q118",
+      "type": "mc",
+      "topic": "Excel Import",
+      "text": "Wat is het resultaat van deze expressie?\n\nr = requests.get(JSON_URL).json()",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: r = requests.get(JSON_URL).json()",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q122",
+      "type": "mc",
+      "topic": "Excel Import",
+      "text": "Wat doet de volgende code?\n\nhistory.update_question(q['id'], is_correct)",
+      "choices": [
+        "Initialiseert een object",
+        "Voert een API-call uit",
+        "Maakt een lijst",
+        "Slaat data op"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: history.update_question(q['id'], is_correct)",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q123",
+      "type": "mc",
+      "topic": "Excel Import",
+      "text": "Wat doet de volgende code?\n\nchoices = choices or []",
+      "choices": [
+        "Initialiseert een object",
+        "Voert een API-call uit",
+        "Maakt een lijst",
+        "Slaat data op"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: choices = choices or []",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "q132",
+      "type": "mc",
+      "topic": "GitHub API",
+      "text": "Waarom wordt deze functie gebruikt?\n\nrandom.choices(candidates, weights=weights, k=n)",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: random.choices(candidates, weights=weights, k=n)",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "q134",
+      "type": "mc",
+      "topic": "Excel Import",
+      "text": "Wat is het resultaat van deze expressie?\n\nrandom.choices(candidates, weights=weights, k=n)",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: random.choices(candidates, weights=weights, k=n)",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "q140",
+      "type": "mc",
+      "topic": "Excel Import",
+      "text": "Wat is het resultaat van deze expressie?\n\ndf = pd.read_excel(excel_file)",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: df = pd.read_excel(excel_file)",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "q141",
+      "type": "mc",
+      "topic": "Excel Import",
+      "text": "Wat doet de volgende code?\n\nr = requests.get(JSON_URL).json()",
+      "choices": [
+        "Initialiseert een object",
+        "Voert een API-call uit",
+        "Maakt een lijst",
+        "Slaat data op"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: r = requests.get(JSON_URL).json()",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q145",
+      "type": "mc",
+      "topic": "Excel Import",
+      "text": "Waarom wordt deze functie gebruikt?\n\nst.session_state['index'] += 1",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: st.session_state['index'] += 1",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q148",
+      "type": "mc",
+      "topic": "Excel Import",
+      "text": "Waarom wordt deze functie gebruikt?\n\nresult = [q for q in result if q.topic in topics]",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: result = [q for q in result if q.topic in topics]",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "q152",
+      "type": "mc",
+      "topic": "GitHub API",
+      "text": "Wat is het resultaat van deze expressie?\n\nws.append(headers)",
+      "choices": [
+        "True",
+        "False",
+        "Een lijst",
+        "Een dictionary"
+      ],
+      "answer": 1,
+      "explanation": "Deze vraag test begrip van code: ws.append(headers)",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "q164",
+      "type": "mc",
+      "topic": "GitHub API",
+      "text": "Waarom wordt deze functie gebruikt?\n\nhistory.update_question(q['id'], is_correct)",
+      "choices": [
+        "Filteren van vragen",
+        "Berekenen van gewichten",
+        "Lezen van JSON",
+        "Random kiezen"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: history.update_question(q['id'], is_correct)",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "q166",
+      "type": "mc",
+      "topic": "Excel Import",
+      "text": "Welke variabele wordt hier gemuteerd?\n\nr = requests.get(JSON_URL).json()",
+      "choices": [
+        "self.data",
+        "question.id",
+        "ws[1]",
+        "choices"
+      ],
+      "answer": 0,
+      "explanation": "Deze vraag test begrip van code: r = requests.get(JSON_URL).json()",
+      "image_url": "nan",
+      "difficulty": 5
+    }
   ]
 }
