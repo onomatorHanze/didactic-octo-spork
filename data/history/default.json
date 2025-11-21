@@ -282,6 +282,12 @@
       "box": 0,
       "correct": 0,
       "wrong": 1
+    },
+    "mix001": {
+      "last": "2025-11-21T06:55:24.495694",
+      "box": 1,
+      "correct": 1,
+      "wrong": 0
     }
   },
   "tag_stats": {}
