@@ -372,6 +372,12 @@
       "box": 1,
       "correct": 1,
       "wrong": 0
+    },
+    "q118": {
+      "last": "2025-11-21T14:19:24.655040",
+      "box": 0,
+      "correct": 0,
+      "wrong": 1
     }
   },
   "tag_stats": {}
