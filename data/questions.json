@@ -811,5 +811,807 @@
       "image_url": "",
       "difficulty": 2
     }
+  ],
+  "Python_Algorithm_DeepDive_MC": [
+    {
+      "id": "mcadv001",
+      "type": "mc",
+      "topic": "Algoritmes",
+      "text": "Vraag 1: Hoe wordt 'Algoritmes' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Algoritmes' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv002",
+      "type": "mc",
+      "topic": "GitHub API",
+      "text": "Vraag 2: Hoe wordt 'GitHub API' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'GitHub API' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv003",
+      "type": "mc",
+      "topic": "Streamlit",
+      "text": "Vraag 3: Hoe wordt 'Streamlit' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Streamlit' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv004",
+      "type": "mc",
+      "topic": "Objectgericht programmeren",
+      "text": "Vraag 4: Hoe wordt 'Objectgericht programmeren' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Objectgericht programmeren' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv005",
+      "type": "mc",
+      "topic": "Data\u2011structuren",
+      "text": "Vraag 5: Hoe wordt 'Data\u2011structuren' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Data\u2011structuren' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv006",
+      "type": "mc",
+      "topic": "JSON verwerking",
+      "text": "Vraag 6: Hoe wordt 'JSON verwerking' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'JSON verwerking' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv007",
+      "type": "mc",
+      "topic": "Algoritmes",
+      "text": "Vraag 7: Hoe wordt 'Algoritmes' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Algoritmes' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv008",
+      "type": "mc",
+      "topic": "GitHub API",
+      "text": "Vraag 8: Hoe wordt 'GitHub API' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'GitHub API' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv009",
+      "type": "mc",
+      "topic": "Streamlit",
+      "text": "Vraag 9: Hoe wordt 'Streamlit' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Streamlit' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv010",
+      "type": "mc",
+      "topic": "Objectgericht programmeren",
+      "text": "Vraag 10: Hoe wordt 'Objectgericht programmeren' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Objectgericht programmeren' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv011",
+      "type": "mc",
+      "topic": "Data\u2011structuren",
+      "text": "Vraag 11: Hoe wordt 'Data\u2011structuren' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Data\u2011structuren' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv012",
+      "type": "mc",
+      "topic": "JSON verwerking",
+      "text": "Vraag 12: Hoe wordt 'JSON verwerking' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'JSON verwerking' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv013",
+      "type": "mc",
+      "topic": "Algoritmes",
+      "text": "Vraag 13: Hoe wordt 'Algoritmes' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Algoritmes' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv014",
+      "type": "mc",
+      "topic": "GitHub API",
+      "text": "Vraag 14: Hoe wordt 'GitHub API' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'GitHub API' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv015",
+      "type": "mc",
+      "topic": "Streamlit",
+      "text": "Vraag 15: Hoe wordt 'Streamlit' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Streamlit' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv016",
+      "type": "mc",
+      "topic": "Objectgericht programmeren",
+      "text": "Vraag 16: Hoe wordt 'Objectgericht programmeren' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Objectgericht programmeren' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv017",
+      "type": "mc",
+      "topic": "Data\u2011structuren",
+      "text": "Vraag 17: Hoe wordt 'Data\u2011structuren' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Data\u2011structuren' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv018",
+      "type": "mc",
+      "topic": "JSON verwerking",
+      "text": "Vraag 18: Hoe wordt 'JSON verwerking' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'JSON verwerking' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv019",
+      "type": "mc",
+      "topic": "Algoritmes",
+      "text": "Vraag 19: Hoe wordt 'Algoritmes' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Algoritmes' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv020",
+      "type": "mc",
+      "topic": "GitHub API",
+      "text": "Vraag 20: Hoe wordt 'GitHub API' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'GitHub API' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv021",
+      "type": "mc",
+      "topic": "Streamlit",
+      "text": "Vraag 21: Hoe wordt 'Streamlit' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Streamlit' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv022",
+      "type": "mc",
+      "topic": "Objectgericht programmeren",
+      "text": "Vraag 22: Hoe wordt 'Objectgericht programmeren' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Objectgericht programmeren' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv023",
+      "type": "mc",
+      "topic": "Data\u2011structuren",
+      "text": "Vraag 23: Hoe wordt 'Data\u2011structuren' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Data\u2011structuren' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv024",
+      "type": "mc",
+      "topic": "JSON verwerking",
+      "text": "Vraag 24: Hoe wordt 'JSON verwerking' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'JSON verwerking' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv025",
+      "type": "mc",
+      "topic": "Algoritmes",
+      "text": "Vraag 25: Hoe wordt 'Algoritmes' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Algoritmes' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv026",
+      "type": "mc",
+      "topic": "GitHub API",
+      "text": "Vraag 26: Hoe wordt 'GitHub API' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'GitHub API' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv027",
+      "type": "mc",
+      "topic": "Streamlit",
+      "text": "Vraag 27: Hoe wordt 'Streamlit' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Streamlit' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv028",
+      "type": "mc",
+      "topic": "Objectgericht programmeren",
+      "text": "Vraag 28: Hoe wordt 'Objectgericht programmeren' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Objectgericht programmeren' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv029",
+      "type": "mc",
+      "topic": "Data\u2011structuren",
+      "text": "Vraag 29: Hoe wordt 'Data\u2011structuren' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Data\u2011structuren' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv030",
+      "type": "mc",
+      "topic": "JSON verwerking",
+      "text": "Vraag 30: Hoe wordt 'JSON verwerking' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'JSON verwerking' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv031",
+      "type": "mc",
+      "topic": "Algoritmes",
+      "text": "Vraag 31: Hoe wordt 'Algoritmes' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Algoritmes' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv032",
+      "type": "mc",
+      "topic": "GitHub API",
+      "text": "Vraag 32: Hoe wordt 'GitHub API' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'GitHub API' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv033",
+      "type": "mc",
+      "topic": "Streamlit",
+      "text": "Vraag 33: Hoe wordt 'Streamlit' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Streamlit' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv034",
+      "type": "mc",
+      "topic": "Objectgericht programmeren",
+      "text": "Vraag 34: Hoe wordt 'Objectgericht programmeren' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Objectgericht programmeren' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv035",
+      "type": "mc",
+      "topic": "Data\u2011structuren",
+      "text": "Vraag 35: Hoe wordt 'Data\u2011structuren' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Data\u2011structuren' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv036",
+      "type": "mc",
+      "topic": "JSON verwerking",
+      "text": "Vraag 36: Hoe wordt 'JSON verwerking' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'JSON verwerking' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv037",
+      "type": "mc",
+      "topic": "Algoritmes",
+      "text": "Vraag 37: Hoe wordt 'Algoritmes' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Algoritmes' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv038",
+      "type": "mc",
+      "topic": "GitHub API",
+      "text": "Vraag 38: Hoe wordt 'GitHub API' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'GitHub API' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv039",
+      "type": "mc",
+      "topic": "Streamlit",
+      "text": "Vraag 39: Hoe wordt 'Streamlit' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Streamlit' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv040",
+      "type": "mc",
+      "topic": "Objectgericht programmeren",
+      "text": "Vraag 40: Hoe wordt 'Objectgericht programmeren' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Objectgericht programmeren' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv041",
+      "type": "mc",
+      "topic": "Data\u2011structuren",
+      "text": "Vraag 41: Hoe wordt 'Data\u2011structuren' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Data\u2011structuren' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv042",
+      "type": "mc",
+      "topic": "JSON verwerking",
+      "text": "Vraag 42: Hoe wordt 'JSON verwerking' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'JSON verwerking' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv043",
+      "type": "mc",
+      "topic": "Algoritmes",
+      "text": "Vraag 43: Hoe wordt 'Algoritmes' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Algoritmes' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv044",
+      "type": "mc",
+      "topic": "GitHub API",
+      "text": "Vraag 44: Hoe wordt 'GitHub API' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'GitHub API' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv045",
+      "type": "mc",
+      "topic": "Streamlit",
+      "text": "Vraag 45: Hoe wordt 'Streamlit' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Streamlit' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv046",
+      "type": "mc",
+      "topic": "Objectgericht programmeren",
+      "text": "Vraag 46: Hoe wordt 'Objectgericht programmeren' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Objectgericht programmeren' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv047",
+      "type": "mc",
+      "topic": "Data\u2011structuren",
+      "text": "Vraag 47: Hoe wordt 'Data\u2011structuren' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Data\u2011structuren' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv048",
+      "type": "mc",
+      "topic": "JSON verwerking",
+      "text": "Vraag 48: Hoe wordt 'JSON verwerking' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'JSON verwerking' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv049",
+      "type": "mc",
+      "topic": "Algoritmes",
+      "text": "Vraag 49: Hoe wordt 'Algoritmes' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'Algoritmes' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    },
+    {
+      "id": "mcadv050",
+      "type": "mc",
+      "topic": "GitHub API",
+      "text": "Vraag 50: Hoe wordt 'GitHub API' toegepast in het Python quizprogramma?",
+      "choices": [
+        "Het bepaalt de logica voor de quizfunctionaliteit.",
+        "Het wordt alleen gebruikt voor de UI\u2011opmaak.",
+        "Het heeft geen rol in dit programma.",
+        "Het wordt gebruikt om willekeurige kleuren te genereren."
+      ],
+      "answer": 0,
+      "explanation": "'GitHub API' speelt een cruciale rol binnen het quizprogramma. Het wordt gebruikt om logica, dataflow en applicatiestructuur te bepalen.",
+      "image_url": "",
+      "difficulty": 2
+    }
   ]
 }
