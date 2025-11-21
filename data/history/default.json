@@ -360,6 +360,12 @@
       "box": 0,
       "correct": 0,
       "wrong": 1
+    },
+    "mcadv004": {
+      "last": "2025-11-21T11:17:01.565700",
+      "box": 0,
+      "correct": 0,
+      "wrong": 1
     }
   },
   "tag_stats": {}
