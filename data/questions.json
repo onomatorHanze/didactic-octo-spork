@@ -2937,6 +2937,341 @@
       "explanation": "Eerst machtsverheffen: (\u22122\u00b7x^2)^2 = 4\u00b7x^4. Daarna vermenigvuldigen met 3\u00b7x^{\u22121}: 4\u00b7x^4\u00b73\u00b7x^{\u22121} = 12\u00b7x^{3}.",
       "image_url": "nan",
       "difficulty": 5
+    },
+    {
+      "id": "mc001",
+      "type": "mc",
+      "topic": "Machten & Rekenvolgorde",
+      "text": "Vereenvoudig de uitdrukking: 2\u00b7x^3 \u00b7 3\u00b7x^4.",
+      "choices": [
+        "6\u00b7x^7",
+        "5\u00b7x^4",
+        "6\u00b7x^8"
+      ],
+      "answer": "6\u00b7x^7",
+      "explanation": "Stap 1: Machtverheffen heeft voorrang. Bereken eerst de exponenten.\nStap 2: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 3: Tel de exponenten van gelijke variabelen bij elkaar op.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "mc002",
+      "type": "mc",
+      "topic": "Machten & Rekenvolgorde",
+      "text": "Vereenvoudig de uitdrukking: 3\u00b7x^4 \u00b7 4\u00b7x^3.",
+      "choices": [
+        "12\u00b7x^7",
+        "7\u00b7x^4",
+        "12\u00b7x^8"
+      ],
+      "answer": "12\u00b7x^7",
+      "explanation": "Stap 1: Machtverheffen heeft voorrang. Bereken eerst de exponenten.\nStap 2: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 3: Tel de exponenten van gelijke variabelen bij elkaar op.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "mc003",
+      "type": "mc",
+      "topic": "Machten & Rekenvolgorde",
+      "text": "Vereenvoudig de uitdrukking: 4\u00b7x^2 \u00b7 5\u00b7x^4.",
+      "choices": [
+        "20\u00b7x^6",
+        "9\u00b7x^4",
+        "20\u00b7x^7"
+      ],
+      "answer": "20\u00b7x^6",
+      "explanation": "Stap 1: Machtverheffen heeft voorrang. Bereken eerst de exponenten.\nStap 2: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 3: Tel de exponenten van gelijke variabelen bij elkaar op.",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "mc004",
+      "type": "mc",
+      "topic": "Machten & Rekenvolgorde",
+      "text": "Vereenvoudig de uitdrukking: 5\u00b7x^3 \u00b7 2\u00b7x^3.",
+      "choices": [
+        "10\u00b7x^6",
+        "7\u00b7x^4",
+        "10\u00b7x^7"
+      ],
+      "answer": "10\u00b7x^6",
+      "explanation": "Stap 1: Machtverheffen heeft voorrang. Bereken eerst de exponenten.\nStap 2: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 3: Tel de exponenten van gelijke variabelen bij elkaar op.",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "mc005",
+      "type": "mc",
+      "topic": "Machten & Rekenvolgorde",
+      "text": "Vereenvoudig de uitdrukking: 6\u00b7x^4 \u00b7 3\u00b7x^4.",
+      "choices": [
+        "18\u00b7x^8",
+        "9\u00b7x^4",
+        "18\u00b7x^9"
+      ],
+      "answer": "18\u00b7x^8",
+      "explanation": "Stap 1: Machtverheffen heeft voorrang. Bereken eerst de exponenten.\nStap 2: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 3: Tel de exponenten van gelijke variabelen bij elkaar op.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "mc006",
+      "type": "mc",
+      "topic": "Machten & Rekenvolgorde",
+      "text": "Vereenvoudig de uitdrukking: 7\u00b7x^2 \u00b7 4\u00b7x^3.",
+      "choices": [
+        "28\u00b7x^5",
+        "11\u00b7x^4",
+        "28\u00b7x^6"
+      ],
+      "answer": "28\u00b7x^5",
+      "explanation": "Stap 1: Machtverheffen heeft voorrang. Bereken eerst de exponenten.\nStap 2: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 3: Tel de exponenten van gelijke variabelen bij elkaar op.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "mc007",
+      "type": "mc",
+      "topic": "Machten & Rekenvolgorde",
+      "text": "Vereenvoudig de uitdrukking: 8\u00b7x^3 \u00b7 5\u00b7x^4.",
+      "choices": [
+        "40\u00b7x^7",
+        "13\u00b7x^4",
+        "40\u00b7x^8"
+      ],
+      "answer": "40\u00b7x^7",
+      "explanation": "Stap 1: Machtverheffen heeft voorrang. Bereken eerst de exponenten.\nStap 2: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 3: Tel de exponenten van gelijke variabelen bij elkaar op.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "mc008",
+      "type": "mc",
+      "topic": "Machten & Rekenvolgorde",
+      "text": "Vereenvoudig de uitdrukking: 9\u00b7x^4 \u00b7 2\u00b7x^3.",
+      "choices": [
+        "18\u00b7x^7",
+        "11\u00b7x^4",
+        "18\u00b7x^8"
+      ],
+      "answer": "18\u00b7x^7",
+      "explanation": "Stap 1: Machtverheffen heeft voorrang. Bereken eerst de exponenten.\nStap 2: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 3: Tel de exponenten van gelijke variabelen bij elkaar op.",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "mc009",
+      "type": "mc",
+      "topic": "Machten & Rekenvolgorde",
+      "text": "Vereenvoudig de uitdrukking: 10\u00b7x^2 \u00b7 3\u00b7x^4.",
+      "choices": [
+        "30\u00b7x^6",
+        "13\u00b7x^4",
+        "30\u00b7x^7"
+      ],
+      "answer": "30\u00b7x^6",
+      "explanation": "Stap 1: Machtverheffen heeft voorrang. Bereken eerst de exponenten.\nStap 2: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 3: Tel de exponenten van gelijke variabelen bij elkaar op.",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "mc010",
+      "type": "mc",
+      "topic": "Machten & Rekenvolgorde",
+      "text": "Vereenvoudig de uitdrukking: 11\u00b7x^3 \u00b7 4\u00b7x^3.",
+      "choices": [
+        "44\u00b7x^6",
+        "15\u00b7x^4",
+        "44\u00b7x^7"
+      ],
+      "answer": "44\u00b7x^6",
+      "explanation": "Stap 1: Machtverheffen heeft voorrang. Bereken eerst de exponenten.\nStap 2: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 3: Tel de exponenten van gelijke variabelen bij elkaar op.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "mc011",
+      "type": "mc",
+      "topic": "Machten & Rekenvolgorde",
+      "text": "Vereenvoudig de uitdrukking: 12\u00b7x^4 \u00b7 5\u00b7x^4.",
+      "choices": [
+        "60\u00b7x^8",
+        "17\u00b7x^4",
+        "60\u00b7x^9"
+      ],
+      "answer": "60\u00b7x^8",
+      "explanation": "Stap 1: Machtverheffen heeft voorrang. Bereken eerst de exponenten.\nStap 2: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 3: Tel de exponenten van gelijke variabelen bij elkaar op.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "mc012",
+      "type": "mc",
+      "topic": "Machten & Rekenvolgorde",
+      "text": "Vereenvoudig de uitdrukking: 13\u00b7x^2 \u00b7 2\u00b7x^3.",
+      "choices": [
+        "26\u00b7x^5",
+        "15\u00b7x^4",
+        "26\u00b7x^6"
+      ],
+      "answer": "26\u00b7x^5",
+      "explanation": "Stap 1: Machtverheffen heeft voorrang. Bereken eerst de exponenten.\nStap 2: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 3: Tel de exponenten van gelijke variabelen bij elkaar op.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "mc013",
+      "type": "mc",
+      "topic": "Machten & Rekenvolgorde",
+      "text": "Vereenvoudig de uitdrukking: 14\u00b7x^3 \u00b7 3\u00b7x^4.",
+      "choices": [
+        "42\u00b7x^7",
+        "17\u00b7x^4",
+        "42\u00b7x^8"
+      ],
+      "answer": "42\u00b7x^7",
+      "explanation": "Stap 1: Machtverheffen heeft voorrang. Bereken eerst de exponenten.\nStap 2: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 3: Tel de exponenten van gelijke variabelen bij elkaar op.",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "mc014",
+      "type": "mc",
+      "topic": "Machten & Rekenvolgorde",
+      "text": "Vereenvoudig de uitdrukking: 15\u00b7x^4 \u00b7 4\u00b7x^3.",
+      "choices": [
+        "60\u00b7x^7",
+        "19\u00b7x^4",
+        "60\u00b7x^8"
+      ],
+      "answer": "60\u00b7x^7",
+      "explanation": "Stap 1: Machtverheffen heeft voorrang. Bereken eerst de exponenten.\nStap 2: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 3: Tel de exponenten van gelijke variabelen bij elkaar op.",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "mc015",
+      "type": "mc",
+      "topic": "Machten & Rekenvolgorde",
+      "text": "Vereenvoudig de uitdrukking: 16\u00b7x^2 \u00b7 5\u00b7x^4.",
+      "choices": [
+        "80\u00b7x^6",
+        "21\u00b7x^4",
+        "80\u00b7x^7"
+      ],
+      "answer": "80\u00b7x^6",
+      "explanation": "Stap 1: Machtverheffen heeft voorrang. Bereken eerst de exponenten.\nStap 2: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 3: Tel de exponenten van gelijke variabelen bij elkaar op.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "stap001",
+      "type": "open",
+      "topic": "Stappenplan algebra",
+      "text": "Los stap voor stap op: (3\u00b7x^2) \u00b7 (3\u00b7x^2) \u2212 2\u00b7x^3.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Stap 1: Werk haakjes uit met vermenigvuldigen.\nStap 2: Pas de machtsregel toe: x^a \u00b7 x^b = x^{a+b}.\nStap 3: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 4: Combineer gelijksoortige termen.\nStap 5: Controleer of verdere vereenvoudiging mogelijk is.",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "stap002",
+      "type": "open",
+      "topic": "Stappenplan algebra",
+      "text": "Los stap voor stap op: (4\u00b7x^2) \u00b7 (3\u00b7x^3) \u2212 4\u00b7x^3.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Stap 1: Werk haakjes uit met vermenigvuldigen.\nStap 2: Pas de machtsregel toe: x^a \u00b7 x^b = x^{a+b}.\nStap 3: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 4: Combineer gelijksoortige termen.\nStap 5: Controleer of verdere vereenvoudiging mogelijk is.",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "stap003",
+      "type": "open",
+      "topic": "Stappenplan algebra",
+      "text": "Los stap voor stap op: (5\u00b7x^2) \u00b7 (3\u00b7x^1) \u2212 6\u00b7x^3.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Stap 1: Werk haakjes uit met vermenigvuldigen.\nStap 2: Pas de machtsregel toe: x^a \u00b7 x^b = x^{a+b}.\nStap 3: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 4: Combineer gelijksoortige termen.\nStap 5: Controleer of verdere vereenvoudiging mogelijk is.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "stap004",
+      "type": "open",
+      "topic": "Stappenplan algebra",
+      "text": "Los stap voor stap op: (6\u00b7x^2) \u00b7 (3\u00b7x^2) \u2212 8\u00b7x^3.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Stap 1: Werk haakjes uit met vermenigvuldigen.\nStap 2: Pas de machtsregel toe: x^a \u00b7 x^b = x^{a+b}.\nStap 3: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 4: Combineer gelijksoortige termen.\nStap 5: Controleer of verdere vereenvoudiging mogelijk is.",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "stap005",
+      "type": "open",
+      "topic": "Stappenplan algebra",
+      "text": "Los stap voor stap op: (7\u00b7x^2) \u00b7 (3\u00b7x^3) \u2212 10\u00b7x^3.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Stap 1: Werk haakjes uit met vermenigvuldigen.\nStap 2: Pas de machtsregel toe: x^a \u00b7 x^b = x^{a+b}.\nStap 3: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 4: Combineer gelijksoortige termen.\nStap 5: Controleer of verdere vereenvoudiging mogelijk is.",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "stap006",
+      "type": "open",
+      "topic": "Stappenplan algebra",
+      "text": "Los stap voor stap op: (8\u00b7x^2) \u00b7 (3\u00b7x^1) \u2212 12\u00b7x^3.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Stap 1: Werk haakjes uit met vermenigvuldigen.\nStap 2: Pas de machtsregel toe: x^a \u00b7 x^b = x^{a+b}.\nStap 3: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 4: Combineer gelijksoortige termen.\nStap 5: Controleer of verdere vereenvoudiging mogelijk is.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "stap007",
+      "type": "open",
+      "topic": "Stappenplan algebra",
+      "text": "Los stap voor stap op: (9\u00b7x^2) \u00b7 (3\u00b7x^2) \u2212 14\u00b7x^3.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Stap 1: Werk haakjes uit met vermenigvuldigen.\nStap 2: Pas de machtsregel toe: x^a \u00b7 x^b = x^{a+b}.\nStap 3: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 4: Combineer gelijksoortige termen.\nStap 5: Controleer of verdere vereenvoudiging mogelijk is.",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "stap008",
+      "type": "open",
+      "topic": "Stappenplan algebra",
+      "text": "Los stap voor stap op: (10\u00b7x^2) \u00b7 (3\u00b7x^3) \u2212 16\u00b7x^3.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Stap 1: Werk haakjes uit met vermenigvuldigen.\nStap 2: Pas de machtsregel toe: x^a \u00b7 x^b = x^{a+b}.\nStap 3: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 4: Combineer gelijksoortige termen.\nStap 5: Controleer of verdere vereenvoudiging mogelijk is.",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "stap009",
+      "type": "open",
+      "topic": "Stappenplan algebra",
+      "text": "Los stap voor stap op: (11\u00b7x^2) \u00b7 (3\u00b7x^1) \u2212 18\u00b7x^3.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Stap 1: Werk haakjes uit met vermenigvuldigen.\nStap 2: Pas de machtsregel toe: x^a \u00b7 x^b = x^{a+b}.\nStap 3: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 4: Combineer gelijksoortige termen.\nStap 5: Controleer of verdere vereenvoudiging mogelijk is.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "stap010",
+      "type": "open",
+      "topic": "Stappenplan algebra",
+      "text": "Los stap voor stap op: (12\u00b7x^2) \u00b7 (3\u00b7x^2) \u2212 20\u00b7x^3.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Stap 1: Werk haakjes uit met vermenigvuldigen.\nStap 2: Pas de machtsregel toe: x^a \u00b7 x^b = x^{a+b}.\nStap 3: Vermenigvuldig de co\u00ebffici\u00ebnten.\nStap 4: Combineer gelijksoortige termen.\nStap 5: Controleer of verdere vereenvoudiging mogelijk is.",
+      "image_url": "nan",
+      "difficulty": 4
     }
   ]
 }
