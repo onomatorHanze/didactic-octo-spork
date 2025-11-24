@@ -2873,5 +2873,70 @@
       "image_url": "nan",
       "difficulty": 5
     }
+  ],
+  "Wiskunde": [
+    {
+      "id": "w001",
+      "type": "mc",
+      "topic": "Machten & Rekenvolgorde",
+      "text": "Vereenvoudig de uitdrukking: 3\u00b7x^2 \u00b7 2\u00b7x^3.",
+      "choices": [
+        "6\u00b7x^5",
+        "5\u00b7x^6",
+        "6\u00b7x^4"
+      ],
+      "answer": "6\u00b7x^5",
+      "explanation": "Eerst machtsverheffen: x^2 en x^3 blijven zoals ze zijn. Daarna vermenigvuldig je de co\u00ebffici\u00ebnten: 3\u00b72=6. Tenslotte gebruik je de machtsregel: x^2\u00b7x^3 = x^{2+3} = x^5.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "w002",
+      "type": "open",
+      "topic": "Machten",
+      "text": "Leg uit waarom bij het vereenvoudigen van \u22124\u00b7x^{3+1}\u00b7x^2 je eerst de exponenten moet uitrekenen voordat je gaat vermenigvuldigen.",
+      "choices": [],
+      "answer": "",
+      "explanation": "De rekenvolgorde bepaalt dat machtsverheffen voor vermenigvuldigen gaat. Eerst bereken je x^{3+1} = x^4, daarna kun je x^4 \u00b7 x^2 combineren tot x^{4+2} = x^6.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "w003",
+      "type": "mc",
+      "topic": "Uitdrukkingen vereenvoudigen",
+      "text": "Vereenvoudig: \u22126\u00b7x^{2+2}\u00b7x + 6\u00b7x^{2+1}\u00b74\u00b7x^2.",
+      "choices": [
+        "18\u00b7x^5",
+        "12\u00b7x^6",
+        "\u221218\u00b7x^5"
+      ],
+      "answer": "18\u00b7x^5",
+      "explanation": "Eerst exponenten: x^{2+2}=x^4 en x^{2+1}=x^3. Dan vermenigvuldigen: \u22126\u00b7x^4\u00b7x = \u22126\u00b7x^5 en 6\u00b74\u00b7x^3\u00b7x^2 = 24\u00b7x^5. Optellen van gelijksoortige termen: \u22126\u00b7x^5 + 24\u00b7x^5 = 18\u00b7x^5.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "w004",
+      "type": "open",
+      "topic": "Geavanceerde machten",
+      "text": "Vereenvoudig volledig: 5\u00b7x^{3}\u00b7(2\u00b7x^{4} \u2212 3\u00b7x).",
+      "choices": [],
+      "answer": "",
+      "explanation": "Eerst distributief vermenigvuldigen: 5\u00b7x^3\u00b72\u00b7x^4 = 10\u00b7x^{7}. Daarna 5\u00b7x^3\u00b7(\u22123\u00b7x)= \u221215\u00b7x^{4}. Resultaat: 10\u00b7x^7 \u2212 15\u00b7x^4.",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "w005",
+      "type": "open",
+      "topic": "Complexe rekenvolgorde",
+      "text": "Vereenvoudig: (\u22122\u00b7x^2)^2 \u00b7 3\u00b7x^{\u22121}.",
+      "choices": [],
+      "answer": "",
+      "explanation": "Eerst machtsverheffen: (\u22122\u00b7x^2)^2 = 4\u00b7x^4. Daarna vermenigvuldigen met 3\u00b7x^{\u22121}: 4\u00b7x^4\u00b73\u00b7x^{\u22121} = 12\u00b7x^{3}.",
+      "image_url": "nan",
+      "difficulty": 5
+    }
   ]
 }
