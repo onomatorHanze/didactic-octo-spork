@@ -1,32 +1,4 @@
 {
-  "Wiskunde": [
-    {
-      "id": "q001",
-      "type": "mc",
-      "topic": "Breuken",
-      "text": "Wat is 1/2?",
-      "choices": [
-        "0.5",
-        "2",
-        "1/3"
-      ],
-      "answer": "0",
-      "explanation": "1/2 is gelijk aan 0.5.",
-      "image_url": "nan",
-      "difficulty": 1
-    },
-    {
-      "id": "q002",
-      "type": "input",
-      "topic": "Breuken",
-      "text": "Vul de decimale waarde in van 2/4:",
-      "choices": [],
-      "answer": "0.5",
-      "explanation": "2/4 = 0.5",
-      "image_url": "nan",
-      "difficulty": 1
-    }
-  ],
   "Natuurkunde": [
     {
       "id": "q003",
