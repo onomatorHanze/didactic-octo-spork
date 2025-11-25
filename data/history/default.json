@@ -408,6 +408,12 @@
       "box": 1,
       "correct": 1,
       "wrong": 0
+    },
+    "alg005": {
+      "last": "2025-11-25T12:32:32.369868",
+      "box": 0,
+      "correct": 0,
+      "wrong": 1
     }
   },
   "tag_stats": {}
