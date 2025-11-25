@@ -3004,5 +3004,391 @@
       "image_url": "nan",
       "difficulty": 5
     }
+  ],
+  "InleidingAlgebra": [
+    {
+      "id": "alg001",
+      "type": "mc",
+      "topic": "Som en product",
+      "text": "Welke uitdrukking is gelijk aan $3\\cdot x\\cdot y$?",
+      "choices": [
+        "$3xy$",
+        "$3x+y$",
+        "$x3y$",
+        "$3+x+y$"
+      ],
+      "answer": 0,
+      "explanation": "$3\\cdot x\\cdot y = 3xy$",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg002",
+      "type": "mc",
+      "topic": "Som en product",
+      "text": "Wat is de co\u00ebffici\u00ebnt in $7xy$?",
+      "choices": [
+        "$7$",
+        "$x$",
+        "$y$",
+        "$1$"
+      ],
+      "answer": 0,
+      "explanation": "7 is de co\u00ebffici\u00ebnt.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg003",
+      "type": "mc",
+      "topic": "Som en product",
+      "text": "Schrijf $2\\cdot x\\cdot y$ zo eenvoudig mogelijk.",
+      "choices": [
+        "$2xy$",
+        "$2x+y$",
+        "$xy2$",
+        "$2+x+y$"
+      ],
+      "answer": 0,
+      "explanation": "Product = 2xy.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg004",
+      "type": "mc",
+      "topic": "Termen",
+      "text": "Wat zijn de termen in $x+4y$?",
+      "choices": [
+        "$x$ en $4y$",
+        "$1$ en $4$",
+        "$x$ en $y$",
+        "$4$ en $y$"
+      ],
+      "answer": 0,
+      "explanation": "Termen x en 4y.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg005",
+      "type": "mc",
+      "topic": "Termen",
+      "text": "Welke term heeft co\u00ebffici\u00ebnt 5 in $5x+3y$?",
+      "choices": [
+        "$x$",
+        "$y$",
+        "$5x$",
+        "$3y$"
+      ],
+      "answer": 2,
+      "explanation": "5x heeft co\u00ebffici\u00ebnt 5.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg006",
+      "type": "mc",
+      "topic": "Aftrekking",
+      "text": "Geef de termen in $6u-3v$.",
+      "choices": [
+        "$6u$ en $3v$",
+        "$6u$ en $-3v$",
+        "$u$ en $v$",
+        "$-6u$ en $3v$"
+      ],
+      "answer": 1,
+      "explanation": "Termen: 6u en -3v",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg007",
+      "type": "mc",
+      "topic": "Aftrekking",
+      "text": "Wat is de co\u00ebffici\u00ebnt van $-8x$?",
+      "choices": [
+        "$8$",
+        "$-8$",
+        "$x$",
+        "$1$"
+      ],
+      "answer": 1,
+      "explanation": "Co\u00ebffici\u00ebnt is -8.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg008",
+      "type": "mc",
+      "topic": "Substitutie",
+      "text": "Bereken $x^2+x$ voor $x=4$.",
+      "choices": [
+        "$16$",
+        "$20$",
+        "$12$",
+        "$8$"
+      ],
+      "answer": 1,
+      "explanation": "$4^2+4=20$",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg009",
+      "type": "mc",
+      "topic": "Substitutie",
+      "text": "Bereken $(x+2)^2$ voor $x=-1$.",
+      "choices": [
+        "$1$",
+        "$-1$",
+        "$9$",
+        "$0$"
+      ],
+      "answer": 2,
+      "explanation": "(-1+2)^2=1^2=1",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg010",
+      "type": "mc",
+      "topic": "Substitutie",
+      "text": "Bereken $2x-3$ voor $x=5$.",
+      "choices": [
+        "$5$",
+        "$7$",
+        "$10$",
+        "$-1$"
+      ],
+      "answer": 1,
+      "explanation": "2*5-3=7",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg011",
+      "type": "mc",
+      "topic": "Herleiden",
+      "text": "Herleid $3\\cdot 7x$.",
+      "choices": [
+        "$21x$",
+        "$10x$",
+        "$3x$",
+        "$7x$"
+      ],
+      "answer": 0,
+      "explanation": "3*7x=21x.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg012",
+      "type": "mc",
+      "topic": "Herleiden",
+      "text": "Herleid $2x+5x$.",
+      "choices": [
+        "$10x$",
+        "$7x$",
+        "$2x$",
+        "$5x$"
+      ],
+      "answer": 1,
+      "explanation": "2x+5x=7x.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg013",
+      "type": "mc",
+      "topic": "Herleiden",
+      "text": "Herleid $9y-4y$.",
+      "choices": [
+        "$5y$",
+        "$13y$",
+        "$4y$",
+        "$-5y$"
+      ],
+      "answer": 0,
+      "explanation": "9y-4y=5y.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg014",
+      "type": "mc",
+      "topic": "Gelijksoortige termen",
+      "text": "Welke termen zijn gelijksoortig in: $3x + 2y + 8x$?",
+      "choices": [
+        "$3x$ en $8x$",
+        "$2y$ en $8x$",
+        "$3x$ en $2y$",
+        "$2y$ en $y$"
+      ],
+      "answer": 0,
+      "explanation": "x-termen samen.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg015",
+      "type": "mc",
+      "topic": "Gelijksoortige termen",
+      "text": "Herleid $4x+3x+2y$.",
+      "choices": [
+        "$7x+2y$",
+        "$4x+3x+2y$",
+        "$9x+2y$",
+        "$7x+y$"
+      ],
+      "answer": 0,
+      "explanation": "4x+3x=7x.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg016",
+      "type": "mc",
+      "topic": "Algebra\u00efsche regels",
+      "text": "Welke regel hoort bij $a+0=a$?",
+      "choices": [
+        "Identiteitsregel",
+        "Commutatieve wet",
+        "Associatieve wet",
+        "Distributieve wet"
+      ],
+      "answer": 0,
+      "explanation": "Identiteit.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg017",
+      "type": "mc",
+      "topic": "Algebra\u00efsche regels",
+      "text": "Welke uitdrukking volgt uit $1\\cdot a=a$?",
+      "choices": [
+        "$3x=1\\cdot3x$",
+        "$a+1=a$",
+        "$0a=a$",
+        "$-1a=a$"
+      ],
+      "answer": 0,
+      "explanation": "1*a=a.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg018",
+      "type": "mc",
+      "topic": "Algebra\u00efsche regels",
+      "text": "Welke regel gebruik je bij $4x-4x=0$?",
+      "choices": [
+        "$1a=a$",
+        "$0a=0$",
+        "$a-a=0$",
+        "Distributief"
+      ],
+      "answer": 2,
+      "explanation": "a-a=0.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg019",
+      "type": "mc",
+      "topic": "Moeilijk",
+      "text": "Herleid $7x-9xy+7x+9xy$.",
+      "choices": [
+        "$14x$",
+        "$7x$",
+        "$18xy$",
+        "$0$"
+      ],
+      "answer": 0,
+      "explanation": "xy-termen vallen weg.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg020",
+      "type": "mc",
+      "topic": "Moeilijk",
+      "text": "Herleid $(x+3)+(2x+5)$.",
+      "choices": [
+        "$3x+8$",
+        "$2x+8$",
+        "$x+5$",
+        "$x+3$"
+      ],
+      "answer": 0,
+      "explanation": "Optellen per soort.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg021",
+      "type": "mc",
+      "topic": "Moeilijk",
+      "text": "Herleid $3(x+2)$.",
+      "choices": [
+        "$3x+6$",
+        "$3x+2$",
+        "$x+6$",
+        "$6x$"
+      ],
+      "answer": 0,
+      "explanation": "Distributief.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg022",
+      "type": "mc",
+      "topic": "Moeilijk",
+      "text": "Herleid $2(x-4)+3(x+1)$.",
+      "choices": [
+        "$5x-5$",
+        "$5x-7$",
+        "$5x-1$",
+        "$x-3$"
+      ],
+      "answer": 0,
+      "explanation": "Uitwerken en optellen.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg023",
+      "type": "mc",
+      "topic": "Moeilijk",
+      "text": "Welke term ontbreekt? $a+(-a)=?$",
+      "choices": [
+        "$1$",
+        "$0$",
+        "$a^2$",
+        "$-2a$"
+      ],
+      "answer": 1,
+      "explanation": "a + (-a)=0.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg024",
+      "type": "mc",
+      "topic": "Moeilijk",
+      "text": "Welke term komt overeen met $-1\\cdot a$?",
+      "choices": [
+        "$a$",
+        "$-a$",
+        "$0$",
+        "$1$"
+      ],
+      "answer": 1,
+      "explanation": "-1a = -a.",
+      "image_url": "nan",
+      "difficulty": 1
+    }
   ]
 }
