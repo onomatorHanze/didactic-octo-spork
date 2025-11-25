@@ -155,7 +155,7 @@ if "questions" in st.session_state and st.session_state["questions"]:
     q = qs[i]
     st.progress((i + 1) / len(qs))
     st.subheader(f"({st.session_state['vak']}) Vraag {i+1}")
-    st.st.markdown(q.get("text", ""), unsafe_allow_html=True)
+    st.markdown(q.get("text", ""), unsafe_allow_html=True)
 
     safe_show_image(q.get("image_url", ""))
 
