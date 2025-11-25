@@ -3389,6 +3389,1334 @@
       "explanation": "-1a = -a.",
       "image_url": "nan",
       "difficulty": 1
+    },
+    {
+      "id": "alg001",
+      "type": "mc",
+      "topic": "Uitdrukkingen",
+      "text": "Welke uitdrukking is gelijk aan $3\\cdot x\\cdot y$?",
+      "choices": [
+        "$3xy$",
+        "$3x+y$",
+        "$x3y$",
+        "$3+x+y$"
+      ],
+      "answer": 0,
+      "explanation": "Een product van getal en variabelen schrijven we zonder punt: $3\\cdot x\\cdot y = 3xy$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg002",
+      "type": "mc",
+      "topic": "Uitdrukkingen",
+      "text": "Wat is de co\u00ebffici\u00ebnt in de term $-7xy$?",
+      "choices": [
+        "$7$",
+        "$-7$",
+        "$x$",
+        "$y$"
+      ],
+      "answer": 1,
+      "explanation": "De co\u00ebffici\u00ebnt is het getal v\u00f3\u00f3r de variabelen, inclusief teken: bij $-7xy$ is dat $-7$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg003",
+      "type": "mc",
+      "topic": "Uitdrukkingen",
+      "text": "Welke term heeft co\u00ebffici\u00ebnt $5$ in $5x-3y$?",
+      "choices": [
+        "$x$",
+        "$5x$",
+        "$-3y$",
+        "$3y$"
+      ],
+      "answer": 1,
+      "explanation": "De co\u00ebffici\u00ebnt hoort bij de hele term: in $5x$ is de co\u00ebffici\u00ebnt $5$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg004",
+      "type": "mc",
+      "topic": "Termen",
+      "text": "Wat zijn de termen in de som $x+3y$?",
+      "choices": [
+        "$x$ en $3y$",
+        "$1$ en $3$",
+        "$x$ en $y$",
+        "$3$ en $y$"
+      ],
+      "answer": 0,
+      "explanation": "Bij een som zijn de optelstukken de termen: hier zijn dat $x$ en $3y$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg005",
+      "type": "mc",
+      "topic": "Termen",
+      "text": "Geef de termen van de uitdrukking $4u-6v$.",
+      "choices": [
+        "$4u$ en $-6v$",
+        "$4u$ en $6v$",
+        "$u$ en $v$",
+        "$-4u$ en $6v$"
+      ],
+      "answer": 0,
+      "explanation": "Bij aftrekken kun je de tweede term zien als een negatieve term: $4u-6v = 4u + (-6v)$, dus termen $4u$ en $-6v$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg006",
+      "type": "mc",
+      "topic": "Co\u00ebffici\u00ebnten",
+      "text": "Wat is de co\u00ebffici\u00ebnt van $x$ in de term $x$?",
+      "choices": [
+        "$0$",
+        "$1$",
+        "$x$",
+        "er is geen co\u00ebffici\u00ebnt"
+      ],
+      "answer": 1,
+      "explanation": "De term $x$ kun je zien als $1\\cdot x$, dus de co\u00ebffici\u00ebnt is $1$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg007",
+      "type": "mc",
+      "topic": "Co\u00ebffici\u00ebnten",
+      "text": "Wat is de co\u00ebffici\u00ebnt van $y$ in de term $-\\,y$?",
+      "choices": [
+        "$1$",
+        "$0$",
+        "$-1$",
+        "$y$"
+      ],
+      "answer": 2,
+      "explanation": "De term $-y$ schrijven we als $-1\\cdot y$, dus de co\u00ebffici\u00ebnt is $-1$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg008",
+      "type": "mc",
+      "topic": "Uitdrukkingen",
+      "text": "Welke van de volgende is g\u00e9\u00e9n algebra\u00efsche uitdrukking?",
+      "choices": [
+        "$3x+2$",
+        "$\\dfrac{1}{x}$",
+        "$5-7$",
+        "$x^2-4$"
+      ],
+      "answer": 2,
+      "explanation": "Een algebra\u00efsche uitdrukking bevat minstens \u00e9\u00e9n variabele; $5-7$ bevat alleen getallen.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg009",
+      "type": "mc",
+      "topic": "Uitdrukkingen",
+      "text": "Schrijf $4\\cdot x\\cdot x$ zo eenvoudig mogelijk.",
+      "choices": [
+        "$4x$",
+        "$4x^2$",
+        "$x^4$",
+        "$x^2/4$"
+      ],
+      "answer": 1,
+      "explanation": "Het product $x\\cdot x$ is $x^2$, dus $4\\cdot x\\cdot x = 4x^2$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg010",
+      "type": "mc",
+      "topic": "Uitdrukkingen",
+      "text": "Welke uitdrukking is gelijk aan $-2\\cdot x\\cdot y\\cdot 3$?",
+      "choices": [
+        "$-6xy$",
+        "$-5xy$",
+        "$6xy$",
+        "$-2x+3y$"
+      ],
+      "answer": 0,
+      "explanation": "De volgorde van vermenigvuldigen maakt niet uit: $-2\\cdot3\\cdot x\\cdot y=-6xy$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg011",
+      "type": "mc",
+      "topic": "Gelijksoortige termen",
+      "text": "Welke termen zijn gelijksoortig in $3x - 2y + 7x$?",
+      "choices": [
+        "$3x$ en $-2y$",
+        "$-2y$ en $7x$",
+        "$3x$ en $7x$",
+        "alle termen"
+      ],
+      "answer": 2,
+      "explanation": "Gelijksoortige termen hebben dezelfde variabele en exponent: hier zijn $3x$ en $7x$ gelijksoortig.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg012",
+      "type": "mc",
+      "topic": "Gelijksoortige termen",
+      "text": "Gelijksoortige termen kun je herleiden door:",
+      "choices": [
+        "de co\u00ebffici\u00ebnten op te tellen",
+        "de variabelen op te tellen",
+        "exponenten te vermenigvuldigen",
+        "alle termen te verwijderen"
+      ],
+      "answer": 0,
+      "explanation": "Bij gelijksoortige termen blijven variabelen hetzelfde en tel je alleen de co\u00ebffici\u00ebnten op.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg013",
+      "type": "mc",
+      "topic": "Gelijksoortige termen",
+      "text": "Welke uitdrukking is het resultaat van het herleiden van $5x+4x-2x$?",
+      "choices": [
+        "$11x$",
+        "$7x$",
+        "$-x$",
+        "$x$"
+      ],
+      "answer": 1,
+      "explanation": "Herleid: $5x+4x-2x=(5+4-2)x=7x$.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg014",
+      "type": "mc",
+      "topic": "Termen",
+      "text": "Welke van de volgende zijn g\u00e9\u00e9n gelijksoortige termen?",
+      "choices": [
+        "$3x$ en $-5x$",
+        "$2y$ en $7y$",
+        "$4x^2$ en $x^2$",
+        "$x$ en $x^2$"
+      ],
+      "answer": 3,
+      "explanation": "Gelijksoortige termen hebben dezelfde variabele \u00e9n dezelfde exponent; $x$ en $x^2$ voldoen daar niet aan.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg015",
+      "type": "mc",
+      "topic": "Co\u00ebffici\u00ebnten",
+      "text": "Wat is de co\u00ebffici\u00ebnt van $x^2$ in de uitdrukking $7x^2-3x+5$?",
+      "choices": [
+        "$7$",
+        "$-3$",
+        "$5$",
+        "$2$"
+      ],
+      "answer": 0,
+      "explanation": "De term met $x^2$ is $7x^2$, dus de co\u00ebffici\u00ebnt van $x^2$ is $7$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg016",
+      "type": "mc",
+      "topic": "Substitutie",
+      "text": "Bereken $x^2+x$ voor $x=3$.",
+      "choices": [
+        "$9$",
+        "$10$",
+        "$11$",
+        "$12$"
+      ],
+      "answer": 3,
+      "explanation": "$3^2+3=9+3=12$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg017",
+      "type": "mc",
+      "topic": "Substitutie",
+      "text": "Bereken $x^2-2x$ voor $x=-4$.",
+      "choices": [
+        "$24$",
+        "$-24$",
+        "$16$",
+        "$-16$"
+      ],
+      "answer": 0,
+      "explanation": "Vul $x=-4$ in: $(-4)^2-2(-4)=16+8=24$.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg018",
+      "type": "mc",
+      "topic": "Substitutie",
+      "text": "Bereken $(x+5)^2$ voor $x=3$.",
+      "choices": [
+        "$16$",
+        "$25$",
+        "$64$",
+        "$81$"
+      ],
+      "answer": 2,
+      "explanation": "$(3+5)^2=8^2=64$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg019",
+      "type": "mc",
+      "topic": "Substitutie",
+      "text": "Bereken $2x^2-3x$ voor $x=\\dfrac{1}{2}$.",
+      "choices": [
+        "$-\\dfrac{1}{2}$",
+        "$-\\dfrac{1}{4}$",
+        "$\\dfrac{1}{2}$",
+        "$\\dfrac{1}{4}$"
+      ],
+      "answer": 1,
+      "explanation": "Vul $x=\\tfrac12$ in: $2(\\tfrac12)^2-3(\\tfrac12)=2\\cdot\\tfrac14-\\tfrac32=\\tfrac12-\\tfrac32=-\\tfrac14$.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg020",
+      "type": "mc",
+      "topic": "Substitutie",
+      "text": "Bereken $\\dfrac{1}{x}$ voor $x=-2$.",
+      "choices": [
+        "$-2$",
+        "$2$",
+        "$-\\dfrac12$",
+        "$\\dfrac12$"
+      ],
+      "answer": 2,
+      "explanation": "$1/x$ wordt $1/(-2)=-\\tfrac12$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg021",
+      "type": "mc",
+      "topic": "Substitutie",
+      "text": "Bereken $3(x-2)$ voor $x=-1$.",
+      "choices": [
+        "$-3$",
+        "$-9$",
+        "$3$",
+        "$9$"
+      ],
+      "answer": 1,
+      "explanation": "Eerst: $x-2=-1-2=-3$, dan $3\\cdot(-3)=-9$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg022",
+      "type": "mc",
+      "topic": "Substitutie",
+      "text": "Bereken $\\dfrac{x^2-1}{x-1}$ voor $x=3$.",
+      "choices": [
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$"
+      ],
+      "answer": 2,
+      "explanation": "Vul $x=3$ in: $\\tfrac{9-1}{3-1}=\\tfrac8{2}=4$.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg023",
+      "type": "mc",
+      "topic": "Substitutie",
+      "text": "Bereken $x^2+2x+1$ voor $x=-3$.",
+      "choices": [
+        "$4$",
+        "$16$",
+        "$0$",
+        "$1$"
+      ],
+      "answer": 1,
+      "explanation": "$(-3)^2+2(-3)+1=9-6+1=4$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg024",
+      "type": "mc",
+      "topic": "Substitutie",
+      "text": "Bereken $\\dfrac{2}{x}$ voor $x=\\dfrac12$.",
+      "choices": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$"
+      ],
+      "answer": 3,
+      "explanation": "$2/(\\tfrac12)=2\\cdot2=4$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg025",
+      "type": "mc",
+      "topic": "Substitutie",
+      "text": "Bereken $(2x-1)^2$ voor $x=2$.",
+      "choices": [
+        "$1$",
+        "$4$",
+        "$9$",
+        "$16$"
+      ],
+      "answer": 2,
+      "explanation": "Eerst $2x-1=2\\cdot2-1=3$, dan $3^2=9$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg026",
+      "type": "mc",
+      "topic": "Substitutie",
+      "text": "Bereken $\\dfrac{x+1}{x-1}$ voor $x=-1$.",
+      "choices": [
+        "$0$",
+        "$-1$",
+        "$1$",
+        "$\\dfrac12$"
+      ],
+      "answer": 1,
+      "explanation": "Vul $x=-1$ in: $\\tfrac{-1+1}{-1-1}=\\tfrac0{-2}=0$. Opletten: veel maken hier tekenfouten.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg027",
+      "type": "mc",
+      "topic": "Substitutie",
+      "text": "Bereken $x^3$ voor $x=-2$.",
+      "choices": [
+        "$8$",
+        "$-8$",
+        "$4$",
+        "$-4$"
+      ],
+      "answer": 1,
+      "explanation": "$(-2)^3=-8$ omdat het product van drie negatieve factoren negatief is.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg028",
+      "type": "mc",
+      "topic": "Substitutie",
+      "text": "Bereken $\\dfrac{1}{x^2}$ voor $x=-3$.",
+      "choices": [
+        "$\\dfrac19$",
+        "$-\\dfrac19$",
+        "$\\dfrac13$",
+        "$-\\dfrac13$"
+      ],
+      "answer": 0,
+      "explanation": "$x^2=(-3)^2=9$, dus $1/x^2=1/9$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg029",
+      "type": "mc",
+      "topic": "Substitutie",
+      "text": "Bereken $x^2-4$ voor $x=2$.",
+      "choices": [
+        "$-4$",
+        "$0$",
+        "$4$",
+        "$8$"
+      ],
+      "answer": 1,
+      "explanation": "$2^2-4=4-4=0$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg030",
+      "type": "mc",
+      "topic": "Herleiden",
+      "text": "Herleid $4x+5x$.",
+      "choices": [
+        "$9x$",
+        "$20x$",
+        "$x$",
+        "$-x$"
+      ],
+      "answer": 0,
+      "explanation": "Gelijksoortige termen: $(4+5)x=9x$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg031",
+      "type": "mc",
+      "topic": "Herleiden",
+      "text": "Herleid $9x+8x$.",
+      "choices": [
+        "$1x$",
+        "$17x$",
+        "$98x$",
+        "$x^{17}$"
+      ],
+      "answer": 1,
+      "explanation": "$9x+8x=(9+8)x=17x$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg032",
+      "type": "mc",
+      "topic": "Herleiden",
+      "text": "Herleid $7x-3x$.",
+      "choices": [
+        "$4x$",
+        "$10x$",
+        "$-4x$",
+        "$x$"
+      ],
+      "answer": 0,
+      "explanation": "$7x-3x=(7-3)x=4x$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg033",
+      "type": "mc",
+      "topic": "Herleiden",
+      "text": "Herleid $3x+2y+5x$.",
+      "choices": [
+        "$8x+2y$",
+        "$3x+7y$",
+        "$3x+2y+5x$",
+        "$10xy$"
+      ],
+      "answer": 0,
+      "explanation": "Gelijksoortige termen $3x$ en $5x$ samenvoegen: $(3+5)x=8x$.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg034",
+      "type": "mc",
+      "topic": "Herleiden",
+      "text": "Herleid $4a-7a+3$.",
+      "choices": [
+        "$-3a+3$",
+        "$11a+3$",
+        "$3a-7$",
+        "$-3a-3$"
+      ],
+      "answer": 0,
+      "explanation": "$4a-7a=(4-7)a=-3a$, dus $-3a+3$.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg035",
+      "type": "mc",
+      "topic": "Algebra\u00efsche regels",
+      "text": "Welke regel hoort bij $a+b=b+a$?",
+      "choices": [
+        "Associatieve wet",
+        "Commutatieve wet",
+        "Distributieve wet",
+        "Identiteitsregel"
+      ],
+      "answer": 1,
+      "explanation": "De commutatieve wet zegt dat de volgorde van optellen niet uitmaakt: $a+b=b+a$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg036",
+      "type": "mc",
+      "topic": "Algebra\u00efsche regels",
+      "text": "Welke regel hoort bij $(a+b)+c=a+(b+c)$?",
+      "choices": [
+        "Associatieve wet",
+        "Commutatieve wet",
+        "Distributieve wet",
+        "Nulregel"
+      ],
+      "answer": 0,
+      "explanation": "De associatieve wet gaat over het verplaatsen van haakjes bij optellen.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg037",
+      "type": "mc",
+      "topic": "Algebra\u00efsche regels",
+      "text": "Welke regel gebruik je bij $a\\cdot(b+c)=ab+ac$?",
+      "choices": [
+        "Commutatieve wet",
+        "Associatieve wet",
+        "Distributieve wet",
+        "Identiteitsregel"
+      ],
+      "answer": 2,
+      "explanation": "De distributieve wet beschrijft hoe vermenigvuldiging over optelling verdeeld wordt.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg038",
+      "type": "mc",
+      "topic": "Algebra\u00efsche regels",
+      "text": "Welke uitdrukking hoort bij de regel $a-a=0$?",
+      "choices": [
+        "$3x-3x$",
+        "$3x+0$",
+        "$3x+3x$",
+        "$3x-0$"
+      ],
+      "answer": 0,
+      "explanation": "Voor elk getal geldt $a-a=0$, dus ook voor $3x-3x$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg039",
+      "type": "mc",
+      "topic": "Algebra\u00efsche regels",
+      "text": "Welke gelijkheid is een voorbeeld van $1\\cdot a=a$?",
+      "choices": [
+        "$5x=1\\cdot5x$",
+        "$5x=5x+1$",
+        "$5x=0\\cdot5x$",
+        "$5x=5x-1$"
+      ],
+      "answer": 0,
+      "explanation": "De identiteitsregel: vermenigvuldigen met 1 verandert de waarde niet.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg040",
+      "type": "mc",
+      "topic": "Herleiden",
+      "text": "Herleid $3(x+2)$.",
+      "choices": [
+        "$3x+2$",
+        "$3x+6$",
+        "$x+6$",
+        "$6x+2$"
+      ],
+      "answer": 1,
+      "explanation": "Gebruik de distributieve wet: $3(x+2)=3x+6$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg041",
+      "type": "mc",
+      "topic": "Herleiden",
+      "text": "Herleid $2(x-4)$.",
+      "choices": [
+        "$2x-4$",
+        "$2x-8$",
+        "$2x+8$",
+        "$x-8$"
+      ],
+      "answer": 1,
+      "explanation": "$2(x-4)=2x-8$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg042",
+      "type": "mc",
+      "topic": "Herleiden",
+      "text": "Herleid $5(x+3)-2(x+3)$.",
+      "choices": [
+        "$3(x+3)$",
+        "$7(x+3)$",
+        "$3x+9$",
+        "$7x+21$"
+      ],
+      "answer": 0,
+      "explanation": "Beide termen hebben factor $(x+3)$, dus $(5-2)(x+3)=3(x+3)$.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg043",
+      "type": "mc",
+      "topic": "Herleiden",
+      "text": "Herleid $7x-9xy+7x+9xy$.",
+      "choices": [
+        "$14x$",
+        "$-2xy$",
+        "$14xy$",
+        "$0$"
+      ],
+      "answer": 0,
+      "explanation": "De $xy$-termen heffen elkaar op: $-9xy+9xy=0$, en $7x+7x=14x$.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg044",
+      "type": "mc",
+      "topic": "Herleiden",
+      "text": "Herleid $(x+3)+(2x+5)$.",
+      "choices": [
+        "$3x+8$",
+        "$3x+2$",
+        "$x+2x+8$",
+        "$x+3$"
+      ],
+      "answer": 0,
+      "explanation": "Tel gelijksoortige termen: $(x+2x)+(3+5)=3x+8$.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg045",
+      "type": "mc",
+      "topic": "Herleiden",
+      "text": "Herleid $2(x-4)+3(x+1)$.",
+      "choices": [
+        "$5x-5$",
+        "$5x-7$",
+        "$5x+1$",
+        "$x-3$"
+      ],
+      "answer": 0,
+      "explanation": "Werk haakjes uit: $2x-8+3x+3=5x-5$.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg046",
+      "type": "mc",
+      "topic": "Herleiden",
+      "text": "Herleid $4x^2-3x^2+2x$.",
+      "choices": [
+        "$x^2+2x$",
+        "$7x^2+2x$",
+        "$-x^2+2x$",
+        "$x^2-2x$"
+      ],
+      "answer": 0,
+      "explanation": "$4x^2-3x^2=(4-3)x^2=x^2$, dus $x^2+2x$.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg047",
+      "type": "mc",
+      "topic": "Herleiden",
+      "text": "Herleid $5(x-1)-x$.",
+      "choices": [
+        "$4x-5$",
+        "$4x+5$",
+        "$6x-1$",
+        "$-4x-5$"
+      ],
+      "answer": 0,
+      "explanation": "Eerst $5x-5-x=4x-5$.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg048",
+      "type": "mc",
+      "topic": "Herleiden",
+      "text": "Herleid $3(x+2)-2(x-1)$.",
+      "choices": [
+        "$x+8$",
+        "$x+4$",
+        "$5x+1$",
+        "$x-4$"
+      ],
+      "answer": 0,
+      "explanation": "Uitwerken: $3x+6-2x+2=x+8$.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg049",
+      "type": "mc",
+      "topic": "Herleiden",
+      "text": "Herleid $-2(x-3)+4(x+1)$.",
+      "choices": [
+        "$2x+10$",
+        "$2x-10$",
+        "$-2x+10$",
+        "$-2x-10$"
+      ],
+      "answer": 0,
+      "explanation": "Uitwerken: $-2x+6+4x+4=2x+10$.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg050",
+      "type": "mc",
+      "topic": "Vergelijkingen",
+      "text": "Los op: $x+3=7$.",
+      "choices": [
+        "$x=4$",
+        "$x=10$",
+        "$x=-4$",
+        "$x=1$"
+      ],
+      "answer": 0,
+      "explanation": "Trek 3 af aan beide kanten: $x=7-3=4$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg051",
+      "type": "mc",
+      "topic": "Vergelijkingen",
+      "text": "Los op: $2x-5=9$.",
+      "choices": [
+        "$x=2$",
+        "$x=7$",
+        "$x=-7$",
+        "$x=14$"
+      ],
+      "answer": 1,
+      "explanation": "Tel 5 op: $2x=14$, dan delen door 2: $x=7$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg053",
+      "type": "mc",
+      "topic": "Vergelijkingen",
+      "text": "Los op: $3x+4=1$.",
+      "choices": [
+        "$x=-1$",
+        "$x=-\\dfrac{1}{3}$",
+        "$x=-\\dfrac{4}{3}$",
+        "$x=1$"
+      ],
+      "answer": 0,
+      "explanation": "Trek 4 af: $3x=1-4=-3$, dus $x=-1$.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg055",
+      "type": "mc",
+      "topic": "Vergelijkingen",
+      "text": "Los op: $5x-2=3x+6$.",
+      "choices": [
+        "$x=4$",
+        "$x=-4$",
+        "$x=2$",
+        "$x=-2$"
+      ],
+      "answer": 0,
+      "explanation": "Breng $3x$ naar links: $2x-2=6$, dus $2x=8$ en $x=4$.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg057",
+      "type": "mc",
+      "topic": "Vergelijkingen",
+      "text": "Los op: $4(x-1)=8$.",
+      "choices": [
+        "$x=1$",
+        "$x=2$",
+        "$x=3$",
+        "$x=4$"
+      ],
+      "answer": 2,
+      "explanation": "Deel door 4: $x-1=2$, dus $x=3$.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg058",
+      "type": "mc",
+      "topic": "Vergelijkingen",
+      "text": "Los op: $\\dfrac{x}{3}=5$.",
+      "choices": [
+        "$x=\\dfrac{5}{3}$",
+        "$x=8$",
+        "$x=15$",
+        "$x=2$"
+      ],
+      "answer": 2,
+      "explanation": "Vermenigvuldig beide kanten met 3: $x=15$.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "alg059",
+      "type": "mc",
+      "topic": "Vergelijkingen",
+      "text": "Los op: $2(x+1)=x-4$.",
+      "choices": [
+        "$x=-6$",
+        "$x=6$",
+        "$x=-2$",
+        "$x=2$"
+      ],
+      "answer": 0,
+      "explanation": "Werk uit: $2x+2=x-4 \\Rightarrow x=-6$.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg061",
+      "type": "mc",
+      "topic": "Vergelijkingen",
+      "text": "Los op: $3(x-2)=2(x+1)$.",
+      "choices": [
+        "$x=4$",
+        "$x=8$",
+        "$x=-2$",
+        "$x=2$"
+      ],
+      "answer": 1,
+      "explanation": "Uitwerken: $3x-6=2x+2 \\Rightarrow x=8$.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg063",
+      "type": "mc",
+      "topic": "Vergelijkingen",
+      "text": "Los op: $\\dfrac{2x-1}{3}=5$.",
+      "choices": [
+        "$x=7$",
+        "$x=8$",
+        "$x=\\dfrac{5}{2}$",
+        "$x=\\dfrac{16}{3}$"
+      ],
+      "answer": 1,
+      "explanation": "Vermenigvuldig met 3: $2x-1=15$, dus $2x=16$ en $x=8$.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg064",
+      "type": "mc",
+      "topic": "Vergelijkingen",
+      "text": "Los op: $x+\\dfrac{1}{2}=3$.",
+      "choices": [
+        "$x=\\dfrac{5}{2}$",
+        "$x=\\dfrac{3}{2}$",
+        "$x=\\dfrac{1}{2}$",
+        "$x=\\dfrac{7}{2}$"
+      ],
+      "answer": 1,
+      "explanation": "Trek $\\tfrac12$ af: $x=3-\\tfrac12=\\tfrac{6}{2}-\\tfrac12=\\tfrac32$.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg065",
+      "type": "mc",
+      "topic": "Vergelijkingen",
+      "text": "Los op: $5-2x=1$.",
+      "choices": [
+        "$x=2$",
+        "$x=-2$",
+        "$x=\\dfrac{1}{2}$",
+        "$x=-\\dfrac{1}{2}$"
+      ],
+      "answer": 0,
+      "explanation": "Trek 5 af: $-2x=-4$, dus $x=2$.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg067",
+      "type": "mc",
+      "topic": "Vergelijkingen",
+      "text": "Los op: $4x+7=3x-2$.",
+      "choices": [
+        "$x=9$",
+        "$x=-9$",
+        "$x=-5$",
+        "$x=5$"
+      ],
+      "answer": 1,
+      "explanation": "Breng $3x$ naar links en 7 naar rechts: $x=-9$.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg068",
+      "type": "mc",
+      "topic": "Vergelijkingen",
+      "text": "Los op: $2(x+3)-x=5$.",
+      "choices": [
+        "$x=-1$",
+        "$x=1$",
+        "$x=7$",
+        "$x=5$"
+      ],
+      "answer": 0,
+      "explanation": "Uitwerken: $2x+6-x=5 \\Rightarrow x= -1$.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg070",
+      "type": "mc",
+      "topic": "Vergelijkingen",
+      "text": "Los op: $3x-4=2x+5$.",
+      "choices": [
+        "$x=9$",
+        "$x=-9$",
+        "$x=1$",
+        "$x=-1$"
+      ],
+      "answer": 0,
+      "explanation": "Breng $2x$ naar links en $-4$ naar rechts: $x=9$.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg071",
+      "type": "mc",
+      "topic": "Factoriseren",
+      "text": "Factoriseer $x^2-4$.",
+      "choices": [
+        "$(x-4)(x+1)$",
+        "$(x-2)(x+2)$",
+        "$(x-1)(x-4)$",
+        "het kan niet"
+      ],
+      "answer": 1,
+      "explanation": "Gebruik verschil van kwadraten: $x^2-4=(x-2)(x+2)$.",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "alg072",
+      "type": "mc",
+      "topic": "Factoriseren",
+      "text": "Factoriseer $x^2+5x$.",
+      "choices": [
+        "$x(x+5)$",
+        "$(x+1)(x+5)$",
+        "$x(x-5)$",
+        "$(x+2)(x+3)$"
+      ],
+      "answer": 0,
+      "explanation": "Haal $x$ uit de haakjes: $x^2+5x=x(x+5)$.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg073",
+      "type": "mc",
+      "topic": "Factoriseren",
+      "text": "Factoriseer $3x^2+6x$.",
+      "choices": [
+        "$3x(x+2)$",
+        "$3(x+2)$",
+        "$x(3x+6)$",
+        "$3x(x-2)$"
+      ],
+      "answer": 0,
+      "explanation": "Grootste gemeenschappelijke factor is $3x$: $3x^2+6x=3x(x+2)$.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg074",
+      "type": "mc",
+      "topic": "Factoriseren",
+      "text": "Factoriseer $x^2+3x+2$.",
+      "choices": [
+        "$(x+1)(x+2)$",
+        "$(x+1)(x-2)$",
+        "$(x-1)(x-2)$",
+        "$(x-1)(x+2)$"
+      ],
+      "answer": 0,
+      "explanation": "Zoek twee getallen met product 2 en som 3: 1 en 2, dus $(x+1)(x+2)$.",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "alg075",
+      "type": "mc",
+      "topic": "Factoriseren",
+      "text": "Los op met factoriseren: $x^2+3x+2=0$.",
+      "choices": [
+        "$x=1$ of $x=2$",
+        "$x=-1$ of $x=-2$",
+        "$x=-1$ of $x=-3$",
+        "$x=1$ of $x=-2$"
+      ],
+      "answer": 1,
+      "explanation": "Factoriseer: $(x+1)(x+2)=0$, dus $x=-1$ of $x=-2$.",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "alg076",
+      "type": "mc",
+      "topic": "Kwadratische vergelijkingen",
+      "text": "Los op: $x^2=9$.",
+      "choices": [
+        "$x=3$",
+        "$x=-3$",
+        "$x=3$ of $x=-3$",
+        "geen oplossing"
+      ],
+      "answer": 2,
+      "explanation": "Neem de wortel: $x=\\pm3$, dus $x=3$ of $x=-3$.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg077",
+      "type": "mc",
+      "topic": "Kwadratische vergelijkingen",
+      "text": "Los op: $x^2-5x=0$.",
+      "choices": [
+        "$x=0$ of $x=5$",
+        "$x=5$",
+        "$x=0$",
+        "geen oplossing"
+      ],
+      "answer": 0,
+      "explanation": "Factoriseer: $x(x-5)=0$, dus $x=0$ of $x=5$.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg078",
+      "type": "mc",
+      "topic": "Kwadratische vergelijkingen",
+      "text": "Los op: $x^2-4x+4=0$.",
+      "choices": [
+        "$x=2$",
+        "$x=-2$",
+        "$x=2$ of $x=-2$",
+        "geen oplossing"
+      ],
+      "answer": 0,
+      "explanation": "Schrijf als $(x-2)^2=0$, dus $x=2$.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg079",
+      "type": "mc",
+      "topic": "Kwadratische vergelijkingen",
+      "text": "Los op: $x^2+1=0$ (in de re\u00eble getallen).",
+      "choices": [
+        "$x=1$",
+        "$x=-1$",
+        "geen re\u00eble oplossing",
+        "$x=0$"
+      ],
+      "answer": 2,
+      "explanation": "Er is geen re\u00ebel getal waarvan het kwadraat $-1$ is.",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "alg080",
+      "type": "mc",
+      "topic": "Factoriseren",
+      "text": "Factoriseer $4x^2-9$.",
+      "choices": [
+        "$(2x-3)(2x+3)$",
+        "$(x-3)(4x+3)$",
+        "$(4x-9)(x+1)$",
+        "het kan niet"
+      ],
+      "answer": 0,
+      "explanation": "Gebruik verschil van kwadraten: $(2x)^2-3^2=(2x-3)(2x+3)$.",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "alg081",
+      "type": "mc",
+      "topic": "Kwadratische vergelijkingen",
+      "text": "Los op: $x^2-2x-8=0$.",
+      "choices": [
+        "$x=-2$ of $x=4$",
+        "$x=2$ of $x=-4$",
+        "$x=1$ of $x=-8$",
+        "geen oplossing"
+      ],
+      "answer": 0,
+      "explanation": "Factoriseer: $(x-4)(x+2)=0$, dus $x=4$ of $x=-2$.",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "alg082",
+      "type": "mc",
+      "topic": "Kwadratische vergelijkingen",
+      "text": "Los op: $x^2+4x+3=0$.",
+      "choices": [
+        "$x=-1$ of $x=-3$",
+        "$x=1$ of $x=3$",
+        "$x=-1$ of $x=3$",
+        "$x=1$ of $x=-3$"
+      ],
+      "answer": 0,
+      "explanation": "Factoriseer: $(x+1)(x+3)=0$, dus $x=-1$ of $x=-3$.",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "alg083",
+      "type": "mc",
+      "topic": "Factoriseren",
+      "text": "Factoriseer $6x^2+9x$.",
+      "choices": [
+        "$3x(2x+3)$",
+        "$6x(x+9)$",
+        "$x(6x+9)$",
+        "$3(2x+3)$"
+      ],
+      "answer": 0,
+      "explanation": "Grootste gemeenschappelijke factor is $3x$: $6x^2+9x=3x(2x+3)$.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg084",
+      "type": "mc",
+      "topic": "Kwadratische vergelijkingen",
+      "text": "Los op: $2x^2-8=0$.",
+      "choices": [
+        "$x=\\pm2$",
+        "$x=\\pm4$",
+        "$x=2$",
+        "geen oplossing"
+      ],
+      "answer": 0,
+      "explanation": "Deel door 2: $x^2-4=0$, dus $x=\\pm2$.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg085",
+      "type": "mc",
+      "topic": "Kwadratische vergelijkingen",
+      "text": "Los op: $x^2-6x+9=0$.",
+      "choices": [
+        "$x=3$",
+        "$x=-3$",
+        "$x=\\pm3$",
+        "geen oplossing"
+      ],
+      "answer": 0,
+      "explanation": "Schrijf als $(x-3)^2=0$, dus $x=3$.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg086",
+      "type": "mc",
+      "topic": "Rationale uitdrukkingen",
+      "text": "Vereenvoudig $\\dfrac{x^2-1}{x-1}$ (voor $x\\neq1$).",
+      "choices": [
+        "$1$",
+        "$x+1$",
+        "$x-1$",
+        "$x^2+1$"
+      ],
+      "answer": 1,
+      "explanation": "Splits als $(x-1)(x+1)/(x-1)=x+1$ (voor $x\\neq1$).",
+      "image_url": "nan",
+      "difficulty": 5
+    },
+    {
+      "id": "alg087",
+      "type": "mc",
+      "topic": "Rationale uitdrukkingen",
+      "text": "Voor welke $x$ is $\\dfrac{1}{x-3}$ niet gedefinieerd?",
+      "choices": [
+        "$x=0$",
+        "$x=3$",
+        "$x=-3$",
+        "voor alle $x$ gedefinieerd"
+      ],
+      "answer": 1,
+      "explanation": "De noemer mag niet nul zijn: $x-3=0$ geeft $x=3$.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "alg088",
+      "type": "mc",
+      "topic": "Kwadratische vergelijkingen",
+      "text": "Los op: $(x-1)(x-4)=0$.",
+      "choices": [
+        "$x=1$ of $x=4$",
+        "$x=-1$ of $x=-4$",
+        "$x=3$",
+        "geen oplossing"
+      ],
+      "answer": 0,
+      "explanation": "Product is nul als \u00e9\u00e9n van de factoren nul is: $x=1$ of $x=4$.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "alg089",
+      "type": "mc",
+      "topic": "Factoriseren",
+      "text": "Factoriseer $x^2-5x+6$.",
+      "choices": [
+        "$(x-2)(x-3)$",
+        "$(x+2)(x+3)$",
+        "$(x-1)(x-6)$",
+        "$(x+1)(x-6)$"
+      ],
+      "answer": 0,
+      "explanation": "Twee getallen met product 6 en som -5 zijn -2 en -3.",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "alg090",
+      "type": "mc",
+      "topic": "Kwadratische vergelijkingen",
+      "text": "Los op: $x^2-5x+6=0$.",
+      "choices": [
+        "$x=2$ of $x=3$",
+        "$x=-2$ of $x=-3$",
+        "$x=1$ of $x=6$",
+        "geen oplossing"
+      ],
+      "answer": 0,
+      "explanation": "Met $(x-2)(x-3)=0$ volgt $x=2$ of $x=3$.",
+      "image_url": "nan",
+      "difficulty": 4
     }
   ]
 }
