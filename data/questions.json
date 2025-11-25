@@ -1786,7 +1786,7 @@
       "id": "q101",
       "type": "mc",
       "topic": "QuestionBank",
-      "text": "Welke variabele wordt hier gemuteerd?\n\nws.append(headers)",
+      "text": "Welke variabele wordt hier gemuteerd?ws.append(headers) \"Bereken: $\\\\frac{2}{3} + \\\\frac{4}{5}$\"",
       "choices": [
         "self.data",
         "question.id",
