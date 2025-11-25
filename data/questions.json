@@ -2842,5 +2842,167 @@
       "image_url": "nan",
       "difficulty": 5
     }
+  ],
+  "Programmeren2": [
+    {
+      "id": "q0002",
+      "type": "mc",
+      "topic": "models.py",
+      "text": "Welke klasse in models.py vertegenwoordigt \u00e9\u00e9n quizvraag? Bereken: $\\\\frac{1}{2} + \\\\frac{1}{3}$",
+      "choices": [
+        "Question",
+        "Quiz",
+        "HistoryStore",
+        "QuestionBank"
+      ],
+      "answer": 0,
+      "explanation": "De Question-klasse is bedoeld als representatie van \u00e9\u00e9n quizvraag.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "q0003",
+      "type": "mc",
+      "topic": "models.py",
+      "text": "Welke functie in QuestionBank wordt gebruikt om vragen te filteren op onderwerpen of tags?",
+      "choices": [
+        "load()",
+        "filter()",
+        "select()",
+        "match()"
+      ],
+      "answer": 1,
+      "explanation": "De filter()-functie selecteert vragen op basis van topics of tags.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "q0004",
+      "type": "mc",
+      "topic": "HistoryStore",
+      "text": "Waar wordt gebruikersgeschiedenis opgeslagen?",
+      "choices": [
+        "Lokale JSON",
+        "SQLite DB",
+        "GitHub API via JSON-bestanden",
+        "In-memory RAM"
+      ],
+      "answer": 2,
+      "explanation": "De HistoryStore uploadt en downloadt JSON via de GitHub API.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q0005",
+      "type": "mc",
+      "topic": "engine.py",
+      "text": "Welk algoritme wordt gebruikt om te bepalen welke vraag wordt geselecteerd?",
+      "choices": [
+        "Bubble Sort",
+        "Dijkstra",
+        "Spaced Repetition (Leitner)",
+        "Binary Search"
+      ],
+      "answer": 2,
+      "explanation": "Het programma gebruikt een Spaced Repetition methode op basis van het Leitner-systeem.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q0006",
+      "type": "mc",
+      "topic": "engine.py",
+      "text": "Wat bepaalt of een vraag 'overdue' is?",
+      "choices": [
+        "Hoe moeilijk de vraag is",
+        "Hoelang sinds laatste beantwoording",
+        "Het aantal tags",
+        "Het aantal keuzes"
+      ],
+      "answer": 1,
+      "explanation": "Overdue betekent dat de wachttijd van de Leitner-box is verstreken.",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q0007",
+      "type": "mc",
+      "topic": "app_streamlit.py",
+      "text": "Welk mechanisme gebruikt Streamlit om quiz-voortgang te bewaren?",
+      "choices": [
+        "Cookies",
+        "Session_state",
+        "Environment Variables",
+        "Pickle Files"
+      ],
+      "answer": 1,
+      "explanation": "Streamlit gebruikt session_state voor staat-behoud tussen pagina-runs.",
+      "image_url": "nan",
+      "difficulty": 2
+    },
+    {
+      "id": "q0008",
+      "type": "mc",
+      "topic": "app_streamlit.py",
+      "text": "Waar haalt de app de vragen vandaan?",
+      "choices": [
+        "Lokale CSV",
+        "MySQL database",
+        "GitHub Raw JSON",
+        "Excel bestand"
+      ],
+      "answer": 2,
+      "explanation": "De vragen worden geladen via een raw JSON-file op GitHub.",
+      "image_url": "nan",
+      "difficulty": 1
+    },
+    {
+      "id": "q0009",
+      "type": "mc",
+      "topic": "Admin Panel",
+      "text": "Welke actie voert de admin-interface uit wanneer vragen worden opgeslagen?",
+      "choices": [
+        "Ze worden in RAM gezet",
+        "Ze worden via API in GitHub geschreven",
+        "Ze worden naar een SQL server gestuurd",
+        "Ze worden verwijderd"
+      ],
+      "answer": 1,
+      "explanation": "Het admin-paneel commit wijzigingen naar GitHub via de API.",
+      "image_url": "nan",
+      "difficulty": 3
+    },
+    {
+      "id": "q0010",
+      "type": "mc",
+      "topic": "Algoritme",
+      "text": "Welke factor verhoogt het gewicht van een vraag in de selectie?",
+      "choices": [
+        "Veel correcte antwoorden",
+        "Recent beantwoord",
+        "Meer fouten dan correct",
+        "Laag ID nummer"
+      ],
+      "answer": 2,
+      "explanation": "Bij meer fouten dan goede antwoorden wordt gewicht verhoogd.",
+      "image_url": "nan",
+      "difficulty": 4
+    },
+    {
+      "id": "q0011",
+      "type": "mc",
+      "topic": "GitHub API",
+      "text": "Waarom gebruikt de applicatie Base64 encoding?",
+      "choices": [
+        "GitHub vereist Base64 voor file uploads",
+        "Sneller voor Python",
+        "Beter voor JSON parsing",
+        "Compatibel met Streamlit"
+      ],
+      "answer": 0,
+      "explanation": "GitHub's API verplicht Base64 encoding bij uploads.",
+      "image_url": "nan",
+      "difficulty": 5
+    }
   ]
 }
