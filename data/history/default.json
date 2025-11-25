@@ -420,6 +420,12 @@
       "box": 0,
       "correct": 0,
       "wrong": 1
+    },
+    "alg007": {
+      "last": "2025-11-25T16:14:54.042018",
+      "box": 1,
+      "correct": 1,
+      "wrong": 0
     }
   },
   "tag_stats": {}
