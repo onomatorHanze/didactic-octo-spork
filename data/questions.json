@@ -1786,7 +1786,7 @@
       "id": "q101",
       "type": "mc",
       "topic": "QuestionBank",
-      "text": "\"Bereken:<br><br>$$\\\\frac{2}{3} + \\\\frac{4}{5}$$\"",
+      "text": "Bereken:<br><br>$$\\frac{2}{3} + \\frac{4}{5}$$",
       "choices": [
         "self.data",
         "question.id",
